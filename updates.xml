@@ -4,7 +4,7 @@
     <module releasedate="2016/03/13" distribution="http://plugins.netbeans.org/download/plugin/4608" 
             homepage="http://jpamodeler.github.io" moduleauthor="Gaurav Gupta" codenamebase="org.netbeans.jpa.modeler">
         <manifest OpenIDE-Module-Specification-Version="1.3" AutoUpdate-Show-In-Client="true" 
-                  OpenIDE-Module="org.netbeans.jpa.modeler" OpenIDE-Module-Name="JPA Modeler" OpenIDE-Module-Display-Category="Enterprise Applications" />
+                  OpenIDE-Module="org.netbeans.jpa.modeler" OpenIDE-Module-Name="Jeddict" OpenIDE-Module-Display-Category="Enterprise Applications" />
     </module>
 </module_updates>-->
 <!--<?xml version="1.0" encoding="UTF-8"?> 
@@ -14,7 +14,7 @@
     downloadsize="10276044" 
             homepage="http://jpamodeler.github.io" moduleauthor="Gaurav Gupta" codenamebase="org.netbeans.jpa.modeler">
         <manifest OpenIDE-Module-Specification-Version="1.5" AutoUpdate-Show-In-Client="false" 
-                  OpenIDE-Module="org.netbeans.jpa.modeler" OpenIDE-Module-Name="JPA Modeler" OpenIDE-Module-Display-Category="Enterprise Applications" />
+                  OpenIDE-Module="org.netbeans.jpa.modeler" OpenIDE-Module-Name="Jeddict" OpenIDE-Module-Display-Category="Enterprise Applications" />
     </module>
 </module_updates>
 distribution="http://plugins.netbeans.org/download/plugin/4608" -->

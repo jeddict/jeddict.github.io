@@ -16,7 +16,7 @@
 
 <h3 id="INT" style="text-align: left;">
 Introduction :</h3>
-In this tutorial we will go through the basic execution of stored procedure using JPA Modeler .
+In this tutorial we will go through the basic execution of stored procedure using Jeddict .
 <br/>
 <span style="font-family: inherit;">JPA 2.1 supports : </span>
 <ol style="text-align: left;">
@@ -38,7 +38,7 @@ In this tutorial we will go through the basic execution of stored procedure usin
     <img src="tutorial/NamedStoredProcedureQuery/2.JPG" caption="Select Tables" />
 </li>
 <li><span style="font-family: inherit;">Type <b>SmapleERD</b> for the diagram name. </span></li>
-<li><span style="font-family: inherit;">Type <b>com.jpamodeler.nsp</b> for the Package. </span></li>
+<li><span style="font-family: inherit;">Type <b>com.jeddict.nsp</b> for the Package. </span></li>
 <li><span style="font-family: inherit;">Click Finish.</span>
     <img src="tutorial/NamedStoredProcedureQuery/3.JPG" caption="Create JPA Diagram" />
 </li>
@@ -128,10 +128,10 @@ In this tutorial we will go through the basic execution of stored procedure usin
 <br/><span style="font-family: inherit;">After we have defined the <b>@NamedStoredProcedureQuery</b>, we can use the <b>createNamedStoredProcedureQuery(String name)</b> method of the <b>EntityManager</b> to create a <b>StoredProcedureQuery</b> object. This provides the required methods to set the input parameter, call the stored procedure and get the result.</span>
 
 <h3 id="OUT" style="text-align: left;"> Output :</h3>
-<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">com.jpamodeler.nsp.Student actually got transformed </span>
+<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">com.jeddict.nsp.Student actually got transformed </span>
 <span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">EclipseLink, version: Eclipse Persistence Services - 2.5.0.v20130507-3faac2b </span>
 <span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">file:/G:/jShiwaniGupta/NetBeans_Projects/StoredProceduresModule/build/classes/_DEFAULT_PU login successful </span>
-<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">EJB5181:Portable JNDI names for EJB Tester: [java:global/StoredProceduresModule/Tester, java:global/StoredProceduresModule/Tester!com.jpamodeler.nsp.Tester] </span>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">EJB5181:Portable JNDI names for EJB Tester: [java:global/StoredProceduresModule/Tester, java:global/StoredProceduresModule/Tester!com.jeddict.nsp.Tester] </span>
 <b><span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">Executing Stored Procedure Query ................ </span>
 <span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">Student : Shiwani Gupta </span></b>
 <span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">StoredProceduresModule was successfully deployed in 1,185 milliseconds.</span></pre>

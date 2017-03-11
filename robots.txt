@@ -1,4 +1,4 @@
 User-Agent: *
 Disallow: 
 
-Sitemap: http://jpamodeler.github.io/sitemap.xml
+Sitemap: http://jeddict.github.io/sitemap.xml

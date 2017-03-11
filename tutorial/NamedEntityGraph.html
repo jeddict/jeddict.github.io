@@ -24,7 +24,7 @@ The Java Persistence API provides a powerful interface for object-relational map
 <blockquote class="tr_bq">
 Entity Graphs - as a means to address the long standing problem of fetching to different depths in the Entity graph for different use cases. </blockquote>
 JPA 2.1 entity graphs are a better solution to specify the path and boundaries for find operations or queries. The definition of an entity graph is independent of the query and defines which attributes to fetch from the database.
-This blog post describes how we can create named entity graph by using JPA Modeler and explains how fetch settings and entity graphs in JPA 2.1 can be used to implement various loading strategies.
+This blog post describes how we can create named entity graph by using Jeddict and explains how fetch settings and entity graphs in JPA 2.1 can be used to implement various loading strategies.
 <h3 id="EG">
 Entity Graph:</h3>
 When an object is retrieved from the datastore by JPA typically not all fields are retrieved immediately. This is because for efficiency purposes only particular field types are retrieved in the initial access of the object, and then any other objects are retrieved when accessed (lazy loading). The group of fields that are loaded is called an <b>entity graph</b>. There are 3 types of "entity graphs" to consider
@@ -33,7 +33,7 @@ When an object is retrieved from the datastore by JPA typically not all fields a
 <li><b>Named Entity Graphs:</b> a new feature in JPA 2.1 allowing the user to define Named Entity Graphs in metadata, via annotations <code><a href="NamedEntityGraph.html" target="_blank">@NamedEntityGraph</a></code> or deployment descriptor. </li>
 <li><b>Unnamed Entity Graphs (Dynamic):</b> a new feature in JPA 2.1 allowing the user to define Entity Graphs via the <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html#createEntityGraph-java.lang.String-" target="_blank">createEntityGraph()</a></code> method of <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html" target="_blank">EntityManager</a></code> API at runtime.</li>
 </ul>
-Lets have a look how to define and use an entity graph in JPA Modeler. 
+Lets have a look how to define and use an entity graph in Jeddict. 
 <!--more-->
 <h3 id="DIA">
 Create the JPA Diagram :</h3>
@@ -43,7 +43,7 @@ Create the JPA Diagram :</h3>
 </li>
 <li>From the Persistence , select JPA Diagram and click Next. </li>
 <li>Type <b>SampleDiagram </b>for the diagram name. </li>
-<li>Type <b>com.jpamodeler.entitygraph</b> for the Package. </li>
+<li>Type <b>com.jeddict.entitygraph</b> for the Package. </li>
 <li>Click Finish. </li>
 </ol>
 When you click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.
@@ -139,4 +139,4 @@ Download Source Code : </h3>
 <h3 id="CON">
 Conclusion:</h3>
 The Entity Graph overrides the default loading strategy, and provides flexibility of loading the association &amp; attributes of an Entity and helps to improve the performance of application. The usage and definition of the entity graph does not depends on query and we can fetch a graph of multiple entities with only one select query, so the main drawbacks of the JPA 2.0 are solved. 
-The Above example shows a very simple entity graph and you will probably be using more complex graphs in a real application which may have <b>more annotations than actual code</b> and that would make the code harder to read, so the JPA Modeler assist the developer to design &amp; manage the entity graph and generate &amp; reverse-engineering the annotation by modeler.</div>
+The Above example shows a very simple entity graph and you will probably be using more complex graphs in a real application which may have <b>more annotations than actual code</b> and that would make the code harder to read, so the Jeddict assist the developer to design &amp; manage the entity graph and generate &amp; reverse-engineering the annotation by modeler.</div>
