@@ -1,0 +1,198 @@
+<h3>JPA Modeler Quick Start Tutorial</h3>
+Welcome to JPA Modeler!
+
+This tutorial provides a very simple and quick introduction to the JPA Modeler workflow by walking you through the creation 
+of a simple JPA application. Once you are done with this tutorial, you will have a general knowledge of how to create enterprises applications model using JPA Modeler.
+<p>
+This tutorial takes less than 10 minutes to complete.</p>
+After you finish this tutorial, you can move on to the other advanced tutorial, 
+<!--which are linked from the Documentation, Training & Support page.--> 
+<!--The advanced tutorial provide comprehensive tutorials that highlight a wider range of JPA Modeler features.
+If you do not want to do a simple JPA application, you can skip this tutorial and jump straight to the learning trails.-->
+
+<br/>
+<a target="_blank" href="https://youtu.be/t1JTuQiD4G0">Click here for video demonstration</a>
+
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+    <li><a href="#SETUP">Setting Up the Project</a></li>
+    <li><a href="#CD">Create the JPA Diagram</a>
+        <ul style="text-align: left;">
+            <li><a href="#CE">Create the Entities</a></li>
+            <li><a href="#AP">Add property</a></li>
+            <li><a href="#CR">Create the Relationship</a></li>
+        </ul>
+    </li>
+    
+  <li><a href="#MD">Visualize/Modify Database</a>
+          <ul style="text-align: left;">
+            <li><a href="#DJT">Delete Join Table</a></li>
+            <li><a href="#VS">View SQL</a></li>
+        </ul>
+  </li>
+ <li><a href="#GSRC">Generate the entity classes </a></li>
+</ul>
+
+
+
+
+<h3 id="SETUP">Setting Up the Project :</h3>
+To create an IDE project:
+<ul>
+<li>Start NetBeans IDE.</li>
+<li>In the IDE, choose <b>File > New Project(Ctrl-Shift-N) from the main menu</b>, as shown in the figure below :
+    <img src="tutorial/QuickStart/1.png" caption="create New Project" />
+</li>
+<li>In the New Project wizard, expand the <b>Java Web</b> category and select <b>Web Application</b> as shown in the figure below. Then click Next.
+<img src="tutorial/QuickStart/2.png" caption="choose Project" />
+</li>
+
+
+
+<li>Enter <b>ShoppingSystem</b> in the Project name text box and specify the Project Location to any directory on your computer and click next (as shown in the figure below):
+        <img src="tutorial/QuickStart/3.png" caption="choose Name and Location" />
+</li>
+ <li>Select the version of Java EE you want to use with your application and 
+     the server to which you want to deploy your application and add context path
+        <img src="tutorial/QuickStart/4.png" caption="choose Project" />
+        </li>
+        
+         <li>Select the framework, if any required :
+        <img src="tutorial/QuickStart/5.png" caption="select Framework(optional)" />
+        </li>
+
+<li>Click Finish:
+ <img src="tutorial/QuickStart/6.png" caption="creating Project" /></li>
+
+<li>The project is created and opened in the IDE. You should see the Projects window, which contains a tree view of the components of the project, including source files, libraries that your code depends on, and so on.
+ <img src="tutorial/QuickStart/7.png" caption="Project structue" />
+  
+</li>
+</ul>
+
+
+<!--more-->
+<h3 id="CD">Create the JPA Diagram :</h3>
+<ol style="text-align: left;">
+<li>Goto File menu &gt; New File &gt; Persistence category.
+    <img src="tutorial/QuickStart/8.png" caption="create New File" />
+</li>
+<li>From the Persistence , select JPA Diagram and click Next.
+    <img src="tutorial/QuickStart/9.png" caption="Select JPA Diagram" />
+</li>
+<li>Type <b>CartModel</b> for the diagram name.
+<img src="tutorial/QuickStart/10.png" caption="enter Dagram name" />
+</li>
+<li>Type <b>eshop</b> for the Location.
+<img src="tutorial/QuickStart/11.png" caption="enter Location" />
+</li>
+<li>Click Finish.</li>
+<li>When you click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.
+    <img src="tutorial/QuickStart/13.png" caption="Diagram opened" />
+</li>
+</ol>
+
+<h3 id="CE">Create the Entities :</h3>
+<ol style="text-align: left;">
+<li>Drag &amp; Drop the Entities <entity/> from the Palette window to designer. 
+<img src="tutorial/NamedEntityGraph/pal.JPG" caption="Palette" />
+<img src="tutorial/QuickStart/14.png" caption="Drag Entity" />
+</li>
+<li>Double click on the Entity and rename to <b>Customer</b>.
+<img src="tutorial/QuickStart/15.png" caption="rename Entity" />
+</li>
+</ol>
+
+<h3 id="AP">Add property :</h3>
+<ol>
+<li>To create <b>@Id attribute</b>, click on the <b>Customer</b> Entity <id></id> property.
+<img src="tutorial/QuickStart/16.png" caption="add @Id" />
+</li>
+<li>To create <b>@Basic attribute</b>, click on the <b>Customer</b> Entity <basic></basic> property.
+<img src="tutorial/QuickStart/17.png" caption="add @Basic" />
+</li>
+</ol>
+
+
+<h3 id="CR">Create Relationship :</h3>
+<ol>
+    <li>To create <b>relation</b>, create some other entities :
+<img src="tutorial/QuickStart/18.png" caption="create other Entities" />
+<li>Now, click on the <b>Customer</b> Entity <otm></otm> property.
+<img src="tutorial/QuickStart/19.png" caption="select @OneToMany" />
+</li>
+<li>And drag to <b>ProductOrder</b> Entity.
+<img src="tutorial/QuickStart/20.png" caption="connect wtih ProductOrder" />
+</li>
+<li>Same as above create relation <b>@ManyToMany</b> between <b>ProductOrder</b> and <b>Product</b> Entity.
+<img src="tutorial/QuickStart/20.1.png" caption="connect wtih Product" />
+</li>
+</ol>
+
+<h3 id="MD">Visualize/Modify Database :</h3>
+<ol>
+<li>Right click on the diagram > <gendb></gendb> Visualize DB :
+<img src="tutorial/QuickStart/21_VIEW_DB.png" caption="view DB" />
+</li>
+<li>To change <b>database connection</b> click on the top side of combobox panel :
+<img src="tutorial/QuickStart/22_VIEW_DB_CONNECTION.png" caption="change DB connection" />
+</li>
+<li>To override default <b>table name</b>, double click on table <dbtable></dbtable> name label :
+<img src="tutorial/QuickStart/23_CHANGE_TABLE_NAME.png" caption="view DB" />
+</li>
+<li>To override default <b>column name</b>, double click <column></column> on column :
+<img src="tutorial/QuickStart/24_CHANGE_COLUMN_NAME.png" caption="view DB" />
+</li>
+</ol>
+
+
+<h3 id="DJT">Delete Join Table :</h3>
+<ol>
+    <li>Right click on the JoinTable <jontable></jontable> > Delete JoinTable :
+<img src="tutorial/QuickStart/25_CONVERT_TO_JOINTABLE.png" caption="delete @JoinTable" />
+
+</li>
+<li>Enter the column <joincolumn></joincolumn> name of new foreign key mapping :
+    <img src="tutorial/QuickStart/26_CONVERT_TO_JOINTABLE.png" caption="enter @JoinColumn name" />
+</li>
+<li>New <joincolumn></joincolumn> foreign key mapping is created now :
+    <img src="tutorial/QuickStart/27_CONVERT_TO_JOINTABLE.png" caption="new @JoinColumn created" />
+</li>
+</ol>
+
+<h3 id="VS">View SQL :</h3>
+<ol>
+<li>Right click on the db <db></db> diagram > <sql></sql> View SQL :
+<img src="tutorial/QuickStart/28_SQL.png" caption="view SQL" />
+</li>
+<li>You may view/execute the generated SQL :
+<img src="tutorial/QuickStart/29_SQL.png" caption="Generated DDL" />
+</li>
+</ol>
+
+
+
+<h3 id="GSRC">
+Generate the entity classes :</h3>
+<ol style="text-align: left;">
+<li>Click on the JPA diagram and change the source code package location from property panel.
+   <img src="tutorial/QuickStart/30.png" caption="change package" />
+</li>
+<li>Right click on the diagram &gt; Generate Source Code.
+   <img src="tutorial/QuickStart/30_GEN_SRC.png" caption="Generate entity classes" />
+</li>
+<li>Select the source code project location.
+   <img src="tutorial/QuickStart/31_GEN_SRC.png" caption="Entity classes location" />
+</li>
+
+<li>Click on the entities class to view source code. 
+<img src="tutorial/QuickStart/32_GEN_SRC.png" caption="generating source code" />
+<img src="tutorial/QuickStart/33_GEN_SRC.png" caption="view source code" />
+</li>
+</ol>
+
+
+You now know how to accomplish some of the most common tasks in the JPA Modeler.
+
+
+<script>paginate( "page.html?l=tutorial/Installation", "page.html?l=tutorial/OFB/MVC/QuickStart");</script>

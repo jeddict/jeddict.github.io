@@ -1,0 +1,21 @@
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 0.6em;
+    right: 0.6em;
+    text-decoration: none;
+    color: #888;
+    /*background-color: rgba(239, 236, 236, 0.5);*/
+    padding: 3px 12px 3px 11px;
+    border-radius: 3px;
+    border: 1px solid;
+    border-color: #ddd;
+    
+}
+
+.back-to-top:hover {	
+    color: rgba(157, 157, 157, 1);
+    /*background-color: rgba(235, 235, 235, 0.9);*/
+    background-color: #ddd;
+
+}

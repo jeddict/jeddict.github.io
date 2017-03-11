@@ -1,0 +1,163 @@
+
+<h2>Zero-to-Docker <span style="font-size:large;">in minutes</span></h2>
+<p>Welcome to the JPA Modeler! This tutorial provides a very simple and quick introduction to the <b>Dockerize Java EE Application</b> 
+    by walking you through the creation of a complete application.<br/>
+    By the end of this article, you should have a basic understanding of Docker and have it working on your computer!
+</p>
+
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<nav id="toc-head" ></nav>
+
+<h3 id="INT">Introduction :</h3>
+<p>
+    Software builds should be portable, predictable and painless, whether deploying to a local testing or staging server, or production server. 
+    But sometimes it seems like shipping code is half the battle, 
+    we spend countless hours configuring the infrastructure instead of delivering critical updates to our users.
+</p> 
+<p>
+    Minimizing the differences between your local environment and production help us to avoid last minute changes because of configuration differences.
+    Working with <b>Docker containers</b> on local environment is a true productivity booster and saves you some last minute hassle.
+    Containerizing your applications will not only make your deployment faster but also a lot easier. 
+</p>
+<h3 id="PRE">Prerequisite :</h3>
+Make sure that the following prerequisites are met:
+<ol>
+    <li>Java 1.8</li>
+    <li>NetBeans 8.2</li>
+    <li>JPA Modeler 2.7.2</li>
+    <li>Docker 1.12</li>
+</ol>
+
+<h3>Docker:</h3>
+<p>Docker is one of the most popular virtualization approaches that uses Linux containers rather than virtual machines as a way of isolating application data and computing on shared resources. 
+    Docker simplifies software delivery by making it easy to build and share images that contain your application’s entire environment, or application operating system.
+    <img class="NO_BORDER_IMG" src="tutorial/Docker/DOCKER.png" caption=""/>
+    Docker is basically an interface to Linux Containers (LXC), a feature of the linux kernel that was introduced in the 3.8 release.
+    If Docker is not already setup on your machine, then as a first step, you need to set it up : <a href="https://docs.docker.com/engine/installation/">Install Docker</a>. 
+</p>
+
+<h3 id="VIEW_COM">Docker Compose  :</h3>
+<p>Docker Compose is a tool for defining and running complex applications with Docker. 
+    With Compose, you define a multi-container application in a single file, then spin your application up in a single command 
+    which does everything that needs to be done to get it running.
+    <img class="NO_BORDER_IMG" src="tutorial/Docker/COMPOSE.png" caption=""/>
+</p>
+
+<h3>Setup Host using Docker Machine :</h3>
+<p>Docker Machine can be configured to use with multiple drivers, such as Amazon Web Services, Google Compute Engine, Microsoft Azure, and Oracle VirtualBox. 
+    On a developer laptop, Virtual Box is a convenient option. Virtual Box 4.3.20 is the minimum requirement. 
+    So make sure you’ve the correct version installed.</p>    
+
+<p>Create a Docker Host using VirtualBox provider and call the machine as “<b>dev</b>”.
+    <script src="https://gist.github.com/jGauravGupta/a7a43414de06192c35b918b7bdc5b95b.js"></script>        
+    <img src="tutorial/Docker/CREATE_DOCKER_MACHINE.gif" caption="create host" />
+    This downloads boot2docker with the Docker daemon installed, and will create and start a VirtualBox VM with Docker running.</p>    
+
+<p>Find IP address of the machine as: 
+    <script src="https://gist.github.com/jGauravGupta/ab6a8c5ec5ad8cbeec4721f47279c9f8.js"></script>
+    Note down this IP address, this will be used for accessing the application.
+    <br/>
+    Check the environment of newly created machine as:
+    <script src="https://gist.github.com/jGauravGupta/f90fab33c50c016046e46304c41845ec.js"></script>
+    <img src="tutorial/Docker/ENV.png" caption="env" />
+</p>
+
+
+<h3 id="PROJ">Create the Maven project and JPA Diagram :</h3>
+<ul>
+    <li>Start NetBeans IDE and Choose <b>File > New Project(Ctrl-Shift-N)</b></li>
+    <li>In the New Project wizard, expand the <b>Maven</b> category and create <b>Web Application</b> project type.</li>
+    <li>Goto <b>File</b> menu <b>&gt; New File &gt; Persistence</b> category &gt; 
+        create <b>JPA Diagram</b> and design model.
+    </li>
+    <li>For more information click here : <a href="page.html?l=tutorial/QuickStart" target="_blank">Quick Start</a></li>
+    <img src="tutorial/Docker/CREATE_PROJECT.gif" caption="create New Project" />
+</ul>
+
+<h3>Generate Source Code :</h3>
+<ul>
+    <li>Right click on the <b>diagram &gt; Generate Source Code</b> or <b>(ctrl + G)</b></li>
+    <li>Select the technology component e.g REST, Angular etc</li>
+    <img src="tutorial/Docker/GENERATE_SRC.gif" caption="Generate source code" />
+</ul>
+
+
+<h3>Define Infrastructure :</h3>
+<ul>
+    <li>Select <b>docker host</b> or add new instance</li>
+    <li>Select the <b>server</b> to which you want to deploy your application and the <b>database</b> to persist data so that the generated docker-compose.yml
+        defines two services: <b>web</b> and <b>db</b>. The container for the web service is built according to the DockerFile located in the same directory.
+        The container port 8080 is mapped to the host port 8080. The service is linked to a container in the db service. 
+        The container for the db service is built using the postgres image in this example.
+    </li>
+    <li>Now, Generate the source</li>
+    <img src="tutorial/Docker/DOCKER_SETTING.gif" caption="Docker Host" />
+    <li>
+    Once source code is generated, Verify the Docker Machine reference in POM.xml, as shown in following image :
+    <img src="tutorial/Docker/POM_DOCKER_MACHINE_REF.png" caption="Docker Machine ref" /></li>
+    
+</ul>
+
+<h3>Select Profile :</h3>
+<ul>
+    <li>By default <b>docker</b> maven profile is not active, 
+        so right click on the <b>Project > Set Configuration ></b> select "<b>docker</b>" profile.
+        <img src="tutorial/Docker/DOCKER_PROFILE.gif" caption="create New File" />
+    </li>
+    <li><b>Note :</b> If profile is not visible/loaded in <b>Set Configuration</b> then right click on the project and click on the <b>RELOAD POM</b>.
+        <img src="tutorial/Docker/RELOAD_POM.png" caption="Reload POM" />
+    </li>
+</ul>
+
+<h3> Bake Docker image and Run Containers :</h3>
+<ul>
+    <li> After <b>docker</b> maven profile selection, right click on the maven project and <b>build</b> it.</li>
+    <li>Now it creates Docker images holding the actual application (include build artifacts and their dependencies into an image) and Run the containers</li>
+    <li>From the <b>Services</b> window, it’s easy to inspect containers and view running processes. 
+        You can also view logs, start and stop containers, and perform basic container management like creating and deleting containers. 
+        Each deployment in Docker is assigned a unique container ID – these are initially temporary containers, 
+        although they can be committed and saved for further distribution. On the Docker Hub registry, there are many such images available for you to try.</li>
+    <img src="tutorial/Docker/BUILD.gif" caption="Build project" />
+    <img src="tutorial/Docker/CONTAINER.png" caption="Containers" class="NO_BORDER_IMG" />
+
+</ul>
+
+<h3>View Application :</h3>
+Access the application at http://192.168.99.100:8080/ShoppingModule <b>[http://&lt;docker-host&gt;:8080]</b> :
+<img src="tutorial/Docker/VIEW.gif" caption="create New File" />
+
+<h3>[ Commit > Push > Pull ] your docker image :</h3>
+<p>Images in Docker are read-only – once committed, any changes to a container’s state will become part of a new image. 
+    When you have a stable build on one instance of Docker (on your development machine, staging server, or a cloud), 
+    reproducing the exact same build is as simple as :</p>
+<ol>
+    <li>committing the Docker container
+        <img src="tutorial/Docker/COMMIT.png" caption="Commit container" /></li>
+    <li>pushing it to a registry (public or private)
+        <img src="tutorial/Docker/PUSH.png" caption="Push image" /></li>
+    <li>pulling the same image to another instance of Docker, running – wherever
+        <img src="tutorial/Docker/PULL.png" caption="Pull image" /></li>
+</ol>
+This version control aspect is part of what makes Docker such a powerful tool for developers.
+
+<h3>Conclusion</h3>
+<p>In this competitive age, you can't afford to live without incorporating Docker in your development workflow. 
+    By eliminating the need to repeatedly install and uninstall complex interdependent developer packages and tools, 
+    Docker can shorten your development and exploration time. 
+    So Take advantage of Docker to dramatically increase your development productivity and saves you some last minute hassle.
+</p>
+Have fun with your Dockerized Java EE application :)
+
+<!--<h4>Troubleshooting :</h4>
+<ol>
+    <li>
+        Failed to execute goal io.fabric8:docker-maven-plugin:0.17.2:build (docker:build) on project MVC_DOV: Execution docker:build of goal io.fabric8:docker-maven-plugin:0.17.2:build failed: Given repository name 'com.mycompany/MVC_DOV:latest' is invalid:
+* image part 'MVC_DOV' doesn't match allowed pattern '(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])(?:(?:\.(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]))+)?(?::[0-9]+)?/)?[a-z0-9]+(?:(?:[._]|__|[-]*)[a-z0-9]+)*(?:/[a-z0-9]+(?:(?:[._]|__|[-]*)[a-z0-9]+)*)?'
+See http://bit.ly/docker_image_format for more details
+
+Solution : Repository name must be lowercase.
+Open pom.xml > 
+    </li>
+non-zero code: 6
+
+</ol>-->

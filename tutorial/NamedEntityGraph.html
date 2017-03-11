@@ -1,0 +1,142 @@
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<h3>@NamedEntityGraph in Action</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+<li><a href="#INT">Introduction</a></li>
+<li><a href="#EG">Entity Graph</a></li>
+<li><a href="#DIA">Create the JPA Diagram</a></li>
+<li><a href="#CRE">Create the Entities</a></li>
+<li><a href="#CEG">Create the @NamedEntityGraph</a></li>
+<li><a href="#NES">Named sub graph</a></li>
+<li><a href="#EGT">Entity Graph types</a></li>
+<li><a href="#GSRC">Generate Source Code</a></li>
+<li><a href="#EGI">Obtain EntityGraph Instance</a></li>
+<li><a href="#EGQ">Entity Graphs in Query Operation</a></li>
+<!--<li><a href="#DSRC">Download Source Code</a></li>-->
+<li><a href="#CON">Conclusion</a></li>
+</ul>
+
+<h3 id="INT">
+Introduction :</h3>
+The Java Persistence API provides a powerful interface for object-relational mapping. Its usage is straightforward for simple models, but complex models require care and expertise to achieve good performance. JPA loading strategies are a key factor for better performance.  
+
+<b> JPA 2.1 introduced a new feature :</b> 
+<blockquote class="tr_bq">
+Entity Graphs - as a means to address the long standing problem of fetching to different depths in the Entity graph for different use cases. </blockquote>
+JPA 2.1 entity graphs are a better solution to specify the path and boundaries for find operations or queries. The definition of an entity graph is independent of the query and defines which attributes to fetch from the database.
+This blog post describes how we can create named entity graph by using JPA Modeler and explains how fetch settings and entity graphs in JPA 2.1 can be used to implement various loading strategies.
+<h3 id="EG">
+Entity Graph:</h3>
+When an object is retrieved from the datastore by JPA typically not all fields are retrieved immediately. This is because for efficiency purposes only particular field types are retrieved in the initial access of the object, and then any other objects are retrieved when accessed (lazy loading). The group of fields that are loaded is called an <b>entity graph</b>. There are 3 types of "entity graphs" to consider
+<ul style="text-align: left;">
+<li><b>Default Entity Graph:</b> implicitly defined in all JPA specs, specifying the <i>fetch</i> setting for each field/property (LAZY/EAGER). </li>
+<li><b>Named Entity Graphs:</b> a new feature in JPA 2.1 allowing the user to define Named Entity Graphs in metadata, via annotations <code><a href="NamedEntityGraph.html" target="_blank">@NamedEntityGraph</a></code> or deployment descriptor. </li>
+<li><b>Unnamed Entity Graphs (Dynamic):</b> a new feature in JPA 2.1 allowing the user to define Entity Graphs via the <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html#createEntityGraph-java.lang.String-" target="_blank">createEntityGraph()</a></code> method of <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html" target="_blank">EntityManager</a></code> API at runtime.</li>
+</ul>
+Lets have a look how to define and use an entity graph in JPA Modeler. 
+<!--more-->
+<h3 id="DIA">
+Create the JPA Diagram :</h3>
+<ol style="text-align: left;">
+<li>Goto File menu &gt; New File &gt; Persistence category.
+    <img src="tutorial/NamedEntityGraph/1.png" caption="Select JPA Diagram" />
+</li>
+<li>From the Persistence , select JPA Diagram and click Next. </li>
+<li>Type <b>SampleDiagram </b>for the diagram name. </li>
+<li>Type <b>com.jpamodeler.entitygraph</b> for the Package. </li>
+<li>Click Finish. </li>
+</ol>
+When you click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.
+
+<h3 id="CRE">
+Create the Entities:</h3>
+<ol style="text-align: left;">
+<li>Drag &amp; Drop the Entities <entity/> from the Palette window to designer. 
+    <img src="tutorial/NamedEntityGraph/pal.JPG" caption="Palette" />
+</li>
+<li>Double click on the Entity and rename to <b>Movie</b>.</li>
+<li>To create <b>basic attribute</b>, click on the <b>Movie </b>Entity <basic/> property.</li>
+<li>To create <b><b>relation </b>attribute</b>, click on the <b>Movie </b>Entity <entity></entity>.
+    <img src="tutorial/NamedEntityGraph/12.JPG" caption="Add relation property" />
+</li>
+<li>Now, drag OneToMany <otm></otm> to <b>MovieActor</b> class. 
+ <img src="tutorial/NamedEntityGraph/13.JPG" caption="Relation property" />
+ <img src="tutorial/NamedEntityGraph/14.JPG" caption="Final design" />
+</li>
+</ol>
+<h3 id="CEG" style="text-align: left;">
+Create the @NamedEntityGrpah :</h3>
+<blockquote class="tr_bq">
+<code><a target="_blank" href="http://docs.oracle.com/javaee/7/api/javax/persistence/NamedEntityGraph.html">NamedEntityGraph</a></code>
+defines a unique name and a list of attributes ( the <code><a target="_blank" href="http://docs.oracle.com/javaee/7/api/javax/persistence/NamedEntityGraph.html#attributeNodes--">attributeNodes</a></code> ) that have be loaded.</blockquote>
+<ol style="text-align: left;">
+<li style="font-weight: normal;">Click on the entity &gt; Properties.</li>
+<li style="font-weight: normal;">From the properties, select <b>Named Entity Graphs </b>Property.
+     <img src="tutorial/NamedEntityGraph/15.JPG" caption="Open Entity Graph Panel" />
+</li>
+<li style="font-weight: normal;"><span style="font-weight: normal;">Click on the </span><b>Add button</b> to create new named entity graph.
+    <img src="tutorial/NamedEntityGraph/16.png" caption="Create Entity Graph" />
+</li>
+<li style="font-weight: normal;">In this panel , you may view entity attributes with check-box in the tree structure. 
+    <img src="tutorial/NamedEntityGraph/17.png" caption="Entity Graph editor" />
+</li>
+<li style="font-weight: normal;">Select the attribute from the tree to add the fields to the entity graph which will be part of <code>attributeNodes</code> element of <code>@NamedEntityGraph</code> with a <code>javax.persistence.NamedAttributeNode</code> annotation and then, type the entity graph name.
+    <img src="tutorial/NamedEntityGraph/18.png" caption="select attributes" />
+</li>
+<li style="font-weight: normal;">In this example, the name of the named entity graph is <b>movieWithActorsAndAwards</b> and include the <b>movieActors</b> field.</li>
+<li style="font-weight: normal;">Click on the save button to <b>save named entity graph</b>. 
+    <img src="tutorial/NamedEntityGraph/21.png" caption="Created Entity Graph" />
+</li>
+</ol>
+
+<h3 id="NES">Named sub graph :</h3>
+<blockquote class="tr_bq">
+The definition of a named sub graph is similar to the definition of an named entity graph and can be referenced as an attributeNode.</blockquote>
+We used the entity graph to define the fetch operation of the Movie entity. If we want to do the same for the <b>MovieActor</b> entity, we can do this with an entity sub graph.
+Now, we will edit the entity graph, expand the <b>movieActors</b> attribute and then select the <b>movieActorAwards</b> attribute.
+    <img src="tutorial/NamedEntityGraph/19.png" caption="design Sub Entity Graph" />
+The following code snippets shows the definition of a sub graph to load the <i>MovieActorAward</i> of each <b>MovieActor</b>. The defined entity graph will fetch an <b>Movie</b> with all <i>MovieActors</i> and their <i>MovieActorAwards</i>.<script src="https://gist.github.com/jShiwaniGupta/ff292e0a9f975219bb91.js"></script> 
+<h3 id="EGT">
+View the Entity Graph based on Graph Type :</h3>
+<blockquote class="tr_bq">
+An entity graph can be used as a fetch or a load graph. </blockquote>
+To check the final view of entity graph based on the graph type on the <b>View button</b>, after selection of attribute.
+<img src="tutorial/NamedEntityGraph/3.png" caption="" />
+<ul>
+<li>If a <b>fetch graph</b> is used, only the attributes specified by the entity graph will be treated as <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/FetchType.html#EAGER" target="_blank">FetchType.EAGER</a></code> and all other attributes will be lazy. 
+<img src="tutorial/NamedEntityGraph/23.png" caption="Fetch Graph" />    
+</li>
+<li>If a <b>load graph</b> is used, all attributes that are not specified by the entity graph will keep their default fetch type.
+    <img src="tutorial/NamedEntityGraph/24.png" caption="Load Graph" />
+</li>
+</ul>
+Entity graphs have attributes that correspond to the fields that will be eagerly fetched during a <code>find</code> or query operation. The primary key and version fields of the entity class are always fetched and do not need to be explicitly added to an entity graph.  
+<h3 id="GSRC">
+Generate the entity classes :</h3>
+<ol style="text-align: left;">
+<li>Right click on the diagram &gt; Generate Source Code.
+    <img src="tutorial/NamedEntityGraph/22.png" caption="Generate Source Code" />
+</li>
+<li>Click on the Movie entity class to view source code. <script src="https://gist.github.com/jShiwaniGupta/eeef86748727574e80ae.js"></script></li>
+</ol>
+
+<h3 id="EGI">
+Obtaining EntityGraph Instances from Named Entity Graphs:</h3>
+Use the <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html#createEntityGraph-java.lang.String-" target="_blank">EntityManager.getEntityGraph</a></code> method, passing in the named entity graph name, to obtain <code><a href="http://docs.oracle.com/javaee/7/api/javax/persistence/EntityGraph.html" target="_blank">EntityGraph</a></code> instances:
+<pre class="oac_no_warn" dir="ltr" style="background-color: #efefef; border-radius: 5px; border: 1px solid rgb(204, 204, 204); color: #222222; font-family: monospace, serif; font-size: 13px; line-height: 20px; margin-bottom: 1em; margin-top: 1em; overflow: auto; padding: 8px; white-space: pre-wrap; word-wrap: break-word;" xml:space="preserve"><span style="font-weight: normal;">EntityGraph<emailmessage> eg = em.getEntityGraph("movieWithActorsAndAwards");</emailmessage></span></pre>
+You can use an entity graph with the <code>EntityManager.find</code> method or as part of a <code>JPQL</code> or <code>Criteria API</code> query by specifying the entity graph as a hint to the operation or query.
+
+<h3 id="EGQ">
+Using Entity Graphs in Query Operations:</h3>
+Now that we have defined the entity graph, we can use it in a query. To specify entity graphs for both typed and untyped queries, call the <code>setHint</code> method on the query object and specify either <code>javax.persistence.loadgraph</code> or <code>javax.persistence.fetchgraph</code> as the property name and an EntityGraph instance as the value.
+The following code snippet shows how to use a named entity graph as a fetch graph in a find statement :
+
+<script src="https://gist.github.com/jShiwaniGupta/20b0772ed7b21d9abaa3.js"></script> In this example, the <b>movieWithActorsAndAwards</b> is used for the <b>Movie.findAll</b> named query and we provide this graph as a hint to the entity manager, to fetch the movies and all their actors in one query.
+<!--<h3 id="DSRC">
+Download Source Code : </h3>
+<a href="https://github.com/jShiwaniGupta/JPA-Modeler-Example/tree/master/Named%20Entity%20Graph" target="_blank">Github - Named Entity Graph</a>   -->
+
+<h3 id="CON">
+Conclusion:</h3>
+The Entity Graph overrides the default loading strategy, and provides flexibility of loading the association &amp; attributes of an Entity and helps to improve the performance of application. The usage and definition of the entity graph does not depends on query and we can fetch a graph of multiple entities with only one select query, so the main drawbacks of the JPA 2.0 are solved. 
+The Above example shows a very simple entity graph and you will probably be using more complex graphs in a real application which may have <b>more annotations than actual code</b> and that would make the code harder to read, so the JPA Modeler assist the developer to design &amp; manage the entity graph and generate &amp; reverse-engineering the annotation by modeler.</div>

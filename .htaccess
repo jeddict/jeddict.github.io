@@ -1,0 +1,6 @@
+%External redirect
+RewiteCond %{THE_REQUEST} ^(GET|HEAD)\ /page\.html\?l=(.*)\ HTTP
+RewriteRule ^ /page/%1? [R,L]
+
+%Internal rewrite
+RewriteRule ^page/(.*)$ /page.html?l=$1 [L]

@@ -1,0 +1,138 @@
+<h3 data-toc-skip>Primary Keys Corresponding to Derived Identities</h3>
+
+<blockquote>The identity of an entity may be derived from the identity of another entity (the <b>“parent”</b> entity) when
+the former entity (the <b>“dependent”</b> entity) is the owner of a <b>many-to-one</b> or <b>one-to-one</b> relationship to
+the parent entity and a foreign key maps the relationship from dependent to parent.
+</blockquote>
+
+<p>If the dependent entity class has primary key attributes in addition to those corresponding to the parent's
+primary key or if the parent has a composite primary key, an <b>@EmbeddedId</b> or <b>@IdClass</b> must be used to
+specify the primary key of the dependent entity.</p>
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/options.png" caption="Select Entity > Property panel > Composite PrimaryKey Type" style="border: solid 1px #999;"/>
+
+
+
+<ol style="text-align: left;">
+    <li><a href="#PI">Parent -- Dependent (additional primary key)</a>
+        <ul>
+            <li>1.a) <a href="#E1A">Simple -- IdClass</a></li>
+            <li>1.b) <a href="#E1B">Simple -- EmbeddedId</a></li>
+            <li>2.a) <a href="#E2A">IdClass -- IdClass</a></li>
+            <li>2.b) <a href="#E2B">IdClass -- EmbeddedId</a></li>
+            <li>3.a) <a href="#E3A">EmbeddedId -- IdClass</a></li>
+            <li>3.b) <a href="#E3B">EmbeddedId -- EmbeddedId</a></li>
+        </ul>
+    </li>
+    <li><a href="#PII">Parent -- Dependent (single primary key)</a>
+        <ul>
+            <li>4) &nbsp;&nbsp;<a href="#E4"> Simple -- Simple</a></li>
+            <li>5.a) <a href="#E5A">IdClass -- IdClass</a></li>
+            <li>5.b) <a href="#E5B">IdClass -- EmbeddedId</a></li>
+            <li>6.a) <a href="#E6A">EmbeddedId -- IdClass</a></li>
+            <li>6.b) <a href="#E6B">EmbeddedId -- EmbeddedId</a></li>
+        </ul>
+    </li>
+</ol> 
+<nav id="toc-head" />
+
+
+<h2 id="PI" data-toc-text="Part(I) - Parent -- Dependent (additional primary key)">Part(I) - </h2><h6>
+Dependent entity class has primary key attributes in addition to those corresponding to the parent's primary key</h6>
+
+
+<h3 id="E1A"><b>Example 1(a) :</b> Simple -- IdClass</h3>
+The parent entity has a simple primary key and the dependent entity uses IdClass to represent a composite key:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex1a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex1a.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/0034d44334c1451393d4839cd036c5bd.js"></script>
+
+
+<h3 id="E1B"><b>Example 1(b) :</b> Simple -- EmbeddedId</h3>
+The parent entity has a simple primary key and the dependent entity uses EmbeddedId to represent a composite key:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex1b.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex1b.png" caption="Database View" />
+<p>If the dependent entity uses an <b>@EmbeddedId</b> to represent its primary key, the attribute in the embedded
+id corresponding to the relationship attribute must be of the same type as the primary key of the parent
+entity and must be designated by the <b>@MapsId</b> annotation applied to the relationship attribute. The
+value element of the <b>@MapsId</b> annotation must be used to specify the name of the attribute within the
+embedded id to which the relationship attribute corresponds.</p>
+<script src="https://gist.github.com/jGauravGupta/bcc643738bcfb607aa0aef7661387022.js"></script>
+
+<h3 id="E2A"><b>Example 2(a) :</b> IdClass -- IdClass</h3>
+The parent entity uses IdClass and the dependent entity uses IdClass:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex2a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex2a.png" caption="Database View" />
+
+<p><b>JoinColumn</b> or <b>JoinColumns</b> annotation is used on the relationship attribute to override the Default mapping.</p>
+<script src="https://gist.github.com/jGauravGupta/d0c5d04f9523cccd2f1cfe36f9953e8d.js"></script>
+
+<h3 id="E2B"><b>Example 2(b) :</b> IdClass -- EmbeddedId</h3>
+The parent entity uses IdClass and the dependent entity uses EmbeddedId. The type of the empPK attribute is the same as that
+of the primary key of Employee. The EmployeeId class needs to be annotated Embeddable:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex2b.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex2b.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/8b8ca0053a4a2d2d19a57481090eb46e.js"></script>
+
+<h3 id="E3A"><b>Example 3(a) :</b> EmbeddedId -- IdClass</h3>
+The parent entity uses EmbeddedId and the dependent entity uses IdClass:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex3a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex3a.png" caption="Database View" />
+<p>If the dependent uses an id class, the <b>@Column</b> annotation may be used to override the default mapping
+of Id attributes that are not relationship attributes.</p>
+<script src="https://gist.github.com/jGauravGupta/51b666327105e3864156da5aefa5a310.js"></script>
+
+<h3 id="E3B"><b>Example 3(b) :</b> EmbeddedId -- EmbeddedId</h3>
+The parent entity uses EmbeddedId and the dependent entity uses EmbeddedId:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex3b.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex3b.png" caption="Database View" />
+<p>If the dependent entity uses an embedded id to represent its primary key, the <b>AttributeOverride</b>
+annotation may be used to override the default mapping of embedded id attributes that do not correspond to the relationship attributes mapping the derived identity.</p>
+<script src="https://gist.github.com/jGauravGupta/1618e131314009589ebea33c39018c17.js"></script>
+
+
+<br/><br/><br/><br/>
+<h2 id="PII" data-toc-text="Part(II) - Parent -- Dependent (single primary key)">Part(II) - </h2><h6>
+Dependent entity has a single primary key attribute</h6>
+
+<h3 id="E4"><b>Example 4 :</b> Simple -- Simple</h3>
+The parent entity has a simple primary key and the dependent entity has a single primary key attribute which is mapped by the relationship
+attribute. The primary key of MedicalHistory is of type String.
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex4a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex4a.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/9695a7f2a2aa05b7428d75f740a22cb6.js"></script>
+If the dependent entity has a single primary key attribute (i.e, the relationship attribute or an attribute
+that corresponds to the relationship attribute) and the primary key of the parent entity is a simple primary key, the primary key of the dependent entity is a simple primary key of the same type as that of the
+parent entity (and neither EmbeddedId nor IdClass is specified). In this case, either (1) the relationship attribute is annotated Id, or (2) a separate Id attribute is specified and the relationship attribute
+is annotated MapsId (and the value element of the MapsId annotation is not specified).
+
+
+<h3 id="E5A"><b>Example 5(a) :</b> IdClass -- IdClass</h3>
+The parent entity uses IdClass. The dependent's primary key class is of same type as that of the parent entity and
+the dependent entity uses IdClass:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex5a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex5a.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/c963a96ebf0ee742101d7f1b4659fd82.js"></script>
+
+<h3 id="E5B"><b>Example 5(b) :</b> IdClass -- EmbeddedId</h3>
+The parent entity uses IdClass. The dependent's primary key class is of same type as that of the parent entity and
+the dependent entity uses the EmbeddedId and MapsId annotations. The PersonId class needs to be annotated Embeddable
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex5b.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex5b.png" caption="Database View" />
+<p>If the <b>@EmbeddedId</b> of the dependent entity is of the same Java type as the primary key of the parent entity, the relationship attribute maps both the
+relationship to the parent and the primary key of the dependent entity, and in this case the <b>@MapsId</b>
+annotation is specified without the value element.</p>
+<script src="https://gist.github.com/jGauravGupta/3ca6934a2193c28f969f87001a20ac54.js"></script>
+
+<h3 id="E6A"><b>Example 6(a) :</b> EmbeddedId -- IdClass</h3>
+The parent entity uses EmbeddedId. The dependent's primary key is of the same type as that of the
+parent and the dependent class uses IdClass:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex6a.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex6a.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/1fec226cec1893c138774344f77b1d14.js"></script>
+
+<h3 id="E6B"><b>Example 6(b) :</b> EmbeddedId -- EmbeddedId</h3>
+The parent entity uses EmbeddedId. The dependent's primary key is of the same type as that of the
+parent and the dependent class uses EmbeddedId:
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/JPA_Ex6b.png" caption="Model View" />
+<img class="NO_BORDER_IMG" src="tutorial/DerivedIdentities/DB_Ex6b.png" caption="Database View" />
+<script src="https://gist.github.com/jGauravGupta/cadc3915da1a035620bd0eb530c64f31.js"></script>

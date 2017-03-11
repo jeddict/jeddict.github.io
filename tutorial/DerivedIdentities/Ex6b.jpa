@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="db" v="1.5.6" thm="PMetroColorScheme" xs="false" id="_14623634588731" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="PersonPK" sm="false" abs="false" class="Person" visibile="true" minimized="false" rootElement="_14623634588731" id="_1462504480797">
+        <jpa:attributes>
+            <jpa:id attribute-type="Long" visibile="true" name="firstName" id="_146250448079871">
+                <jpa:bv/>
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:id attribute-type="Long" visibile="true" name="lastName" id="_146250466259279">
+                <jpa:bv/>
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:embedded-id connected-class-id="_1462886410677216" visibile="true" name="id" id="_146250520845394">
+                <jpa:bv/>
+            </jpa:embedded-id>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="PersonPK" sm="false" abs="false" class="MedicalHistory" visibile="true" minimized="false" rootElement="_14623634588731" id="_1462504482058">
+        <jpa:attributes>
+            <jpa:one-to-one own="true" primaryKey="true" maps-id="" connected-entity-id="_1462504480797" visibile="true" name="person" id="_146250455447575">
+                <jpa:join-column name="FK2" rc="LASTNAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+                <jpa:join-column name="FK1" rc="FIRSTNAME" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:one-to-one>
+            <jpa:embedded-id connected-class-id="_1462886410677216" visibile="true" name="id" id="_1462505299010100">
+                <jpa:bv/>
+            </jpa:embedded-id>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:c/>
+    <jpa:diagram>
+        <plane elementRef="_14623634588731">
+            <shape elementRef="_1462504480797">
+                <Bounds x="226.0" y="181.0" width="142.0" height="107.0"/>
+            </shape>
+            <shape elementRef="_1462504482058">
+                <Bounds x="431.0" y="349.0" width="197.0" height="89.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

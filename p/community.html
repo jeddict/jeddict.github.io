@@ -1,0 +1,53 @@
+<h3>What community says</h3>
+
+<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script>
+    $(document).ready(function () {
+        $("#output div").children("div").each(function () {
+            var container = $(this);
+            $.ajax({
+                url: 'https://api.twitter.com/1/statuses/oembed.json?id=' + container.attr("id") + '&align=center&callback=?',
+                dataType: 'json',
+                success: function (data) {
+                    $(data.html).appendTo(container);
+                }
+            });
+        });
+    });
+</script>
+
+<div id="output" class="row">
+    <div class="col-md-6">
+        <div id="439421687566970880"></div>
+        <div id="774323836183519232"></div>
+        <div id="740936645600550913"></div>
+        <div id="746374773546975232"></div>
+        <div id="449115506357067776"></div>
+        <div id="725684324406857728"></div>
+        <div id="742190711555035138"></div>
+        <div id="747846242462482432"></div>
+        <div id="723781396800659456"></div>
+        <div id="762573282713427969"></div>
+        <div id="769798503476391936"></div>
+        <div id="817034803035787265"></div>
+        <div id="805619067885326336"></div>
+        <div id="778641282163806208"></div>
+    </div>
+    <div class="col-md-6">
+        <div id="757351061321428992"></div>
+        <div id="582231180747141122"></div>
+        <div id="470946346829348865"></div>
+        <div id="749889730934870016"></div>
+        <div id="745577410209292288"></div>
+        <div id="717798397646864384"></div>
+        <div id="728445466749231105"></div>
+        <div id="673887422384488449"></div>
+        <div id="769536346503389184"></div>
+        <div id="776434451345616896"></div>
+        <div id="823258643063775233"></div>
+        <div id="780181911981453312"></div>
+        <div id="778584505347108864"></div>
+    </div>
+</div>
+
+<script>removeSidebar();</script>

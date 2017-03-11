@@ -1,0 +1,218 @@
+<h3>JAX-RS + Angular JS Generator</h3>
+<p>Welcome to JPA Modeler! This tutorial provides a very simple and quick introduction to the Angular JS application generator 
+    by walking you through the creation of a complete application (Login, User management, Account settings, metric etc .). 
+    The best thing, in minutes you get an application ready to deploy.
+    This tutorial takes less than 5 minutes to complete.</p>
+
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+    <li><a href="#PRE">Prerequisite</a></li>
+    <li><a href="#SETUP">Setting Up the Project</a></li>
+    <li><a href="#CD">Create the JPA Diagram</a>
+        <ul style="text-align: left;">
+            <li><a href="#CE">Create the Entities</a></li>
+            <li><a href="#AP">Add properties</a></li>
+            <li><a href="#FP">Front-end properties</a></li>
+        </ul>
+    </li>
+    <li><a href="#GEN">Generate the entity classes</a>
+        <ul style="text-align: left;">
+            <li><a href="#BU">Business Service</a></li>
+            <li><a href="#CO">REST Controller</a></li>
+            <li><a href="#VI">Viewer</a></li>
+        </ul>
+    </li>
+    <li><a href="#INSP">Inspecting The Generated Code</a></li>
+    <li><a href="#DEP">Deploy</a></li>
+    <li><a href="#OP">Output</a></li>
+    <!--<li><a href="#SP">Download Sample Project</a></li>-->
+</ul>
+
+
+<h3 id="PRE">Prerequisite :</h3>
+The requirements for this tutorial are:
+<ol>
+    <li>Java 1.8</li>
+    <li>NetBeans 8.1</li>
+    <li>JPA Modeler 2.5.1</li>
+    <li>GlassFish 4.1 / Payara 4.1</li>
+</ol>
+
+<h3 id="SETUP">Setting Up the Project :</h3>
+To create an IDE project:
+<ul>
+    <li>Start NetBeans IDE.</li>
+    <li>In the IDE, choose <b>File > New Project(Ctrl-Shift-N)</b> from the main menu, as shown in the figure below :
+        <img src="tutorial/JavaEE_MVC/1.png" caption="create New Project" />
+    </li>
+    <li>In the New Project wizard, expand the <b>Maven</b> category and select <b>Web Application</b> as shown in the figure below. Then click Next.
+        <img src="tutorial/JavaEE_MVC/PROJECT_CAT.png" caption="choose Project" />
+    </li>
+    <li>Enter <b>ShoppingSystem</b> in the Project name text box and specify the Project Location to any directory on your computer and click next (as shown in the figure below):
+        <img src="tutorial/AngularJS/PROJECT_SETUP1.png" caption="choose Name and Location" />
+    </li>
+    <li>Select the version of Java EE you want to use with your application and 
+        the server to which you want to deploy your application.
+        <img src="tutorial/JavaEE_MVC/PROJECT_SETUP2.png" caption="choose Project" />
+    </li>
+    <li>Click Finish.</li>
+</ul>
+
+
+<h3 id="CD">Create the JPA Diagram :</h3>
+<ol style="text-align: left;">
+    <li>Goto <b>File</b> menu <b>&gt; New File &gt; Persistence</b> category.
+        <img src="tutorial/JavaEE_MVC/8.png" caption="create New File" />
+    </li>
+    <li>From the Persistence , select <b>JPA Diagram</b> and click <b>Next</b>.
+        <img src="tutorial/JavaEE_MVC/JPAM_CAT.png" caption="Select JPA Diagram" />
+    </li>
+    <li>Type <b>CartModel</b> for the diagram name and <b>Browse</b> the location in project.
+        <img src="tutorial/JavaEE_MVC/JPAM_SETUP.png" caption="enter Dagram name" />
+    </li>
+    <li>Click <b>Finish</b>.</li>
+    <li>When you click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.
+        <img src="tutorial/JavaEE_MVC/DIA_OPEN.png" caption="Diagram opened" />
+    </li>
+</ol>
+
+<h3 id="CE">Create the Entities :</h3>
+<ol style="text-align: left;">
+    <li>Drag &amp; Drop the <b>Entity</b> <entity></entity> from the Palette window to designer. 
+    <img src="tutorial/NamedEntityGraph/pal.JPG" caption="Palette" />
+    <img src="tutorial/JavaEE_MVC/DRAG_ENTITY.png" caption="drag Entity" />
+</li>
+<li>Double click on the Entity <entity></entity> and rename to <b>Customer</b>.
+<img src="tutorial/JavaEE_MVC/RENAME_ENTITY.png" caption="rename Entity" />
+</li>
+</ol>
+
+<h3 id="AP">Add properties :</h3>
+<ol>
+
+    <li>To create <b><code>@Basic</code> attribute</b>, click on the <b>Customer Entity </b> <entity></entity> , 
+    then click on the expand <add-attr></add-attr>  button &gt; basic <basic></basic> property.
+    <img src="tutorial/JavaEE_MVC/BASIC_ATTR.png" caption="add @Basic" />
+</li>
+<!--<li>
+    Validation annotations like <b>@Size, @NotNull</b> and so on can be added to the respective entity fields by using 
+    <b>JPA Modeler Diagram > property panel > bean validation</b>. 
+    As shown below :
+    <img src="tutorial/JavaEE_MVC/BV.png" caption="Bean Validation" />
+</li>-->
+<li>Same as above create some other entities and properties (for more information <a href="page.html?l=tutorial/QuickStart" target="_blank">click here</a>).
+    <img src="tutorial/JavaEE_MVC/FINAL_DIA.png" caption="Final Diagram" />
+</li>
+</ol>
+
+
+
+<h3 id="FP">Front-end properties :</h3>
+<ol>
+<li><b>Set entity display reference attribute</b> :  Click on attribute > Properties > UI properties > Entity Display Reference :
+    <img src="tutorial/AngularJS/UI_DISPLAY_REF.png" caption="entity display" />
+</li>
+<li><b>Exclude attribute in UI</b> :  Click on attribute > Properties > UI properties > Include in UI :
+    <img src="tutorial/AngularJS/UI_INLUDE.png" caption="exclude from UI" />
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+<h3 id="GEN">Generate the entity classes :</h3>
+<ul style="text-align: left;">
+    <li>Right click on the <b>diagram &gt; Generate Source Code</b> or <b>(ctrl + G)</b>
+        <img src="tutorial/JavaEE_MVC/GEN_SRC.png" caption="Generate Source Code" />
+    </li>
+    <li><h4 id="BU">Business Service :</h4>
+        Click on the <b>Business Service &gt; select Session Facade</b>.
+        <img src="tutorial/JavaEE_MVC/BUSINESS_SERVICE.png" caption="" />
+
+        In the following screen, you can configure the <b>SessionBean package</b> and <b>class name pattern</b> for the EJB facade 
+        that will be created for your application:
+        <img src="tutorial/AngularJS/SESSION.png" caption="configure package and class name pattern" />
+    </li>
+    <li>
+        <h4 id="CO">REST Controller :</h4>
+        Click on the <b>Controller &gt; select REST</b>
+        <img src="tutorial/AngularJS/CONTROLLER.PNG" caption="" />
+        <h5>Implement the Controller:</h5>
+
+        In the following screen, you can configure the <b>Controller package</b> and <b>class name pattern</b> for the REST api 
+        that will be created for your application:
+        <img src="tutorial/AngularJS/REST.png" caption="configure package and class name pattern" />
+
+
+        <h5>Configure the application:</h5>
+        To create our REST application we also need a JAX-RS Application class:
+        The subclass of <code>javax.ws.rs.core.Application</code> can be used to define additional JAX-RS components.
+        In the following screen, you can configuration <code>@ApplicationPath</code> 
+        (that define the base path for our application) and class name.
+        <img src="tutorial/JavaEE_MVC/APP_CONG_ACTION.png" caption="click here to update application config" />
+        <img src="tutorial/JavaEE_MVC/ApplicationConfig.png" caption="configure application path" />
+    </li>
+    <li>
+        <h4 id="VI">Viewer :</h4>
+        Click on the <b>Viewer &gt; select Angular JS 1</b> 
+        <img src="tutorial/AngularJS/VIEWER.PNG" caption="" />
+        
+        In the following screen, you can configure the <b>angular module and application title</b> :
+        <img src="tutorial/AngularJS/ANGULAR_JS.png" caption="configure angular module name" />
+    </li>
+    <li>
+        Now, click on the <b>Generate</b> button.
+        <img src="tutorial/AngularJS/GEN_SRC_LOG.png" caption="" />
+    </li>
+</ul>
+
+<h3 id="INSP">Inspecting The Generated Code :</h3>
+NetBeans IDE has generated multiple files under source packages and under Web Pages.
+Here is a break-down of what was created:
+<img src="tutorial/AngularJS/GEN_SRC_WEB.png" caption="under web page" />
+
+Java source structure of this project seems like below.
+<img src="tutorial/AngularJS/GEN_SRC_JAVA.png" caption="under java source" />
+
+<!--The expected outcome will be a Java EE 8 application which uses an EJB facade to mediate the requests with the Model class,
+the Customer Entity.-->
+<h3 id="DEP">Deploy :</h3>
+<ul>
+    
+    <li>Right click on the project node > <b>Build with Dependencies</b>.
+        <img src="tutorial/JavaEE_MVC/BUILD_DEPENDENCY.png" caption="" />
+    </li>
+    <li>Now right click on project > <b>Run</b> :
+        <img src="tutorial/JavaEE_MVC/RUN.png" caption="Deploying Project..." />
+    </li>
+</ul>
+
+<h3 id="OP">Output :</h3>
+<ul>
+    <li>Home page opened by NetBeans IDE after deployment.
+        <img src="tutorial/AngularJS/APP_INIT.png" caption="Application home page" />
+    </li>
+    <li>
+        Click on "Create a new Customer" button :
+        <img src="tutorial/AngularJS/NEW_CUSTOMER.png" caption="Customer empty data table" />
+    </li>
+    <li> Click on "Save" button to create new Customer :
+        <img src="tutorial/AngularJS/CREATE_CUSTOMER.png" caption="create new Customer" />
+    </li>
+    <li>
+        Customer created and returned to data table :
+        <img src="tutorial/AngularJS/VIEW_CUSTOMER.png" caption="Customer data Table" />
+    </li>
+</ul>
+
+<!--<h3 id="SP">Download Sample Project :</h3>
+<a href="https://github.com/jpamodeler/JPA-Modeler-Examples/tree/master/ShoppingSystem" target="_blank">Click here</a>-->
+
+<br/><br/><br/>
+Have fun with your Java EE + Angular JS application :)
+

@@ -1,0 +1,160 @@
+<h3>@Embeddable Classes in Action</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+<li><a href="#INT">Introduction</a></li>
+<li><a href="#DIA">Create the JPA Diagram</a></li>
+<li><a href="#EMB">Create the Embedded Property</a></li>
+<li><a href="#NES">Nested Embeddable Classes</a></li>
+<li><a href="#SH">Shared Embeddable</a></li>
+<!--<li><a href="#AO">Add @AttributeOverride / @AssociationOverride Annotation</a>
+    <ul>
+        <li><a href="#UDM">Using Database Modeler</a></li>
+        <li><a href="#UOV">Using JPA Override viewer </a></li>
+    </ul>
+</li>-->
+
+<li><a href="#RES">Restriction</a></li>
+<!--<li><a href="#SRC">Source Code</a></li>-->
+</ul>
+
+<h3 id="INT" style="text-align: left;">
+Introduction :</h3>
+<blockquote class="tr_bq">
+JPA allows the persistence of fields as embedded typically into the same table as the "owning" class using <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embedded.html" target="_blank">@Embedded</a> objects, which allow you to pull out attributes of an entity into another class, and embed that class back into the entity. The result is a Java object that might look a little more logical, but doesn’t actually change the database structure since the embedded object’s fields are still on the first object.</blockquote>
+
+To illustrate this, imagine we have a Person object who has an Address.
+<img src="tutorial/Embeddable/ent.JPG" caption="Person Entity with address fields" />
+
+It might make sense to pull out the address into another class, but maybe for speed or legacy reasons we have to keep a denormalized table structure. Using an Embeddable class (with the <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html" target="_blank">@Embeddable</a> annotation), we can still do this on the JPA end of things. It would look like this:
+<img src="tutorial/Embeddable/embed.JPG" caption="Person Entity and Address Embeddable" />
+
+Instances of embeddable classes are always embedded in other entity objects and do not require separate space allocation and separate store and retrieval operations. Therefore, using embeddable classes can save space in the database and improve efficiency.
+
+<h3 id="DIA" style="text-align: left;">
+<!--more-->Create the JPA Diagram :</h3>
+<ol style="text-align: left;">
+<li>Goto File menu &gt; New File &gt; Persistence category.
+    <img src="tutorial/Embeddable/0.JPG" caption="Create JPA Diagram" />
+</li>
+<li>From the Persistence , select JPA Diagram and click Next.</li>
+<li>Type <b>SmapleERD </b>for the diagram name.</li>
+<li>Type <b>com.jpamodeler.embeddable</b> for the Package.</li>
+<li>Click Finish.</li>
+</ol>
+When we click Finish, the NetBeans IDE creates the JPA Diagram and opens the diagram in the designer window.
+
+<h3 id="EMB" style="text-align: left;">
+Create the Embedded Property:</h3>
+<div>
+<blockquote class="tr_bq">
+The <b><a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embedded.html" target="_blank">@Embedded</a></b> annotation is used to specify a persistent field or property of an entity whose value is an instance of an embeddable class. A class is declared as embeddable by marking it with the <b><a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html" target="_blank">@</a></b><b><a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html" target="_blank">Embeddable</a> </b>annotation. </blockquote>
+</div>
+<ol style="text-align: left;">
+    <li>Drag &amp; Drop the Entity <entity></entity> and Embeddable <embeddable></embeddable> from the Palette window to designer. 
+    <img src="tutorial/Embeddable/pal.JPG" caption="Palette" />
+</li>
+<li>Double click on the Entity and Embeddable and rename to Person and Address .</li>
+<li>To create <b>basic attribute</b>, click on the <b>Person Entity </b> <entity></entity> , then click on the expand <add-attr></add-attr>  button &gt; basic <basic></basic> property.</li>
+<li>To create <b>embedded attribute</b>, click on the <b>Person Entity </b> <entity></entity> , then click on the composition <composition></composition> button.
+   <img src="tutorial/Embeddable/1.JPG" caption="Add embedded property" />
+</li>
+<li>Now, drag embedded attribute <embedded></embedded> to <b>Address </b>Embeddable <embeddable></embeddable> class.
+   <img src="tutorial/Embeddable/2.JPG" caption="Embedded property" />
+</li>
+<li>Right click on the diagram &gt; Generate Source Code.
+   <img src="tutorial/Embeddable/Gene.JPG" caption="Generate Source Code" />
+</li>
+<li>Click on the Person entity and Address embeddable class to view generated source code.<script src="https://gist.github.com/jShiwaniGupta/e5810acfec061bbd3f8e.js"></script></li>
+<li>Now, deploy the project and view the database table.
+  <img src="tutorial/Embeddable/2.5.JPG" caption="Database" />
+</li>
+</ol>
+<div>
+JPA will just treat all of the attributes of <b>Address </b>as attributes of <b>Person</b>, and it all works out. JPQL queries should change, but for the most part all of your Java code looks a lot more logical. None of your queries will have any joins.</div>
+
+
+<h3 id="NES" style="text-align: left;">
+Nested Embeddable Classes :</h3>
+<blockquote class="tr_bq">
+A nested embeddable is a relationship to an embeddable object from another embeddable.</blockquote>
+<ol style="text-align: left;">
+<li>Drag &amp; Drop the Embeddable <a href="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png"><img border="0" src="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png" /></a> from the Palette window to designer.</li>
+<li>To create nested embedded property.Click on the <b>Address </b>Embeddable <a href="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png"><img border="0" src="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png" /></a> , then click on the composition <a href="http://2.bp.blogspot.com/-dW_l-le5ri0/Vln3zV450JI/AAAAAAAAAKM/aI5ZU7o0K44/s1600/composition.png"><img border="0" src="http://2.bp.blogspot.com/-dW_l-le5ri0/Vln3zV450JI/AAAAAAAAAKM/aI5ZU7o0K44/s1600/composition.png" /></a> button.
+    <img src="tutorial/Embeddable/4.JPG" caption="Add nested embedded property" />
+</li>
+<li>Now, drag embedded attribute <a href="http://2.bp.blogspot.com/-j5TB7CKYj7U/Vln32wTB34I/AAAAAAAAAKU/Xpy0OJbin1k/s1600/embedded-attribute.gif"><img border="0" src="http://2.bp.blogspot.com/-j5TB7CKYj7U/Vln32wTB34I/AAAAAAAAAKU/Xpy0OJbin1k/s1600/embedded-attribute.gif" /></a> to <b>ZipCode </b>Embeddable <a href="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png"><img border="0" src="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png" /></a> class.
+    <img src="tutorial/Embeddable/5.JPG" caption="Nested embedded property" />
+</li>
+<li>Right click on the diagram &gt; Generate Source Code.
+    <img src="tutorial/Embeddable/Gene.JPG" caption="Generate Source Code" />
+</li>
+<li>Click on the <b>Address </b>and <b>ZipCode </b>embeddable class to view generated source code.<script src="https://gist.github.com/jShiwaniGupta/5cab20c379378f6de000.js"></script></li>
+<li>Now, deploy the project and view the database table.
+    <img src="tutorial/Embeddable/7.JPG" caption="Database" />
+</li>
+</ol>
+
+
+<h3 id="SH" style="text-align: left;">
+Shared Embeddable :</h3>
+<blockquote>
+An embeddable object can be shared between multiple classes or within class. By default, column definitions specified in the <b><a href="https://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html" target="_blank">@Embeddable</a></b> class apply to the table of the owning entity but you can override them using <b>@AttributeOverride</b>.</blockquote>
+
+Consider <b>Person </b>has property<b> home address</b> and <b>office address </b>of type Address. If Entity have the same embeddable object type twice, then default column name will not work, at least one of the columns will have to be explicit. To support this, @<a href="https://java.sun.com/javaee/5/docs/api/javax/persistence/AttributeOverride.html">AttributeOverride</a> can be applied to an embedded field or property to override mapping defined by the embeddable class (or embeddable class of one of its attributes).
+
+<ol style="text-align: left;">
+<li>First rename the <b>address </b>property to <b>homeAddress </b>by double click on it.</li>
+<li>Drag embedded attribute <a href="http://2.bp.blogspot.com/-j5TB7CKYj7U/Vln32wTB34I/AAAAAAAAAKU/Xpy0OJbin1k/s1600/embedded-attribute.gif"><img border="0" src="http://2.bp.blogspot.com/-j5TB7CKYj7U/Vln32wTB34I/AAAAAAAAAKU/Xpy0OJbin1k/s1600/embedded-attribute.gif" /></a> to <b>Address </b>Embeddable <a href="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png"><img border="0" src="http://2.bp.blogspot.com/-LP_Rj1Xdm8g/Vln1VcCEohI/AAAAAAAAAKA/z1Q4Rg-3leg/s1600/EMBEDDABLE.png" /></a> class , to add one more embedded property named <b>officeAddress</b>.
+    <img src="tutorial/Embeddable/8.JPG" caption="homeAddress and officeAddress property" />
+</li>
+<li>Right click on the diagram &gt; Generate Source Code.
+    <img src="tutorial/Embeddable/Gene.JPG" caption="Generate Source Code" />
+</li>
+<li>Click on the <b>Person </b>entity class to view generated source code.<script src="https://gist.github.com/jShiwaniGupta/54f2c9dd9ac273e69f85.js"></script></li>
+<li>Now, deploy the project and see the <b>server log </b>.</li>
+</ol>
+The person table has two attributes (<b>homeAddress.</b><b>street </b>and <b>officeAddress.</b><b>street</b>) that both have the same column name (<b>“street”</b>). We have to define different column names for homeAddress and officeAddress attributes. To do that, use <a href="http://docs.oracle.com/javaee/7/api/javax/persistence/AttributeOverride.html">@AttributeOverride</a> (and if our embedded object has a relationship to another entity, use <a href="http://docs.oracle.com/javaee/7/api/javax/persistence/AssociationOverride.html">@AssociationOverride</a>).
+
+
+<h5 id="AO">Add @AttributeOverride / @AssociationOverride Annotation :</h5>
+
+<!--<h5 id="UDM">Using Database Modeler :</h5>
+
+Right click on the diagram > <gendb></gendb> Visualize DB :
+<img src="QuickStart/21_VIEW_DB.png" caption="view DB" />
+<br/>
+In DB Modeler, just double click on column and rename it. @AttributeOverride / @AssociationOverride annotation
+will automatically managed by JPA Modeler. You don't have to care about it :)-->
+
+<!--<h5 id="UOV">Using JPA Override viewer :</h5>-->
+<ol style="text-align: left;">
+<li>Open the diagram and click on the <b>Person </b>Entity </li>
+<li>Now, open the <b>JPA Override View</b> panel from Menu &gt; Window &gt; JPA Modeler &gt; Override View.
+    <img src="tutorial/Embeddable/override.png" caption="JPA Override View Panel" />
+</li>
+<li>In this panel, you may view all of the attribute on which <b>Attribute Override</b> and <b>Association Override</b> annotation can be applied.
+    <img src="tutorial/Embeddable/10.JPG" caption="Change column name of homeAddress.street" />
+</li>
+<li>Click on the attribute and change their column name from property panel.
+    <img src="tutorial/Embeddable/11.JPG" caption="Change column name of officeAddress.street" />
+</li>
+<li>Generate the source code and view Person entity class .<script src="https://gist.github.com/jShiwaniGupta/9b250f2cb36cbc2de901.js"></script> </li>
+<li>Now, deploy the project and view the database table .
+    <img src="tutorial/Embeddable/14.JPG" caption="Database" />
+</li>
+</ol>
+<h3 id="RES" style="text-align: left;">
+Restriction :</h3>
+Embeddable classes, however, do not have an identity (primary key) of their own which leads to some limitations : 
+<ul style="text-align: left;">
+<li>Embeddable instances cannot be shared by different entity objects﻿.</li>
+<li>Embeddable objects cannot be directly persisted, it can only be persisted or queried in the context of their parent.</li>
+<li>Embeddable objects does not have an id or table.</li>
+</ul>
+So a decision whether to declare a class as an entity or embeddable requires case by case consideration.
+<div>
+
+</div>
+<!--<h3 id="SRC" style="text-align: left;">
+Download Source Code :</h3>
+<a href="https://github.com/jShiwaniGupta/JPA-Modeler-Example/tree/master/Embeddable%20Classes">Github - Embeddable Classes</a>-->

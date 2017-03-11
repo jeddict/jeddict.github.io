@@ -1,0 +1,105 @@
+entity {
+    background: url("../Icons/class/ENTITY.png") no-repeat;
+    padding: 2px 14px 2px 11px;
+}
+
+embeddable {
+    background: url("../Icons/class/EMBEDDABLE.png") no-repeat;
+    padding: 2px 12px 2px 18px;
+}
+
+mapped-superclass {
+    background: url("../Icons/class/MAPPED_SUPER_CLASS.png") no-repeat;
+    padding: 2px 8px 2px 18px;
+}
+
+add-attr {
+      background: url("../Icons/button/add-element.png") no-repeat;
+      padding: 2px 12px 2px 8px;
+}
+basic {
+    background: url("../Icons/attribute/basic-attribute.png") no-repeat;
+    padding: 0px 12px 0px 10px;
+}
+id {
+    background: url("../Icons/attribute/id-attribute.png") no-repeat;
+    padding: 0px 12px 0px 10px;
+}
+version {
+    background: url("../Icons/attribute/version-attribute.png") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+transient {
+    background: url("../Icons/attribute/transient-attribute.png") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+basic-element-collection {
+    background: url("../Icons/attribute/basic-collection-attribute.png") no-repeat;
+    padding: 0px 12px 0px 12px;
+}
+inheritance {
+    background: url("../Icons/relation/generalization.png") no-repeat;
+    padding: 0px 10px 0px 8px;
+}    
+
+embedded {
+    background: url("../Icons/attribute/single-value-embedded.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+multi-embedded {
+    background: url("../Icons/attribute/multi-value-embedded.gif") no-repeat;
+    padding: 8px 12px 0px 10px;
+}
+
+composition {
+    background: url("../Icons/button/add-composition.png") no-repeat;
+    padding: 2px 12px 2px 7px;
+}
+
+oto {
+    background: url("../Icons/relation/one-to-one.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+
+otm {
+    background: url("../Icons/relation/one-to-many.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+
+mto {
+    background: url("../Icons/relation/many-to-one.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+
+mtm {
+    background: url("../Icons/relation/many-to-many.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+dbtable {
+    background: url("../Icons/db/TABLE.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+jontable {
+    background: url("../Icons/db/JOIN_TABLE.png") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+column {
+    background: url("../Icons/db/COLUMN.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+joincolumn {
+    background: url("../Icons/db/FOREIGN_KEY.gif") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+db{
+    background: url("../Icons/db/TAB_ICON.png") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+sql{
+    background: url("../Icons/button/VIEW_SQL.png") no-repeat;
+    padding: 2px 12px 2px 10px;
+}
+gendb {
+    background: url("../Icons/button/db.png") no-repeat;
+    padding: 2px 6px 2px 10px;
+}

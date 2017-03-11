@@ -1,0 +1,68 @@
+<h3>Companies using JPA Modeler</h3>
+It's Open Source so it's impossible to have a complete list of who uses it. We have made this list from what people tell us, 
+and from resources available on the Internet (conferences, GitHub tickets, Contact emails etc).
+
+If you want to add a company to the list, please 
+<a href="p/register_company.html" target="_blank" >Fill up this form.</a>
+
+<script>
+    var companies_data = [
+        {logo: "p/images/companies/oracle.svg", width: '60%', url: 'https://www.oracle.com'},
+        {logo: "p/images/companies/axa.svg", width: '95%', url: 'http://axa.com'},
+        {logo: "p/images/companies/t-systems.png", width: '80%', paddingtop: '14px', url: 'http://t-systems.com'},
+        {logo: "p/images/companies/versifit.png", width: '78%',paddingtop: '14px', url: 'http://versifit.com'},
+        {logo: "p/images/companies/vendavo.jpg", width: '72%',paddingtop: '8px', url: 'http://www.vendavo.com'},
+        {logo: "p/images/companies/fixner.png", width: '59%', url: 'http://fixner.com'},
+        {logo: "p/images/companies/inteacc.gif", width: '59%', url: 'http://inteacc.com'},
+        {logo: "p/images/companies/redspark.png", width: '79%', url: 'http://repspark.com/'},
+//        {name: "Norwich", url: 'http://norwich.edu'},
+        {name: "Furore", url: 'http://furore.com'},
+        {name: "SOS HARD & SOFT", url: 'http://soshardandsoft.com/'},
+        {name: 'Kode Labs', url: 'http://kode-labs.com'},
+        {name: 'iProduct', url: 'http://iproduct.org'},
+        {name: 'Misena', url: 'http://www.misena.edu.co'},
+        {name: 'Group Builder', url: 'https://www.groupbuilder.fi'},
+        {name: 'Ariah Group', url: 'http://ariahgroup.org'},
+        {name: 'I2E', url: 'http://i2e.es'},
+        {name: 'Active Mall', url: 'http://www.activemall.ro/'},
+        {name: 'Arvato Russia', url: 'https://www.arvato.com/'},
+        {name: 'Anitech Consulting Services Pvt', url: 'http://www.anitechcs.com/'},
+        {name: 'ProgressSoft Co', url: 'http://www.progressoft.com/'},
+        {name: 'Home Studio', url: 'http://homestudio.com/'},
+        {name: 'OtherLevels', url: 'https://www.otherlevels.com/'},
+        {name: 'Lokamisa', url: 'https://lokamisa.com.br/'}
+        
+    ];
+    for (i in companies_data) {
+        var company = companies_data[i];
+        if (company.logo == null) {
+            $("#COMPANIES_RAW").append($("<li>").append($("<a>").attr("href", company.url).text(company.name)))
+        } else {
+            var companyTemp = $("#COMPANT_TEMPLATE").clone().attr("id", "").css("display", "block");
+            $("#COMPANIES").append(companyTemp);
+            companyTemp.find(".img-responsive").attr("src", company.logo)
+                    .attr("alt", company.name).css("width", company.width).css("padding-top", company.paddingtop)
+                    .parent().attr("href", company.url);
+        }
+    }
+</script>
+
+<section>
+    <div class="container">
+        <div id="COMPANIES" class="row padding">
+                <div id="COMPANT_TEMPLATE" style="display: none;width:280px;height:85px" class="col-xs-4 col-sm-4 col-md-3">
+                    <a style="cursor: pointer" target="_blank" href="#">
+                        <img src="#" class="img-responsive" alt="">
+                    </a>
+                </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Other companies</h4>
+                <ul id="COMPANIES_RAW" ></ul> 
+            </div>
+        </div>
+    </div>
+</section>
+<script>removeSidebar();</script>

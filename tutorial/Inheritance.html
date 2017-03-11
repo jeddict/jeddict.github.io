@@ -1,0 +1,130 @@
+<h3 data-toc-skip>Inheritance </h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<nav id="toc-head" ></nav>
+
+<h3 id="IM">Inheritance Mapping:</h3>
+<p>Inheritance is one of the key concepts in Java, and it’s used in most domain models. 
+    In JPA, an entity <entity></entity> may inherit properties from other entity <entity></entity> class. 
+
+Use the following procedure to specify inheritance (<code>@Inheritance</code>) for an entity (<code>@Entity</code>):
+</p>
+
+
+<ul>
+    <li>
+        Click on the child entity <entity></entity> > generalization <inheritance></inheritance> button :
+    <img class="NO_BORDER_IMG" src="tutorial/Inheritance/INHERITANCE_MAPPING.png" caption="Entity 'CompanyEmployee' without inheritance" />
+</li>
+<li>
+    Drag the generalization <inheritance></inheritance> from child "CompanyEmployee" to parent "Employee" entity <entity></entity> :
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/INHERITANCE.PNG" caption="Entity 'CompanyEmployee' with inheritance" />
+</li>
+</ul>
+
+<h6>Note :</h6>
+Every entity <entity></entity> in the hierarchy must either define or inherit its identifier <id></id>, 
+which means that the identifier <id></id> must be defined either in the root entity <entity></entity> or in a mapped superclass <mapped-superclass></mapped-superclass> above it. 
+A mapped superclass <mapped-superclass></mapped-superclass> may be higher up in the class hierarchy than where the identifier <id></id> is defined.
+
+<h3 id="IS">Inheritance Strategies :</h3>
+The Java Persistence specification provides three different ways to map an inheritance <inheritance></inheritance> hierarchy to a relational database <db></db>:
+<ul>
+    <li>Single table per class hierarchy</li>
+    <li>Table per subclass (JOINED strategy)</li>
+    <li>Table per concrete class</li>
+</ul>
+
+<p>
+    The root entity <entity></entity> class must signify the inheritance <inheritance></inheritance> hierarchy by being annotated with the <code>@Inheritance</code> annotation. 
+This annotation indicates the strategy that should be used for mapping.
+</p>
+
+Follow the below procedure to define the inheritance strategy : 
+
+<ul>
+    <li>
+        Click on the root entity <entity></entity> Employee > property panel > Inheritance :
+    <img class="NO_BORDER_IMG" src="tutorial/Inheritance/PROPERTY.PNG" caption="Inheritance propery" />
+</li>
+<li>
+    Select the inheritance <inheritance></inheritance> strategy type :
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/STRATEGIES.png" caption="Inheritance strategies" />
+</li>
+<li>
+    Configure the discriminator column for Joined / Single Table strategies :
+    <img class="NO_BORDER_IMG" src="tutorial/Inheritance/DISCRIMINATOR_COLUMN.PNG" caption="discriminator column (default 'DTYPE')" />
+</li>
+</ul>
+
+
+<h3 id="DV">Database view :</h3>
+<ul>
+    <li>
+        <h5>Single table per class hierarchy</h5>
+        In the single table per class hierarchy mapping strategy, one database table represents every class of a given hierarchy.
+        <img class="NO_BORDER_IMG" src="tutorial/Inheritance/SINGLE_TABLE.PNG" caption="DB View - Single Table per class strategy" />
+        Since one table is representing the entire class hierarchy, 
+        the persistence provider using <code>@DiscriminatorColumn</code> to identify which class the row in the database maps to.
+    </li>
+    <li>
+        <h5>Table per subclass (JOINED strategy)</h5>
+        In the table per subclass mapping, each subclass has its own table, 
+        but this table contains only the properties that are defined on that particular class.
+        <img class="NO_BORDER_IMG" src="tutorial/Inheritance/JOINED.PNG" caption="DB View - Joined strategy" />
+    </li>
+    <li>
+        <h5>Table per concrete class</h5>
+        In the table per concrete class strategy, a database table is defined for each concrete class in the hierarchy.
+        Each table has columns representing its properties and all properties of any superclasses:
+        <img class="NO_BORDER_IMG" src="tutorial/Inheritance/TABLE_PER_CENCRETE_CLASS.PNG" caption="DB View - Table per concrete class strategy" />
+        One major difference between this strategy and the SINGLE_TABLE/JOINED strategy is that no discriminator column is needed in the database schema.
+    </li>
+</ul>
+
+<h3 id="PKJC">@PrimaryKeyJoinColumn mapping :</h3>
+The <code>@PrimaryKeyJoinColumn</code> annotation is used to join the primary table of an entity subclass in
+the JOINED mapping strategy to the primary table of its superclass;
+in which the primary key of the referencing entity is used as a foreign key to the referenced entity.
+
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/PKJC1.PNG" caption="Double click to update column name" />
+
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/PKJC2.PNG" caption="Modified column name with @PrimaryKeyJoinColumn" />
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/PKJC_PROPERTY.PNG" caption="@PrimaryKeyJoinColumn property panel" />
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/PKJC_SRC.PNG" caption="Generated source code" />
+
+If no PrimaryKeyJoinColumn annotation is specified for a subclass in the JOINED mapping strategy,
+the foreign key columns are assumed to have the same names as the primary key columns of the primary table of the superclass.
+
+
+<h3 id="MI">Mixing Inheritance Strategies :</h3>
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/MIX_INHERITANCE.PNG" caption="Mixed Inheritance" />     
+
+In the following example, the <b>joined</b> strategy is used for the Employee and ContractEmployee classes, while the
+CompanyEmployee, FullTimeEmployee, and PartTimeEmployee classes revert to a <b>single-table</b> model.
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/MIX_INHERITANCE_DB_1.PNG" caption="DB View - Joined ~ SingleTable" />
+
+In the following example, the <b>single-table</b> strategy is used for the Employee and ContractEmployee classes, while the
+CompanyEmployee, FullTimeEmployee, and PartTimeEmployee classes revert to a <b>joined</b> model.
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/MIX_INHERITANCE_DB_2.PNG" caption="DB View - SingleTable ~ Joined" />
+
+In the following example, the <b>single-table</b> strategy is used in complete hierarchy .
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/MIX_INHERITANCE_DB_3.PNG" caption="DB View - SingleTable ~ SingleTable" />
+
+In the following example, the <b>concrete-class</b> strategy is used in complete hierarchy .
+<img class="NO_BORDER_IMG" src="tutorial/Inheritance/MIX_INHERITANCE_DB_4.PNG" caption="DB View - ConcreteClass ~ ConcreteClass" />
+
+<h3 id="MIS">Mixed Inheritance Strategies support in JPA Modeler :</h3>
+<table style="width: 40%;margin: auto;">
+    <thead>
+        <tr><th>Inheritance strategy</th><th>Support</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>SingleTable - Joined</td><td><span class="fa fa-check fa-1x"></span></td></tr>
+        <tr><td>Joined - SingleTable</td><td><span class="fa fa-check fa-1x"></span></td></tr>
+        <tr><td>SingleTable - SingleTable</td><td><span class="fa fa-check fa-1x"></span></td></tr>
+        <tr><td>Joined - Joined</td><td><span class="fa fa-check fa-1x"></span></td></tr>
+        <tr><td>ConcreteClass - ConcreteClass</td><td><span class="fa fa-check fa-1x"></span></td></tr>
+        <tr><td>ConcreteClass - SingleTable/Joined</td><td><span class="fa fa-times fa-1x"></span></td></tr>
+        <tr><td>SingleTable/Joined - ConcreteClass</td><td><span class="fa fa-times fa-1x"></span></td></tr>
+    </tbody>
+</table>

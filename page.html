@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="JPA Modeler">
+        <meta name="author" content="Gaurav Gupta">
+        <title>JPA Modeler</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/animate.min.css" rel="stylesheet"> 
+        <link href="css/lightbox.css" rel="stylesheet"> 
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+        <link href="css/bootstrap-toc.css" rel="stylesheet" type="text/css">
+        <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link href="css/sidebar.css" rel="stylesheet">
+        <link href="css/back-to-top.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+                <script src="js/html5shiv.js"></script>
+                <script src="js/respond.min.js"></script>
+        <![endif]-->       
+        <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    </head><!--/head-->
+
+
+
+    <body data-spy="scroll" data-target="#toc">
+        <div id="toc-handler" class="navbar navbar-static navbar-default navbar-fixed-bottom " style="width: 0px;">
+            <button type="button" class="navbar-toggle toggle-left /*hidden-md hidden-lg*/" data-toggle="sidebar" data-target=".sidebar-left" style="margin-left: 9px !important;">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-close" style="display: none;padding: 0px 4px 0px 0px;">
+                    <i class="fa fa-times fa-2x"></i>
+                </span>
+            </button>
+        </div> 
+        <div class="row">
+            <div class="col-xs-7 col-sm-3 col-md-3 sidebar sidebar-left sidebar-animate /*sidebar-md-show sidebar-lg-show*/" style="top:0">
+                <nav id="toc" ></nav>
+                <!--<nav id="toc" data-spy="affix" data-toggle="toc"  class="nav navbar-stacked" ></nav>-->
+            </div>
+        </div>
+
+
+        <header id="header"></header>
+
+        <section id="features">
+            <div class="container">
+                <div class="row" id="LOAD">
+                    <div id="PAGE_CONTENT" class="main">
+                    </div>
+                </div>
+                <a href="#" class="back-to-top"><i class="fa fa-angle-up fa-2x" ></i></a>
+            </div>
+        </section>
+
+        <section id="PAGINATION_SECTION" style="display: none;">
+            <div class="blog-pagination" >
+                <ul class="pagination"></ul>
+            </div>
+        </section>
+        <script>
+            function paginate(firstPage, lastPage) {
+                $("#PAGINATION_SECTION").css("display", "block");
+                if (firstPage == null) {
+                    $(".pagination").append('<li class="active" style="display:none" ><a href="#" ></a></li>');
+                } else {
+                    $(".pagination").append('<li class="active" ><a style="cursor: pointer" href="' + firstPage + '" ></a></li>');
+                }
+                if (lastPage == null) {
+                    $(".pagination").append('<li class="active" style="display:none" ><a href="#" ></a></li>');
+                } else {
+                    $(".pagination").append('<li class="active" ><a style="cursor: pointer" href="' + lastPage + '" ></a></li>');
+                }
+            }
+            function removeSidebar(){
+                $("#toc-handler").hide();
+            }
+        </script>
+        <!--/#features-->
+
+        <footer id="footer"></footer>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/lightbox.min.js"></script>
+        <script type="text/javascript" src="js/wow.min.js"></script>
+        <script type="text/javascript" src="js/analytics.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>   
+        <script type="text/javascript" src="js/jquery.loadgist.js"></script> 
+        <script src="js/sidebar.js"></script>
+        <script src="js/back-to-top.js"></script>
+        <script src="js/bootstrap-toc.js"></script>
+    </body>
+
+
+    <script>
+            $(document).ready(function () {
+                var link = getUrlParameter('l');
+                $.ajax({
+                    url: link + ".html",
+                    dataType: "html",
+                    success: function (content) {
+                        $('#PAGE_CONTENT').html(content);
+                        loadImage();
+                        loadTOC();
+                        loadTOCHead();
+
+                        $('#LOAD').loadGist();
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+
+            });
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+                    }
+                }
+            };
+
+            function loadTOC() {
+                $(function () {
+                    var navSelector = '#toc';
+                    var $myNav = $(navSelector);
+                    Toc.init($myNav);
+                    $('body').scrollspy({
+                        target: navSelector
+                    });
+                });
+            }
+
+            function loadTOCHead() {
+                $(function () {
+                    var navSelector = '#toc-head';
+                    var $myNav = $(navSelector);
+                    Toc.init($myNav);
+                    $('body').scrollspy({
+                        target: navSelector
+                    });
+                });
+            }
+
+
+
+    </script>
+    <link href="tutorial/css/tutorial.css" rel="stylesheet">
+    <link href="tutorial/css/diictionary.css" rel="stylesheet">
+    <style>
+        #LOGO {
+            height: 63px;
+        } 
+        #header {
+            padding: 0px 10px 0px 0px;
+        } 
+    </style>
+    <div class="IMG_CONTAINER" id="TABLE_TEMPLATE" style="display: none;">
+        <a data-lightbox="example-set" style="margin: 4px auto 0 auto;display: table;">
+            <img class="IMG img-thumbnail img-responsive"/>
+        </a>
+        <div class = "caption">
+            <p class="IMG_CAPTION">
+            </p>
+        </div>
+    </div>   
+    <script>
+        function loadImage() {
+            $("img[caption]").each(function () {
+                var img = $(this);
+                var table = $("#TABLE_TEMPLATE").clone().attr("id", "").show();
+                table.find("a[data-lightbox] img").attr("src", img.attr("src")).attr("alt", img.attr("caption")).attr("style", img.attr("style"));
+                table.find("a[data-lightbox]").attr("href", img.attr("src"));
+                table.find("p.IMG_CAPTION").html(img.attr("caption"));
+                if (img.hasClass("NO_BORDER_IMG")) {
+                    table.find("a[data-lightbox] img").removeClass("IMG");
+                }
+                img.replaceWith(function () {
+                    return table;
+                })
+            });
+        }
+    </script>
+</html>

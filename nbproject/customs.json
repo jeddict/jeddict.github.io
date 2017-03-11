@@ -1,0 +1,26 @@
+{
+    "elements": {
+        "column": {},
+        "otm": {},
+        "dbtable": {},
+        "sql": {},
+        "add-attr": {},
+        "jontable": {},
+        "composition": {},
+        "transient": {},
+        "gendb": {},
+        "id": {},
+        "basic": {},
+        "joincolumn": {},
+        "embedded": {},
+        "embeddable": {},
+        "entity": {},
+        "db": {},
+        "multi-embedded": {}
+    },
+    "attributes": {
+        "caption": {
+            "context": "img"
+        }
+    }
+}

@@ -1,0 +1,345 @@
+<h3>MVC 1.0 Generator</h3>
+<p>Welcome to JPA Modeler! This tutorial provides a very simple and quick introduction to the MVC 1.0 application generator 
+    by walking you through the creation of a simple MVC CRUD application. 
+    MVC Generator makes it easy to develop Java EE 8 Enterprise applications. 
+    The best thing, in minutes you get an application ready to deploy.
+    This tutorial takes less than 5 minutes to complete.</p>
+<!--After you finish this tutorial, you can move on to the other advanced topic (e.g Security, Bean Validation etc) which are following linked. 
+The advanced topic provide comprehensive tutorials that highlight a wider range of MVC 1.0 features.-->
+
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+    <li><a href="#INT">Introduction to MVC 1.0</a></li>
+    <li><a href="#PRE">Prerequisite</a></li>
+    <li><a href="#SETUP">Setting Up the Project</a></li>
+    <li><a href="#CD">Create the JPA Diagram</a>
+        <ul style="text-align: left;">
+            <li><a href="#CE">Create the Entities</a></li>
+            <li><a href="#AP">Add properties and validation</a></li>
+        </ul>
+    </li>
+    <li><a href="#GEN">Generate the entity classes</a>
+        <ul style="text-align: left;">
+            <li><a href="#BU">Business Service</a></li>
+            <li><a href="#CO">MVC Controller</a></li>
+            <li><a href="#VI">Viewer</a></li>
+        </ul>
+    </li>
+    <li><a href="#INSP">Inspecting The Generated Code</a></li>
+    <li><a href="#DEP">Deploy</a></li>
+    <li><a href="#OP">Output</a></li>
+    <li><a href="#SP">Download Sample Project</a></li>
+</ul>
+
+
+
+<h3 id="INT">Introduction to MVC 1.0 :</h3>
+<p>Model-View-Controller(MVC) is a common pattern in Web frameworks where it is used commonly to build HTML applications. 
+    The model refers to the application's data, the view to the application's data presentation and 
+    the controller to the part of the system responsible for managing input, dispatching each request to appropriate handlers,
+    updating models, resolving views and finally returning the response. 
+    MVC 1.0 framework is built on top of JAX-RS and integrates with CDI and Bean Validation. </p>
+<blockquote>A controller is responsible for processing incoming requests. It invokes business logic, 
+    updates the model and returns the view that should be rendered. </blockquote>
+
+
+<h3 id="PRE">Prerequisite :</h3>
+The requirements for this tutorial are:
+<ol>
+    <li>Java 1.8</li>
+    <li>NetBeans 8.1</li>
+    <li>JPA Modeler 1.5.5</li>
+    <li>GlassFish 4.1 / Payara 4.1</li>
+    <li>Ozark 1.0.0-m02</li>
+</ol>
+Although Java EE 8 is not yet released, it is possible to use MVC framework already in some Java EE 7 servers, 
+as the reference implementation of the <a href="https://jcp.org/en/jsr/detail?id=371" >MVC specification</a> named 
+<a href="Ozark" >Ozark</a> is complete.
+Ozark is currently not part of <a href="https://glassfish.java.net/download.html" >GlassFish</a> / <a href="http://www.payara.fish/">Payara</a>,
+so the scope must be set to runtime in <b>pom.xml</b> with maven dependencies to ensure it is bundled with your application 
+<i>(as shown in next section)</i>.
+
+
+<h6 style="margin-bottom: 6px;">Note :</h6>
+<div style="font-size: 10px">
+    A small issue: caused by higher version number in NetBeans, The issue is already addressed and can be easily fixed by renaming a JAR in the distribution:
+    <pre style="margin: 0; line-height: 125%;font-size: 10px"><span style="color: #007700">mv</span> <span style="color: #007700">glassfish</span><span style="color: #333333">/</span><span style="color: #007700">lib</span><span style="color: #333333">/</span><span style="color: #007700">install</span><span style="color: #333333">/</span><span style="color: #007700">applications</span><span style="color: #333333">/</span><span style="color: #007700">__admingui</span><span style="color: #333333">/</span><span style="color: #007700">WEB-INF</span><span style="color: #333333">/</span><span style="color: #007700">lib</span><span style="color: #333333">/</span><span style="color: #007700">console-core-4</span><span style="color: #BB0066; font-weight: bold">.1.151.jar</span> 
+   <span style="color: #007700">glassfish</span><span style="color: #333333">/</span><span style="color: #007700">lib</span><span style="color: #333333">/</span><span style="color: #007700">install</span><span style="color: #333333">/</span><span style="color: #007700">applications</span><span style="color: #333333">/</span><span style="color: #007700">__admingui</span><span style="color: #333333">/</span><span style="color: #007700">WEB-INF</span><span style="color: #333333">/</span><span style="color: #007700">lib</span><span style="color: #333333">/</span><span style="color: #007700">console-core-4</span><span style="color: #BB0066; font-weight: bold">.1.jar</span>
+    </pre>
+</div>
+
+<h3 id="SETUP">Setting Up the Project :</h3>
+To create an IDE project:
+<ul>
+    <li>Start NetBeans IDE.</li>
+    <li>In the IDE, choose <b>File > New Project(Ctrl-Shift-N)</b> from the main menu, as shown in the figure below :
+        <img src="tutorial/JavaEE_MVC/1.png" caption="create New Project" />
+    </li>
+    <li>In the New Project wizard, expand the <b>Maven</b> category and select <b>Web Application</b> as shown in the figure below. Then click Next.
+        <img src="tutorial/JavaEE_MVC/PROJECT_CAT.png" caption="choose Project" />
+    </li>
+    <li>Enter <b>ShoppingSystem</b> in the Project name text box and specify the Project Location to any directory on your computer and click next (as shown in the figure below):
+        <img src="tutorial/JavaEE_MVC/PROJECT_SETUP1.png" caption="choose Name and Location" />
+    </li>
+    <li>Select the version of Java EE you want to use with your application and 
+        the server to which you want to deploy your application.
+        <img src="tutorial/JavaEE_MVC/PROJECT_SETUP2.png" caption="choose Project" />
+    </li>
+    <li>Click Finish.</li>
+</ul>
+
+
+<h3 id="CD">Create the JPA Diagram :</h3>
+<ol style="text-align: left;">
+    <li>Goto <b>File</b> menu <b>&gt; New File &gt; Persistence</b> category.
+        <img src="tutorial/JavaEE_MVC/8.png" caption="create New File" />
+    </li>
+    <li>From the Persistence , select <b>JPA Diagram</b> and click <b>Next</b>.
+        <img src="tutorial/JavaEE_MVC/JPAM_CAT.png" caption="Select JPA Diagram" />
+    </li>
+    <li>Type <b>CartModel</b> for the diagram name and <b>Browse</b> the location in project.
+        <img src="tutorial/JavaEE_MVC/JPAM_SETUP.png" caption="enter Dagram name" />
+    </li>
+    <li>Click <b>Finish</b>.</li>
+    <li>When you click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.
+        <img src="tutorial/JavaEE_MVC/DIA_OPEN.png" caption="Diagram opened" />
+    </li>
+</ol>
+
+<h3 id="CE">Create the Entities :</h3>
+<ol style="text-align: left;">
+    <li>Drag &amp; Drop the <b>Entity</b> <entity></entity> from the Palette window to designer. 
+    <img src="tutorial/NamedEntityGraph/pal.JPG" caption="Palette" />
+    <img src="tutorial/JavaEE_MVC/DRAG_ENTITY.png" caption="drag Entity" />
+</li>
+<li>Double click on the Entity <entity></entity> and rename to <b>Customer</b>.
+<img src="tutorial/JavaEE_MVC/RENAME_ENTITY.png" caption="rename Entity" />
+</li>
+</ol>
+
+<h3 id="AP">Add properties and validation :</h3>
+<ol>
+
+    <li>To create <b><code>@Basic</code> attribute</b>, click on the <b>Customer Entity </b> <entity></entity> , 
+    then click on the expand <add-attr></add-attr>  button &gt; basic <basic></basic> property.
+    <img src="tutorial/JavaEE_MVC/BASIC_ATTR.png" caption="add @Basic" />
+</li>
+<li>
+    Validation annotations like <b>@Size, @NotNull</b> and so on can be added to the respective entity fields by using 
+    <b>JPA Modeler Diagram > property panel > bean validation</b>. 
+    As shown below :
+    <img src="tutorial/JavaEE_MVC/BV.png" caption="Bean Validation" />
+</li>
+<li>Same as above create some other entities and properties (for more information <a href="page.html?l=tutorial/QuickStart" target="_blank">click here</a>).
+    <img src="tutorial/JavaEE_MVC/FINAL_DIA.png" caption="Final Diagram" />
+</li>
+</ol>
+
+<h3 id="GEN">Generate the entity classes :</h3>
+<ul style="text-align: left;">
+    <li>Right click on the <b>diagram &gt; Generate Source Code</b> or <b>(ctrl + G)</b>
+        <img src="tutorial/JavaEE_MVC/GEN_SRC.png" caption="Generate Source Code" />
+    </li>
+    <li><h4 id="BU">Business Service :</h4>
+        Click on the <b>Business Service &gt; select Session Facade</b>.
+        <img src="tutorial/JavaEE_MVC/BUSINESS_SERVICE.png" caption="" />
+
+        In the following screen, you can configure the <b>SessionBean package</b> and <b>class name pattern</b> for the EJB facade 
+        that will be created for your application:
+        <img src="tutorial/JavaEE_MVC/SESSION.png" caption="configure package and class name pattern" />
+    </li>
+    <li>
+        <h4 id="CO">MVC Controller :</h4>
+        Click on the <b>Controller &gt; select MVC 1.0</b>
+        <img src="tutorial/JavaEE_MVC/CONTROLLER.png" caption="" />
+        <h5>Implement the Controller:</h5>
+
+        In the following screen, you can configure the <b>Controller package</b> and <b>class name pattern</b> for the MVC 1.0 
+        that will be created for your application:
+        <img src="tutorial/JavaEE_MVC/MVC.png" caption="configure package and class name pattern" />
+
+        A simple Java EE MVC Controller looks like this:<br/>
+        <script src="https://gist.github.com/jGauravGupta/df4a668e1949eaf985f96dbb5b7cc6fb.js"></script>
+
+        The <code>@Controller</code> annotation can be used on methods and classes :
+        <ol>
+            <li>
+                When used on classes, all methods of the class are considered as controllers.
+            </li>
+            <li>    
+                Classes with Controller methods are CDI managed beans called Hybrid class 
+                (contains a mix of JAX-RS resource methods and MVC controllers).
+            </li>
+        </ol>
+        You can make it Hybrid class by enabling following option :
+        <img src="tutorial/JavaEE_MVC/HYBRID.png" caption="" />
+
+        <h5>Return types</h5>
+        There are lots of different return types when working with @Controller methods or classes.
+        A controller’s method return type determines how its result is processed.
+        In the following screen, you can define the Controllers return type:
+        <img src="tutorial/JavaEE_MVC/RETURN_TYPE.png" caption="Return Types" />
+
+        <ol>
+            <li><h6>void:</h6> A controller method that returns <code>void</code> is REQUIRED to be annotated with the <code>@View</code> annotation.
+                The following snippet shows this one. 
+                <script src="https://gist.github.com/jGauravGupta/a601dd74bd270ba577992475ff2a9d60.js"></script>
+                it's more clear because it well separates the corresponding view from the controller logic within the controller method.
+                <br/></li>
+            <li><h6>String:</h6> A <code>String</code> returned is interpreted as a view path.
+                <script src="https://gist.github.com/jGauravGupta/0ce0ba14ef7c0b3059e9123673e65542.js"></script>
+                The return value of this method is the path to the corresponding view.
+                <br/></li>
+            <li><h6>Viewable:</h6> A <code>Viewable</code> is a MVC class that encapsulates a view path as well as additional information related to its processing 
+                like references to <code>Models</code> or CDI-based models or <code>ViewEngine</code> objects
+                <script src="https://gist.github.com/jGauravGupta/7b0e79056bc819c572ee6ad1f110f86f.js"></script>
+                <br/></li>
+            <li><h6>Response:</h6> A JAX-RS Response whose entity’s type is one of the above.
+                <script src="https://gist.github.com/jGauravGupta/dfdaf811e422c206d5d45402d269cf1f.js"></script>
+                A JAX-RS return type gives you all access to HTTP responses and their headers. 
+                <br/></li>
+        </ol>
+
+        In these return types, String and void are the simplest they should be the preferred ones.
+        Nevertheless there are other use cases where the Response and the Viewable return type are necessary and useful(as defined above).
+
+        <h5>Security :</h5>
+        Guarding against malicious attacks is a great concern for web application developers. Two of the most common
+        forms of attacks <b>cross-site request forgery (CSRF)</b> and <b>cross-site scripting (XSS)</b> can prevented by following option :
+        <img src="tutorial/JavaEE_MVC/Security.png" caption="security constrains" />
+
+        <!--More details about security will be available in MVC 1.0 security chapter.-->
+
+        <h5>Built-in Events :</h5>
+
+        Using following options MVC application can be informed of important events that
+        occur while processing a request. This mechanism is based on CDI events that 
+        can be <b>fired by implementations and observed by applications</b>.
+
+        <img src="tutorial/JavaEE_MVC/EVENT.png" caption="Event listener" />
+
+        Observing events can be useful for applications to learn about the lifecycle of a request, perform logging,
+        monitor performance etc.<br/>
+
+        <script src="https://gist.github.com/jGauravGupta/e6681020c6d3c03d92b096ec66efde02.js"></script><br/>
+
+        <!--More details about event listeners will be available in MVC 1.0 events chapter.-->
+
+
+        <h5>Bean Validation :</h5>
+
+        Handling form validations in MVC 1.0 is pretty simple. Using the following option NetBeans will add the <code>javax.mvc.binding.BindingResult</code> class 
+        (which has to be used to handle validation errors) as a property in the controller class
+        and add error handling to the controller method by using the injected <b>BindingResult</b> reference.
+
+        <img src="tutorial/JavaEE_MVC/BV2.png" caption="" />
+
+        <script src="https://gist.github.com/jGauravGupta/4f8d276182edae09845dba83974d2d00.js"></script>
+        <!--if the BindingResult contains errors by calling the isFailed() method. 
+        If a property (for example the firstname) is empty the BindingResult reference contains the corresponding 
+        errors, messages and so on. These properties can be used to fill an error bean and redirect to an error page for example.-->
+
+        <h5>Configure the application:</h5>
+        To create our MVC application we also need a JAX-RS Application class:
+        The subclass of <code>javax.ws.rs.core.Application</code> can be used to define additional JAX-RS components.
+        In the following screen, you can configuration <code>@ApplicationPath</code> 
+        (that define the base path for our application) and class name.
+        <img src="tutorial/JavaEE_MVC/APP_CONG_ACTION.png" caption="click here to update application config" />
+        <img src="tutorial/JavaEE_MVC/ApplicationConfig.png" caption="configure application path" />
+    </li>
+    <li>
+        <h4 id="VI">Viewer :</h4>
+        One of the best things about MVC is that it actually doesn't matter what view technologies it supports out of the box. 
+        Why? Because it is so easy to integrate any view technologies with MVC. 
+        <br/>
+        Click on the Viewer &gt; select JSP &gt; 
+        <img src="tutorial/JavaEE_MVC/VIEWER.png" caption="" />
+        In this tutorial, NetBeans will generate a set of JSP pages (create.jsp, update.jsp, list.jsp and view.jsp) that are used to handle every possible scenario.
+        <br/>
+        In the following screen, you can configure the <b>JSP template location</b> inside the web project and you can also define whether the
+        script and style-sheet files (Twitter Bootstrap, jQuery etc.) should be <b>offline or online</b>(cdnjs) :
+        <img src="tutorial/JavaEE_MVC/JSP.png" caption="" />
+
+    </li>
+    <li>
+        Now, click on the <b>Generate</b> button.
+        <img src="tutorial/JavaEE_MVC/GEN_SRC_LOG.png" caption="" />
+    </li>
+</ul>
+
+<h3 id="INSP">Inspecting The Generated Code :</h3>
+NetBeans has generated multiple files under source packages and under Web Pages.
+Here is a break-down of what was created:
+<img src="tutorial/JavaEE_MVC/GEN_SRC_WEB.png" caption="under web page" />
+
+Java source structure of this project seems like below.
+<img src="tutorial/JavaEE_MVC/GEN_SRC_JAVA.png" caption="under java source" />
+
+<!--The expected outcome will be a Java EE 8 application which uses an EJB facade to mediate the requests with the Model class,
+the Customer Entity.-->
+<h3 id="DEP">Deploy :</h3>
+<ul>
+     <li>The source code is generated. Now, check the maven dependency of Ozark in <b>pom.xml</b>.
+        <img src="tutorial/JavaEE_MVC/POM.png" caption="add dependencies in pom.xml" />
+        <script src="https://gist.github.com/jGauravGupta/b26ba5ed8e6fc28bbc6fbc9a3320cdfe.js"></script>
+    </li>
+    <li>Right click on the project node > <b>Build with Dependencies</b>.
+        <img src="tutorial/JavaEE_MVC/BUILD_DEPENDENCY.png" caption="" />
+    </li>
+    <li>
+        Now, You should see the Projects window, which contains a tree view of the components of the project, 
+        libraries that your code depends on, and so on.
+        <img src="tutorial/JavaEE_MVC/PROJECT_STRUCT.png" caption="Project structue" />
+        <p>
+        That's all what is needed to set up the project. You are now ready to use new MVC framework with Java EE!
+        </p>
+    </li>
+    <li>Now right click on project > <b>Run</b> :
+        <img src="tutorial/JavaEE_MVC/RUN.png" caption="Deploying Project..." />
+    </li>
+</ul>
+
+<h3 id="OP">Output :</h3>
+<ul>
+    <li>Home page opened by NetBeans IDE after deployment.
+        <img src="tutorial/JavaEE_MVC/APP_INIT.png" caption="Application home page" />
+    </li>
+    <li>
+        Click on Product ui component (currently no data exist) :
+        <img src="tutorial/JavaEE_MVC/EMPTY_TABLE.png" caption="Product data table" />
+    </li>
+    <li> Click on Add+ button to create new Product :
+        <img src="tutorial/JavaEE_MVC/CREATE_PRODUCT.png" caption="create new Product" />
+    </li>
+    <li>
+        Product created and returned to data table :
+        <img src="tutorial/JavaEE_MVC/DATA_TABLE.png" caption="Data Table" />
+    </li>
+    <li>
+        Same as above create another Product and Customer entry and move to Home Page by Dashboard :
+        <img src="tutorial/JavaEE_MVC/CHART.png" caption="Visualize data" />
+    </li>
+</ul>
+
+<h3 id="SP">Download Sample Project :</h3>
+<a href="https://github.com/jpamodeler/JPA-Modeler-Examples/tree/master/ShoppingSystem" target="_blank">Click here</a>
+
+<br/>
+<br/><br/>
+
+
+
+
+
+<!--<h6 style="margin-bottom: 18px;">Future Release functionalities :</h6>
+<div style="font-size: 12px">
+    <ul>
+        <li>Date type support</li>
+        <li>Embeddable</li>
+        <li>Relationship</li>
+    </ul>
+</div>-->
+
+<br/><br/><br/>
+Have fun with your MVC 1.0 application :)
+

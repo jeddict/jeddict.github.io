@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="db" v="1.5.6" thm="PMetroColorScheme" xs="false" id="_14623634588731" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" compositePrimaryKeyClass="EmployeePK" sm="false" abs="false" class="Employee" visibile="true" minimized="false" rootElement="_14623634588731" id="_1462363464850">
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="empName" id="_14623634841734">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" visibile="true" name="empId" id="_14623634649362">
+                <jpa:bv/>
+                <jpa:generated-value/>
+            </jpa:id>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="EMBEDDEDID" compositePrimaryKeyClass="DependentPK" sm="false" abs="false" class="Dependent" visibile="true" minimized="false" rootElement="_14623634588731" id="_1462363526423">
+        <jpa:attributes>
+            <jpa:many-to-one optional="true" primaryKey="true" maps-id="emp" connected-entity-id="_1462363464850" visibile="true" name="emp" id="_14623635670547"/>
+            <jpa:id attribute-type="String" visibile="true" name="name" id="_14623635264235">
+                <jpa:bv/>
+                <jpa:generated-value/>
+            </jpa:id>
+            <jpa:embedded-id connected-class-id="_146288566350658" visibile="true" name="id" id="_146236375172527">
+                <jpa:bv/>
+            </jpa:embedded-id>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:c/>
+    <jpa:diagram>
+        <plane elementRef="_14623634588731">
+            <shape elementRef="_1462363464850">
+                <Bounds x="158.0" y="134.0" width="160.0" height="86.0"/>
+            </shape>
+            <shape elementRef="_1462363526423">
+                <Bounds x="418.0" y="260.0" width="171.0" height="120.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

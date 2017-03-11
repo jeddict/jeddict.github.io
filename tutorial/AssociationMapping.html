@@ -1,0 +1,226 @@
+<h3 data-toc-skip>Entity Relation mapping</h3>
+
+Relationships among entities may be one-to-one, one-to-many, many-to-one, or many-to-many. 
+Relationships may be bidirectional or unidirectional. A bidirectional relationship has both an owning
+side and an inverse (non-owning) side. A unidirectional relationship has only an owning side.
+
+JPA Modeler supports the following association mapping types for Java persistent entities:
+
+<ul style="text-align: left;">
+    <li><a href="#UNI">Unidirectional relationship</a>
+        <ul>
+            <li><a href="#UOTO">One-to-one mapping</a></li>
+            <li><a href="#UOTM">One-to-many mapping</a></li>
+            <li><a href="#UMTO">Many-to-one mapping</a></li>
+            <li><a href="#UMTM">Many-to-many mapping</a></li>
+        </ul>
+    </li>
+    <li><a href="#BI">Bidirectional relationship</a>
+        <ul>
+            <li><a href="#BOTO">One-to-one mapping</a></li>
+            <li><a href="#BMTO">Many-to-one mapping</a></li>
+            <li><a href="#BMTM">Many-to-many mapping</a></li>
+        </ul>
+    </li>
+</ul>
+
+<h2 id="UNI">Unidirectional relationship</h2>
+<h3 id="UOTO">Unidirectional One-to-one mapping :</h3>
+Use a One-to-One Mapping to define a relationship with one-to-many multiplicity.
+<br/><br/>
+Following example shows a one-to-one relationship between Employee and TravelProfile. Employee is the
+“one” side and the source of the relationship, and TravelProfile is also the “one” side and the target. 
+Because the arrow points in only one direction, from Employee to TravelProfile, the relationship is unidirectional.
+
+<br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a single instance of Entity TravelProfile.</li>
+<li>Entity <b>TravelProfile</b> does not reference Entity Employee.</li>
+<li>Entity <b>Employee</b> is the <b>owner</b> of the relationship.</li>
+</ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/UOTO.PNG" caption="JPA view (OTO)" />
+
+
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>TravelProfile</b> is mapped to a table named <b>TRAVELPROFILE</b>.</li>
+<li>Table EMPLOYEE contains a foreign key to table TRAVELPROFILE. The foreign key column is named <b>PROFILE_ID</b>. 
+The foreign key column has the same type as the primary key of TRAVELPROFILE, and there is a unique key constraint on it.</li>
+</ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DUOTO.png" caption="DB view (OTO)" />
+
+
+
+
+<h3 id="UOTM">Unidirectional One-to-many mapping :</h3>
+Use a One-to-Many Mapping to define a relationship with one-to-many multiplicity.
+
+<br/><br/>
+When an entity is associated with a Collection of other entities, it is most often in the form of a one-to-
+many mapping.
+
+<br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a collection of Entity AnnualReview.</li>
+<li>Entity <b>AnnualReview</b> does not reference Entity Employee.</li>
+<li>Entity <b>Employee</b> is the <b>owner</b> of the relationship.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/UOTM.PNG" caption="JPA view (OTM)" />
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>AnnualReview</b> is mapped to a table named <b>ANNUALREVIEW</b>.</li>
+<li>There is a join table that is named <b>EMPLOYEE_ANNUALREVIEW</b> (owner name first). This
+join table has two foreign key columns. One foreign key column refers to table EMPLOYEE and has the same type as the primary key of EMPLOYEE. This foreign key column is named
+<b>EMPLOYEE_ID</b>. The other foreign key column refers to table ANNUALREVIEW and 
+has the same type as the primary key of ANNUALREVIEW. This foreign key
+column is named <b>ANNUALREVIEWS_ID</b>. There is a unique key constraint on the foreign key that refers to table ANNUALREVIEW.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DUOTM.png" caption="DB view (OTM)" />
+
+
+
+
+
+
+<h3 id="UMTO">Unidirectional Many-to-one mapping :</h3>
+Use a Many-to-One mapping to defines a single-valued association to another entity class that has many-to-one multiplicity.
+<br/><br/>
+
+Following example shows a many-to-one relationship between Phone and Employee. Phone is the
+“many” side and the source of the relationship, and Employee is the “one” side and the target. Once
+again, because the arrow points in only one direction, from Phone to Employee, the relationship is
+unidirectional.
+
+<br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a single instance of Entity Phone.</li>
+<li>Entity <b>Phone</b> does not reference Entity Employee.</li>
+<li>Entity <b>Phone</b> is the <b>owner</b> of the relationship.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/UMTO.png" caption="JPA view (MTO)" />
+
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>Phone</b> is mapped to a table named <b>PHONE</b>.</li>
+<li>Table PHONE contains a foreign key to table EMPLOYEE. The foreign key column is named <b>OWNER_ID</b>. 
+The foreign key column has the same type as the primary key of EMPLOYEE.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DUMTO.png" caption="DB view (MTO)" />
+
+
+
+
+
+<h3 id="UMTM">Unidirectional Many-to-many mapping :</h3>
+Use a Many-to-Many Mapping to define a many-valued association with
+many-to-many multiplicity. A many-to-many mapping has two sides: the owning side
+and non-owning side. You must specify the join table on the owning side. For
+bidirectional mappings, either side may be the owning side.
+<br/><br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a collection of Entity Patent.</li>
+<li>Entity <b>Patent</b> does not reference Entity Employee.</li>
+<li>Entity <b>Employee</b> is the <b>owner</b> of the relationship.</li>
+</ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/UMTM.PNG" caption="JPA view (MTM)" />
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>Patent</b> is mapped to a table named <b>PATENT</b>.</li>
+<li>There is a join table that is named <b>EMPLOYEE_PATENT</b> (owner name first). This join table
+has two foreign key columns. One foreign key column refers to table EMPLOYEE and has the
+same type as the primary key of EMPLOYEE. This foreign key column is named
+<b>EMPLOYEE_ID</b>. The other foreign key column refers to table
+PATENT and has the same type as the primary key of PATENT. This foreign key column is
+named <b>PATENTS_ID</b>.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DUMTM.png" caption="DB view (MTM)" />
+
+
+<h2 id="BI">Bidirectional relationship</h2>
+<h3 id="BOTO">Bidirectional One-to-one mapping :</h3>
+Use a One-to-One Mapping to define a relationship with one-to-many multiplicity.
+<br/><br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a single instance of Entity Cubicle.</li>
+<li>Entity <b>Cubicle</b> references a single instance of Entity Employee.</li>
+<li>Entity <b>Employee</b> is the <b>owner</b> of the relationship.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/BOTO.PNG" caption="JPA view (OTO)" />
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>Cubicle</b> is mapped to a table named <b>CUBICLE</b>.</li>
+<li>Table EMPLOYEE contains a foreign key to table CUBICLE. The foreign key column is named
+<b>ASSIGNEDCUBICLE_ID</b>. There is a unique key constraint on foreign key.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DBOTO.png" caption="DB view (OTO)" />
+
+
+
+
+
+
+
+
+<h3 id="BMTO">Bidirectional Many-to-one mapping :</h3>
+Use a Many-to-One mapping to defines a single-valued association to another entity class that has many-to-one multiplicity.
+<br/><br/>In this example:<br/>
+<ul>
+<li>Entity <b>Employee</b> references a single instance of Entity Department.</li>
+<li>Entity <b>Department</b> references a collection of Entity Employee.</li>
+<li>Entity <b>Employee</b> is the owner of the relationship.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/BMTO.PNG" caption="JPA view (MTO)" />
+
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>Entity <b>Department</b> is mapped to a table named <b>DEPARTMENT</b>.</li>
+<li>Table EMPLOYEE contains a foreign key to table DEPARTMENT. The foreign key column is named <b>DEPARTMENT_ID</b>.
+</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DBMTO.png" caption="DB view (MTO)" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="BMTM">Bidirectional Many-to-many mapping :</h3>
+Use a Many-to-Many Mapping to define a many-valued association with
+many-to-many multiplicity. A many-to-many mapping has two sides: the owning side
+and non-owning side. You must specify the join table on the owning side. For
+bidirectional mappings, either side may be the owning side.
+
+<br/><br/>In this example:<br/>
+<ul>
+<li>Entity <b>Project</b> references a collection of Entity Employee.</li>
+<li>Entity <b>Employee</b> references a collection of Entity Project.</li>
+<li>Entity <b>Project</b> is the <b>owner</b> of the relationship.</li></ul>
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/BMTM.PNG" caption="JPA view (MTM)" />
+
+The following mapping defaults apply:
+<ul>
+<li>Entity <b>Project</b> is mapped to a table named <b>PROJECT</b>.</li>
+<li>Entity <b>Employee</b> is mapped to a table named <b>EMPLOYEE</b>.</li>
+<li>There is a join table that is named <b>PROJECT_EMPLOYEE</b> (owner name first). This join table
+has two foreign key columns. One foreign key column refers to table PROJECT and has the
+same type as the primary key of PROJECT. The name of this foreign key column is
+<b>PROJECTS_ID</b>. The other foreign key column refers to table EMPLOYEE and
+has the same type as the primary key of EMPLOYEE. The name of this foreign key column is
+<b>EMPLOYEES_ID</b>.
+</li></ul>
+
+<img class="NO_BORDER_IMG" src="tutorial/Mapping/Association/DBMTM.png" caption="DB view (MTM)" />
+

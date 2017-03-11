@@ -1,0 +1,143 @@
+
+
+<h3>@NamedStoredProcedureQuery in Action</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<ul style="text-align: left;">
+<li><a href="#INT">Introduction</a></li>
+<li><a href="#DIA">Create the JPA Diagram</a></li>
+<li><a href="#CSP">Create the Stored Procedure</a></li>
+<li><a href="#GEC">Generate the entity classes</a></li>
+<li><a href="#ED">Existing Database</a></li>
+<li><a href="#TEST">Create tester to call Named Stored Procedure</a></li>
+<li><a href="#DEPLOY">Deploy the EJB Module</a></li>
+<li><a href="#OUT">Output</a></li>
+<!--<li><a href="#SRC">Source Code</a></li>-->
+</ul>
+
+<h3 id="INT" style="text-align: left;">
+Introduction :</h3>
+In this tutorial we will go through the basic execution of stored procedure using JPA Modeler .
+<br/>
+<span style="font-family: inherit;">JPA 2.1 supports : </span>
+<ol style="text-align: left;">
+<li><span style="font-family: inherit;">Named stored procedures calls defined in <b>@NamedStoredProcedureQuery</b> annotation and created through <b>EntityManager.createNamedStoredProcedureQuery()</b> . </span></li>
+<li><span style="font-family: inherit;">Dynamic stored procedure calls created through <b>EntityManager.createStoredProcedureQuery()</b>. </span></li>
+</ol>
+<span style="font-family: inherit;"><b>StoredProcedureQuery</b> is a JPA Query that provides additional API for setting the stored procedure parameters, and for accessing output parameters and multiple result sets. A <b>StoredProcedureQuery</b> can return entity objects, or data, similar to native SQL queries. A <b>ResultSetMapping</b> can be used to map the returned fields to the entity columns. 
+</span>
+<span style="font-family: inherit;"></span>
+<!--more-->
+<h3 id="DIA" style="text-align: left;">
+<span style="font-family: inherit;">Create the JPA Diagram :</span></h3>
+<ol style="text-align: left;">
+<li style="font-family: inherit;"><span style="font-family: inherit;">Goto File menu &gt; New File &gt; Persistence category</span></li>
+<li style="font-family: inherit;"><span style="font-family: inherit;">From the Persistence , select <b>JPA Diagram from Database</b> ( or create new JPA Diagram ) and click Next.
+        <img src="tutorial/NamedStoredProcedureQuery/11.JPG" caption="Select JPA Diagram" />
+ </span></li>
+<li><span style="font-family: inherit;">Select table and add to import entity from DB .</span>
+    <img src="tutorial/NamedStoredProcedureQuery/2.JPG" caption="Select Tables" />
+</li>
+<li><span style="font-family: inherit;">Type <b>SmapleERD</b> for the diagram name. </span></li>
+<li><span style="font-family: inherit;">Type <b>com.jpamodeler.nsp</b> for the Package. </span></li>
+<li><span style="font-family: inherit;">Click Finish.</span>
+    <img src="tutorial/NamedStoredProcedureQuery/3.JPG" caption="Create JPA Diagram" />
+</li>
+</ol>
+
+
+<span style="font-family: inherit;">When we click Finish, the IDE creates the JPA Diagram and opens the diagram in the designer window.</span>
+
+<h3 id="CSP" style="text-align: left;">
+<span style="font-family: inherit;">Create the Stored Procedure :</span></h3>
+<ol style="text-align: left;"><span style="font-family: inherit;">
+        <li><span style="font-family: inherit;">Click on the <b>Student</b> Entity <entity></entity> &gt; Properties . </span></li>
+<li><span style="font-family: inherit;">From the properties , select <b>Named Stored Procedure Query Property</b>.</span>
+    <img src="tutorial/NamedStoredProcedureQuery/4.JPG" caption="Open Stored Procedure Query Panel" />
+</li>
+<li>Click on the Add button to create new named stored procedure.
+     <img src="tutorial/NamedStoredProcedureQuery/5.JPG" caption="Create Stored Procedure" />
+</li>
+<li>In this panel, first select the <b>Database connection</b>. </li>
+<li>It will fetch the existing stored procedure list from the DB. </li>
+<li>Now select the <b>Stored Procedure</b> and it will fetch existing stored procedure parameter list from the DB.
+ <img src="tutorial/NamedStoredProcedureQuery/6.JPG" caption="Select Database Connection to fetch SP" />
+</li>
+<li>Click on the <b>Result Set</b> Tab to add result classes or resultset mappings.
+    <img src="tutorial/NamedStoredProcedureQuery/7.JPG" caption="Select Result Classes" />
+</li>
+<li>Click on the save button to save named stored procedure.
+    <img src="tutorial/NamedStoredProcedureQuery/8.JPG" caption="Stored Procedure saved" />
+</li>
+</span></ol>
+<div>
+<h3 id="GEC" style="text-align: left;">
+<span style="font-family: inherit;">Generate the entity classes :</span></h3>
+<ol style="text-align: left;"><span style="font-family: inherit;">
+<li><span style="font-family: inherit;">Right click on the diagram &gt; Generate Source Code</span>
+    <img src="tutorial/NamedStoredProcedureQuery/9.JPG" caption="Generate Source Code" />
+</li>
+<li>Click on the Student entity class to view source code. </li>
+</span></ol>
+<script src="https://gist.github.com/jShiwaniGupta/6f8e4e13de8ea736942e.js"></script> </div>
+
+<h3 id="ED" style="text-align: left;">
+<span style="font-family: inherit;"> Existing Database :</span></h3>
+<span style="font-family: inherit;"> Click on the Services window &gt; Databases</span>
+<img src="tutorial/NamedStoredProcedureQuery/10.JPG" caption="Database existing table and data" />
+
+<span style="font-family: inherit;">I have used MySQL as backend database, however PostgreSQL , MS SQL Server or Oracle can also be used. As the schema I have used a simple table to store student’s data.</span>
+
+<h4 style="text-align: left;">
+<span style="font-size: medium;"> Student Table SQL Query :</span></h4>
+<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="k" style="color: #007020; font-weight: bold;">CREATE</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">TABLE</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">student</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">SID</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">INT</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">NOT</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">NULL</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">,</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">FNAME</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">VARCHAR</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="mi" style="color: #40a070;">10</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">)</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">NOT</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">NULL</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">,</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">LNAME</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">VARCHAR</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="mi" style="color: #40a070;">10</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">),</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">DEPT</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">VARCHAR</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="mi" style="color: #40a070;">10</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">),</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">BATCH</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">INT</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">,</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">EMAIL</span><span class="o" style="color: #666666;">`</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="nb" style="color: #007020;">VARCHAR</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="mi" style="color: #40a070;">30</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">),</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">PRIMARY</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="k" style="color: #007020; font-weight: bold;">KEY</span><span style="letter-spacing: 0.015em; line-height: 15.6px;"> </span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">(</span><span class="o" style="color: #666666;">`</span><span class="n" style="letter-spacing: 0.015em; line-height: 15.6px;">SID</span><span class="o" style="color: #666666;">`</span><span class="p" style="letter-spacing: 0.015em; line-height: 15.6px;">));</span></pre>
+<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="k" style="color: #007020; font-weight: bold;">INSERT</span> <span class="k" style="color: #007020; font-weight: bold;">INTO</span> <span class="n">sample_db</span><span class="p">.</span><span class="n">student</span> <span class="p">(</span><span class="o" style="color: #666666;">`</span><span class="n">SID</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">FNAME</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">LNAME</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">DEPT</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">BATCH</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">EMAIL</span><span class="o" style="color: #666666;">`</span><span class="p">)</span> <span class="k" style="color: #007020; font-weight: bold;">VALUES</span> <span class="p">(</span><span class="mi" style="color: #40a070;">1</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'Shiwani'</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'Gupta'</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'CSE'</span><span class="p">,</span> <span class="mi" style="color: #40a070;">2015</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'jShiwanGupta@gmail.com'</span><span class="p">);</span> </pre>
+<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="k" style="color: #007020; font-weight: bold;">INSERT</span> <span class="k" style="color: #007020; font-weight: bold;">INTO</span> <span class="n">sample_db</span><span class="p">.</span><span class="n">student</span> <span class="p">(</span><span class="o" style="color: #666666;">`</span><span class="n">SID</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">FNAME</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">LNAME</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">DEPT</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">BATCH</span><span class="o" style="color: #666666;">`</span><span class="p">,</span> <span class="o" style="color: #666666;">`</span><span class="n">EMAIL</span><span class="o" style="color: #666666;">`</span><span class="p">)</span> <span class="k" style="color: #007020; font-weight: bold;">VALUES</span> <span class="p">(</span><span class="mi" style="color: #40a070;">2</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'Gaurav'</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'Gupta'</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'IT'</span><span class="p">,</span> <span class="mi" style="color: #40a070;">2012</span><span class="p">,</span> <span class="s1" style="color: #4070a0;">'gaurav.gupta.jc@gmail.com'</span><span class="p">);</span></pre>
+
+<h4>
+<span style="font-size: medium;"> Stored Procedure (MySQL) :</span></h4>
+<span style="font-family: inherit;"><pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; font-weight: normal; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="k" style="color: #007020; font-weight: bold;">DELIMITER</span> <span class="o" style="color: #666666;">@@</span>
+<span class="k" style="color: #007020; font-weight: bold;">DROP</span> <span class="k" style="color: #007020; font-weight: bold;">PROCEDURE</span> <span class="n">studentAll</span> <span class="o" style="color: #666666;">@@</span>
+<span class="k" style="color: #007020; font-weight: bold;">CREATE</span> <span class="k" style="color: #007020; font-weight: bold;">PROCEDURE</span> <span class="n">sample_db</span><span class="mf" style="color: #40a070;">.</span><span class="n">studentAll</span>
+<span class="p">(</span>
+ <span class="k" style="color: #007020; font-weight: bold;">IN</span> <span class="n">BATCH_NO</span> <span class="nb" style="color: #007020;">INT</span>
+<span class="p">)</span>
+<span class="k" style="color: #007020; font-weight: bold;">BEGIN</span>
+  <span class="k" style="color: #007020; font-weight: bold;">SELECT</span> <span class="o" style="color: #666666;">*</span> <span class="k" style="color: #007020; font-weight: bold;">FROM</span> <span class="n">STUDENT</span> <span class="k" style="color: #007020; font-weight: bold;">WHERE</span> <span class="n">BATCH</span> <span class="o" style="color: #666666;">=</span> <span class="n">BATCH_NO</span><span class="p">;</span>
+<span class="k" style="color: #007020; font-weight: bold;">END</span> <span class="o" style="color: #666666;">@@</span> 
+<span class="k" style="color: #007020; font-weight: bold;">DELIMITER</span> <span class="p">;</span> </pre>
+</span>
+
+
+<h3 id="TEST" style="text-align: left;">
+<span style="font-family: inherit;"> Create tester to call Named Stored Procedure :</span></h3>
+<span style="font-family: inherit;">In this exercise we will create a simple startup singleton bean to esecute the store procedure and fetch the student by batch :</span>
+<ol style="text-align: left;">
+<li><span style="font-family: inherit;">Right-click the EJB module and choose File &gt; New File wizard . </span></li>
+<li><span style="font-family: inherit;">In the New File wizard, expand the Enterprises JavaBeans and select Session Beans as shown in the figure below.</span>
+            <img src="tutorial/NamedStoredProcedureQuery/12.JPG" caption="Create Tester" />
+</li>
+<li>Now, we have to specify the EJB Name and the Package Location in the appropriate text fields and then click Finish. </li>
+<li><span style="font-family: inherit;">When we click Finish, the class <b>Tester.java</b> opens in the Source Editor.</span></li>
+</ol>
+<script src="https://gist.github.com/jShiwaniGupta/0c625eab1edf2d9f1978.js"></script>  
+<h3 id="DEPLOY" style="text-align: left;">
+<span style="font-family: inherit;"> Deploy the EJB Module :</span></h3>
+<span style="font-family: inherit;">We can now build and deploy the EJB module. Right-click the <b>StoredProceduresModule</b> module and choose Deploy. When we click Deploy, the IDE builds the ejb module and deploys the JAR archive to the server. </span><span style="font-family: inherit;">In the Services window, if we expand the Applications node of GlassFish Server, we can see that </span><span style="font-family: inherit;">StoredProceduresModule</span><span style="font-family: inherit;"> was deployed.</span>
+<span style="font-family: inherit;">
+</span>
+<br/><span style="font-family: inherit;">After we have defined the <b>@NamedStoredProcedureQuery</b>, we can use the <b>createNamedStoredProcedureQuery(String name)</b> method of the <b>EntityManager</b> to create a <b>StoredProcedureQuery</b> object. This provides the required methods to set the input parameter, call the stored procedure and get the result.</span>
+
+<h3 id="OUT" style="text-align: left;"> Output :</h3>
+<pre style="background: rgb(240, 240, 240); border-radius: 2px; border: 1px solid rgb(204, 204, 204); font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 13px; letter-spacing: 0.015em; line-height: 15.6px; overflow-x: auto; overflow-y: hidden; padding: 0.5em;"><span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">com.jpamodeler.nsp.Student actually got transformed </span>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">EclipseLink, version: Eclipse Persistence Services - 2.5.0.v20130507-3faac2b </span>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">file:/G:/jShiwaniGupta/NetBeans_Projects/StoredProceduresModule/build/classes/_DEFAULT_PU login successful </span>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">EJB5181:Portable JNDI names for EJB Tester: [java:global/StoredProceduresModule/Tester, java:global/StoredProceduresModule/Tester!com.jpamodeler.nsp.Tester] </span>
+<b><span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">Executing Stored Procedure Query ................ </span>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">Student : Shiwani Gupta </span></b>
+<span class="na" style="color: #4070a0;">INFO</span><span class="o" style="color: #666666;">:</span> <span class="s" style="color: #4070a0;">StoredProceduresModule was successfully deployed in 1,185 milliseconds.</span></pre>
+
+<!--<h3 id="SRC" style="text-align: left;">
+<span style="font-family: inherit;">Download Source Code : </span></h3>
+<div style="text-align: left;">
+<a href="https://github.com/jShiwaniGupta/JPA-Modeler-Example/tree/master/Named%20Stored%20Procedure" target="_blank">Github - Named Stored Procedure</a></div>-->
+

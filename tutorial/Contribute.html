@@ -1,0 +1,91 @@
+<h3 data-toc-skip>Create your own generator rapidly</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<nav id="toc-head" ></nav>
+Here comes a walk-through of how to contribute or extend the JPA Modeler Plugin.
+
+<h3 id="INSTALL_NB">Download and Install the NetBeans IDE 8.2 :</h3>
+<img src="tutorial/Contribute/netbeans.png" caption="NetBeans IDE 8.2" />
+
+<h3 id="SETUP_JPAM">Setup the JPA Modeler project :</h3>
+<ul>
+    <li>
+        Clone the following projects :
+        <ul>
+            <li><a href="https://github.com/jGauravGupta/NBModeler">NBModeler</a></li>
+            <li><a href="https://github.com/jGauravGupta/jCode">jCode</a></li>
+            <li><a href="https://github.com/jGauravGupta/JPAModeler">JPAModeler</a></li>
+        </ul>
+    </li>
+    <li>
+        Open the projects in NetBeans IDE 8.2 :
+        <img src="tutorial/Contribute/PROJECT_VIEW.PNG" caption="Project view" />
+        <img src="tutorial/Contribute/FOLDER_VIEW.png" caption="Folder view" />
+        <img src="tutorial/Contribute/NBMODELER.png" caption="NB Modeler src" />
+        <img src="tutorial/Contribute/JCODE.png" caption="jCode src" />
+        <img src="tutorial/Contribute/JPAMODELER.png" caption="JPA Modeler src" />
+    </li>
+</ul>
+
+
+<h3 id="RUN_JPAM">Run the JPA Modeler project :</h3>
+<ul>
+    <li>
+        Clean and Build the projects in following order :
+        <img src="tutorial/Contribute/NBMODELER_BUILD.png" caption="Clean & Build NBModeler" />
+        <img src="tutorial/Contribute/NBMODELER_BUILD_RESULT.PNG" caption="Build done" />
+        <img src="tutorial/Contribute/JCODE_BUILD.png" caption="Clean & Build jCode" />
+        <img src="tutorial/Contribute/JCODE_BUILD_RESULT.PNG" caption="Build done" />
+        <img src="tutorial/Contribute/JPAMODELER_RUN.png" caption="Run JPA Modeler" /> 
+    </li>
+</ul>
+
+
+<h3 id="EXTEND_JPAM">Extend JPA Modeler generator :</h3>
+<ul>
+    <li>
+        Clone the <a href="https://github.com/jpamodeler/x-technology-application-generator">x-technology-application-generator</a> project.
+        <img src="tutorial/Contribute/EXT_RUN.PNG" caption="Run JPA Modeler" /> 
+    </li>
+    <li>
+        Follow this <a href="page.html?l=tutorial/QuickStart">tutorial</a> to know about modeler file creation and usage.<br/>
+        
+    </li>
+    <li>In the new running instance of NetBeans, Create new project and modeler file.</li>
+    <li>Create new entities and perform <b>generate source</b> action</li>
+    <li>
+        In code generation panel, new X-Technolgy(demo) Code Generator is available with config panel :
+        <img src="tutorial/Contribute/EXT_GEN.png" caption="Run JPA Modeler" /> 
+    </li>
+</ul>
+
+<h3 id="CREATE_GEN">Create your own generator with JPA Modeler :</h3>
+You can rename this project or create new one with same nb platform and jpa modeler dependencies .
+
+<h5>Create Generator</h5>
+Create new code generator class as described in following snipets :
+<script src="https://gist.github.com/jGauravGupta/d51097ea2e60e67e9655eb63b33a3adb.js"></script>
+
+Create ui panel &AMP; ui config data bean and design the ui panel with netbeans matisse :
+<script src="https://gist.github.com/jGauravGupta/36f96d6752ac5b56041f83eb2ab7d95a.js"></script>
+
+Write code generation logic inside the execute method as shown in following code snippet :
+<script src="https://gist.github.com/jGauravGupta/81f07fa638333c9e623331db783adbd7.js"></script>
+
+Not only the generator config and entites data , you can also access the project, source group, console and progress-bar by injecting it in generator class using <code>@ConfigData</code>.
+As shown in follwoing snippet :
+<script src="https://gist.github.com/jGauravGupta/2816d0099349637cb12d1e5fac30ae06.js"></script>
+
+
+<!--
+Template Myth : 
+Fremarker API
+org.netbeans.jcode.core.util.FileUtil :
+FileObject expandTemplate(String inputTemplatePath,  FileObject toDir, String toFile, Map<String, Object> params) throws IOException;
+      void expandTemplate(String inputTemplatePath,  FileObject toFile, Map<String, Object> params) throws IOException;
+      void expandTemplate(InputStream template, FileObject toFile, Map<String, Object> values) throws IOException;
+      void expandTemplate(Reader reader, Writer writer, Map<String, Object> values) throws IOException;
+    String expandTemplate(String templateContent, Map<String, Object> values);
+        
+        
+org.netbeans.jcode.cdi.logger.LoggerProducerGenerator :
+FileObject generate(FileObject toDir, ProgressHandler handler) throws IOException;-->

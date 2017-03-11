@@ -1,0 +1,121 @@
+<style>
+    .download {
+        text-transform: none !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+            $.getJSON( "release.json", function( data ) { 
+                loadVersion(data);
+            });
+        });
+
+
+    function loadVersion(data) {
+        for (var i in data.NETBEANS) {
+            var netbeansIns = data.NETBEANS[i];
+            if (i == 0) {
+                $("#NBM_DOWNLOAD").attr("href", netbeansIns.url);
+                $("#NBM_DOWNLOAD").text("Download v" + netbeansIns.version);
+            }
+            $("#NBM_DETAILS").append($("<option>")
+                    .text("v" + netbeansIns.version + " (NetBeans IDE v" + netbeansIns.nb_version + ")")
+                    .attr("nb_version", netbeansIns.nb_version)
+                    .attr("version", netbeansIns.version)
+                    .attr("url", netbeansIns.url));
+        }
+
+        $(".OS").each(function () {
+            var OS_Data = data[$(this).attr("id")];
+            if(OS_Data==undefined){
+                $(this).hide();
+            } else {
+            var download = $(this).find(".download");
+            download.attr("href", OS_Data.url);
+            download.text("Download v" + OS_Data.version);
+        }
+        });
+        
+        if($(".OS:visible").size()==0){
+            $("#OS_DOWNLOAD .container .row div:nth-child(1)").hide();
+        }
+
+
+        $("#NBM_DETAILS").on("change", function () {
+            var option = $(this).find(":selected");
+            $("#NBM_DOWNLOAD").attr("href", option.attr("url"));
+            $("#NBM_DOWNLOAD").text("Download v" + option.attr("version") + " (for NB v" + option.attr("nb_version") + ")");
+        })
+    }
+</script>
+
+<section class="padding wow fadeInUp margin-bottom" data-wow-duration="400ms" data-wow-delay="400ms">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <img src="p/images/download/netbeans.png"  alt="">
+                <h1 class="margin-bottom">NetBeans IDE Plugin</h1>
+            </div>
+        </div>
+        <div class="row center-block" id="NETBEANS">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
+                <select id="NBM_DETAILS" class="btn btn-link download">
+                </select>
+                <a id="NBM_DOWNLOAD" href="#" class="btn btn-buynow download">Download</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 text-center pull-right">
+               <a href="page.html?l=tutorial/Installation" class="btn btn-link" target="_blank">Installation Instructions</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#about-company-->
+
+<section id="OS_DOWNLOAD">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center wow fadeIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                <h3>Get JPA Modeler for your OS</h3>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div id="WINDOWS" class="OS single-service price-one">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="p/images/download/windows.png" alt="">
+                    </div>
+                    <h2>WINDOWS</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div id="LINUX" class="OS single-service price-three">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
+                        <img src="p/images/download/linux.png" alt="">
+                    </div>
+                    <h2>LINUX</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+                <div id="OSX" class="OS single-service price-one">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+                        <img src="p/images/download/osx.png" alt="">
+                    </div>
+                    <h2>OSX</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+
+            <div class="col-sm-12 text-center wow fadeIn" data-wow-duration="1000ms" data-wow-delay="1200ms">
+                <a href="https://github.com/jGauravGupta/JPAModeler/releases" class="btn btn-link download">Click here for older version</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--/#services-->
+<script>removeSidebar();</script>
+
+<script>paginate( "page.html?l=tutorial/Requirement", "page.html?l=tutorial/Installation");
+</script>

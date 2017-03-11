@@ -1,0 +1,21 @@
+{
+    "NETBEANS": [ 
+        {
+            "version": "3.5.1",
+            "nb_version": 8.2,
+            "url": "http://plugins.netbeans.org/download/plugin/9031"
+        },
+        {
+            "version": "3.3",
+            "nb_version": 8.2,
+            "url": "http://plugins.netbeans.org/download/plugin/9002"
+        },
+        {
+            "version": "2.6",
+            "nb_version": 8.1,
+            "url": "http://plugins.netbeans.org/download/plugin/8638"
+        }],
+
+    "_comment": " 'WINDOWS': {url: <>, version: 1.4},  LINUX: {url: <>, version: 1.4},  OSX: {url: <>, version: 1.4} "
+}
+

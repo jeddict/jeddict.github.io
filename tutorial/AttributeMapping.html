@@ -1,0 +1,223 @@
+<h3 data-toc-skip>Attribute Mapping</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+JPA Modeler supports the following attribute mapping types for Java persistent entities:
+<nav id="toc-head" ></nav>
+
+<h3 id="IDM">ID Mapping :</h3>
+Use an ID Mapping to specify the primary key of an entity. 
+ID mappings may be used with a Entity or Mapped superclass. 
+<blockquote>The primary key must be defined on the entity class that is the root of the entity hierarchy or on a
+    mapped superclass that is a (direct or indirect) superclass of all entity classes in the entity hierarchy.
+    The primary key must be defined exactly once in an entity hierarchy.
+</blockquote>
+
+
+<h6>To create a ID mapping:</h6>
+<ul>
+    <li>
+
+        Click on the Entity <entity></entity>, then click on the expand <add-attr></add-attr> button &gt; ID <id></id> property.
+
+    <img src="tutorial/Mapping/Attribute/ID.png" caption="create @Id attribute" />  
+
+</li>
+<li>
+    Double click on the attribute to rename it.
+</li>
+<li>
+    To change field type, goto property panel &gt; Field Type &gt; Click to open Field Type panel :
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/ID.png"  caption="change Field Type"/>
+
+    <p/>
+    ID mappings may be used only with the following attribute types:
+    <ul>
+        <li>Java primitive types and wrappers of the primitive types</li>
+        <li>java.lang.String, java.math.BigInteger, java.math.BigDecimal</li>
+        <li>java.util.Date</li>
+        <li>java.sql.Date</li>
+    </ul>
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/ID2.png"  caption="change Data Type"/>
+</li>
+</ul>
+
+
+
+<h3 id="BM">Basic Mapping :</h3>
+
+Use a Basic Mapping to map an attribute directly to a database column. 
+
+<h6>To create a basic mapping:</h6>
+<ul>
+    <li>
+        Click on the Entity <entity></entity>, then click on the expand <add-attr></add-attr> button &gt; basic <basic></basic> property.
+
+    <img src="tutorial/Mapping/Attribute/BASIC.png"  caption="create @Basic attribute"/>
+</li>
+
+<li>
+    Double click on the attribute to rename it.
+</li>
+<li>
+    To change field type, goto property panel &gt; Field Type &gt; Click to open Field Type panel :
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/BASIC.png"  caption="change Field Type"/>
+
+    <p/>
+    Basic mappings may be used only with the following attribute types:
+    <ul>
+        <li>Java primitive types and wrappers of the primitive types</li>
+        <li>java.lang.String, java.math.BigInteger, java.math.BigDecimal</li>
+        <li>java.util.Date, java.util.Calendar</li>
+        <li>java.sql.Date, java.sql.Time, java.sql.Timestamp</li>
+        <li>byte[], Byte[], char[], Character[]</li>
+        <li>enums</li>
+        <li>any other type that implements Serializable</li>
+    </ul>
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/BASIC2.png"  caption="change Data Type"/>
+
+</li>
+</ul>
+
+<h3 id="ECBM">Element collection mapping (@Basic) :</h3>
+<blockquote>A persistent field or property of an entity or embeddable class may correspond to a collection of a basic type (“element collection”).</blockquote>
+Use an <b>Element Collection</b> to define a collection of <b>Basic</b> objects. The Basic values are
+stored in a separate collection table. Because the target is a Basic value (instead of an
+Entity), you can easily define collections of simple values without having to define a
+class for the value.
+
+<h6>To create a Element Collection :</h6>
+<ul>
+    <li>
+        Click on the Entity <entity></entity>, then click on the expand <add-attr></add-attr> button &gt; Basic Element Collection <basic-element-collection></basic-element-collection> property.
+
+
+    <img src="tutorial/Mapping/Attribute/ELEMENT_COLLECTION_BASIC.png"  caption="create @ElementCollection attribute"/>
+</li>
+<li>
+    Double click on the attribute to rename it.
+</li>
+<li>
+    To change collection type, goto property panel &gt; Collection Type :
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/ELEMENT_COLLECTION_BASIC.png" caption="change Collection Type"/>
+</li>
+<li>
+    To change field type, goto property panel &gt; Field Type &gt; Click to open Field Type panel :
+
+</li>
+</ul>
+
+
+<h3 id="EM">Embedded mapping :</h3>
+Use an Embedded Mapping to specify a persistent field or property of an entity
+whose value is an instance of an embeddable class.
+
+<h6>To create a Embedded mapping :</h6>
+<ul>
+    <li>
+        Click on the Entity <entity></entity>, then click on the composition <composition></composition> button .
+
+    <img src="tutorial/Mapping/Attribute/EMBEDDED.png"  caption="create @Embedded attribute"/>
+</li>
+<li>
+    Now, drag embedded <embedded></embedded> attribute to Embeddable <embeddable></embeddable> class.
+
+
+<img src="tutorial/Mapping/Attribute/EMBEDDED2.png"  caption="Drag to @Embeddable class"/>
+</li>
+<li>
+    Double click on the attribute to rename it.
+</li>
+</ul>
+With this representation, not only is the address information neatly encapsulated within an object
+but if another entity such as <b>Company</b> also has address information, it can also have an attribute that
+points to its own embedded Address object.<br/>
+
+Please click here for more info : <a href="page.html?l=Embeddable">Embeddable</a>
+
+
+
+
+
+
+
+<h3 id="ECEM">Element collection mapping (@Embedded) :</h3>
+Use an <b>Element Collection</b> to define a collection of <b>Embedded</b> objects. The Embedded values are stored in a separate collection table. 
+<blockquote>A persistent field or property of an entity or embeddable class may correspond to a collection of a embeddable class (“element collection”).</blockquote>
+<p>An embeddable class (including an embeddable class within another embeddable class) that is contained within an element collection must not contain an element collection, nor may it contain a relationship to an entity other than a many-to-one or one-to-one relationship.</p>
+
+<h6>To create a Element Collection of a embeddable class  :</h6>
+<ul>
+        <li>
+        Click on the Entity <entity></entity>, then click on the composition <composition></composition> button .
+
+        <img src="tutorial/Mapping/Attribute/ELEMENT_COLLECTION_EMBEDDED.png"  caption="create @ElementCollection of @Embedded attribute"/>
+</li>
+<li>
+    Now, drag embedded <multi-embedded></multi-embedded> attribute to Embeddable <embeddable></embeddable> class.
+<img src="tutorial/Mapping/Attribute/ELEMENT_COLLECTION_EMBEDDED2.png"  caption="Drag to @Embeddable class"/>
+</li>
+<li>
+    To change collection type, goto property panel &gt; Collection Type :
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/ELEMENT_COLLECTION_EMBEDDED.png" caption="change Collection Type"/>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+<h3 id="VM">Version mapping :</h3>
+<blockquote>Specifies the version field or property of an entity class that serves as its optimistic lock value. 
+    The version is used to ensure integrity when performing the merge operation and for optimistic concurrency control.</blockquote>
+An entity is automatically enabled for optimistic locking if it has a property or field
+mapped with a Version mapping.
+<br>
+Only a single Version property or field should be used per class; 
+applications that use more than one Version property or field will not be portable.
+
+
+<h6>To create a Version mapping :</h6>
+<ul>
+    <li>
+        Click on the Entity <entity></entity>, then click on the expand <add-attr></add-attr> button &gt; version <version></version> property.
+
+    <img src="tutorial/Mapping/Attribute/VERSION.png"  caption="create @Version attribute"/>
+
+</li>
+<li>
+    To change data type, goto property panel &gt; Field Type &gt; Click to open Field Type panel :
+
+    <img src="tutorial/Mapping/Attribute/FIELD_TYPE/VERSION.png" caption="change Data Type"/>
+    Version mappings may be used only with the following attribute types:
+    <ul>
+        <li>int, java.lang.Integer</li>
+        <li>short, java.lang.Short</li>
+        <li>long, java.lang.Long</li>
+        <li>java.sql.Timestamp</li>
+    </ul>
+
+</li>
+</ul>
+
+
+
+
+<h3 id="TM">Transient mapping :</h3>
+<blockquote>Use the Transient Mapping to specify a field of the entity class that is not persistent.</blockquote>
+It is used to annotate a property or field of an entity class, mapped superclass, or embeddable class.
+
+<h6>To create a Version mapping :</h6>
+<ul>
+    <li>
+        Click on the Entity <entity></entity>, then click on the expand <add-attr></add-attr> button &gt; transient <transient></transient> property.
+
+    <img src="tutorial/Mapping/Attribute/TRANSIENT.png"  caption="create @Transient attribute"/>
+</li>
+</ul>
+
+<h3 id="EIM">Embedded Id mapping :</h3>
+<a href="https://www.youtube.com/watch?v=NoYU7ZezpYA">Click here for demo</a>
+
