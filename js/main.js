@@ -20,7 +20,7 @@ jQuery(function($) {'use strict';
 
 	// portfolio filter
 	$(window).load(function(){
-
+		$('.slider-grp').css("visibility","visible");
 		$('.main-slider').addClass('animate-in');
 		$('.preloader').remove();
 		//End Preloader

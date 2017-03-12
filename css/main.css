@@ -325,6 +325,7 @@ ul.sub-menu {
     list-style: none;
     padding: 0;
     margin: 0;
+    z-index: 1000;
 }
 
 #header .navbar-nav li ul.sub-menu li a{
@@ -412,7 +413,7 @@ ul.sub-menu {
     /* background-repeat: repeat-x; */
     background-position: bottom;
     background-size: contain;
-    background-color: #3572b0;
+    background-color: #0f85a9;
     bottom: 0px;
     margin-top: 30px;
 }
@@ -834,17 +835,6 @@ ul.sub-menu {
     margin-top: 20px;
 }
 
-body .preloader {
-    background: url(../images/home/slider-bg.png) 0 100% repeat-x;
-    position: absolute;
-    left: 43%;
-    top: -80px;
-    bottom: 0px;
-    right: -20px;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-}
-
 body .preloader > i {
     font-size: 48px;
     height: 48px;
@@ -857,9 +847,13 @@ body .preloader > i {
     margin-top: -24px;
 }
 
+.slider-grp {
+ visibility: hidden;
+}
+
 .action-block {
     /* background-image: url(../images/home/tour-bg.png); */
-    background-color: #3572b0;
+    background-color: #0f85a9;/*3572b0;*/
     background-repeat: repeat-x;
     height: 157px;
     background-position: center;
