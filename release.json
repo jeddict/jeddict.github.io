@@ -1,6 +1,11 @@
 {
     "NETBEANS": [ 
         {
+            "version": "4.0",
+            "nb_version": 8.2,
+            "url": "http://plugins.netbeans.org/download/plugin/9076"
+        },
+        {
             "version": "3.9",
             "nb_version": 8.2,
             "url": "http://plugins.netbeans.org/download/plugin/9070"
