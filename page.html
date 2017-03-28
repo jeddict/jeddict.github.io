@@ -81,7 +81,7 @@
                     $(".pagination").append('<li class="active" ><a style="cursor: pointer" href="' + lastPage + '" ></a></li>');
                 }
             }
-            function removeSidebar(){
+            function removeSidebar() {
                 $("#toc-handler").hide();
             }
         </script>
@@ -105,22 +105,27 @@
     <script>
             $(document).ready(function () {
                 var link = getUrlParameter('l');
-                $.ajax({
-                    url: link + ".html",
-                    dataType: "html",
-                    success: function (content) {
-                        $('#PAGE_CONTENT').html(content);
-                        loadImage();
-                        loadTOC();
-                        loadTOCHead();
+                var mediaGif = getUrlParameter('mg');
+                if (link !== undefined) {
+                    $.ajax({
+                        url: link + ".html",
+                        dataType: "html",
+                        success: function (content) {
+                            $('#PAGE_CONTENT').html(content);
+                            loadImage();
+                            loadTOC();
+                            loadTOCHead();
 
-                        $('#LOAD').loadGist();
+                            $('#LOAD').loadGist();
 
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(textStatus, errorThrown);
-                    }
-                });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    });
+                } else if (mediaGif !== undefined) {
+                    $('#PAGE_CONTENT').html("<br/><br/><br/><img src='resource/media/" + mediaGif + ".gif' /><br/><br/><br/>");
+                }
 
             });
             var getUrlParameter = function getUrlParameter(sParam) {
