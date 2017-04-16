@@ -1,34 +1,14 @@
 {
     "NETBEANS": [ 
-       {
+        {
+            "version": "4.2",
+            "nb_version": 8.2,
+            "url": "http://plugins.netbeans.org/download/plugin/9144"
+        },
+        {
             "version": "4.1.1",
             "nb_version": 8.2,
             "url": "http://plugins.netbeans.org/download/plugin/9081"
-        },
-        {
-            "version": "4.0",
-            "nb_version": 8.2,
-            "url": "http://plugins.netbeans.org/download/plugin/9076"
-        },
-        {
-            "version": "3.9",
-            "nb_version": 8.2,
-            "url": "http://plugins.netbeans.org/download/plugin/9070"
-        },
-        {
-            "version": "3.7",
-            "nb_version": 8.2,
-            "url": "http://plugins.netbeans.org/download/plugin/9062"
-        },
-        {
-            "version": "3.6",
-            "nb_version": 8.2,
-            "url": "http://plugins.netbeans.org/download/plugin/9047"
-        },
-        {
-            "version": "3.5.1",
-            "nb_version": 8.2,
-            "url": "http://plugins.netbeans.org/download/plugin/9031"
         },
         {
             "version": "2.6",
