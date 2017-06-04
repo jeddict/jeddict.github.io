@@ -19,7 +19,7 @@
                 $("#NBM_DOWNLOAD").text("Download v" + netbeansIns.version);
             }
             $("#NBM_DETAILS").append($("<option>")
-                    .text("v" + netbeansIns.version)
+                    .text("v" + netbeansIns.version + " (NetBeans IDE v" + netbeansIns.nb_version + ")")
                     .attr("nb_version", netbeansIns.nb_version)
                     .attr("version", netbeansIns.version)
                     .attr("url", netbeansIns.url));
@@ -44,7 +44,7 @@
         $("#NBM_DETAILS").on("change", function () {
             var option = $(this).find(":selected");
             $("#NBM_DOWNLOAD").attr("href", option.attr("url"));
-            $("#NBM_DOWNLOAD").text("Download v" + option.attr("version") + " (for NB v" + option.attr("nb_version") + ")");
+            $("#NBM_DOWNLOAD").text("Download v" + option.attr("version"));
         })
     }
 </script>
