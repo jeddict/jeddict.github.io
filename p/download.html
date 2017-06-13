@@ -5,10 +5,10 @@
 </style>
 <script>
     $(document).ready(function () {
-            $.getJSON( "release.json", function( data ) { 
-                loadVersion(data);
-            });
+        $.getJSON("release.json", function (data) {
+            loadVersion(data);
         });
+    });
 
 
     function loadVersion(data) {
@@ -17,26 +17,31 @@
             if (i == 0) {
                 $("#NBM_DOWNLOAD").attr("href", netbeansIns.url);
                 $("#NBM_DOWNLOAD").text("Download v" + netbeansIns.version);
+//                $("#NBM_UC").attr("href", netbeansIns.uc);
+                $("#NBM_UC").text("Update Center v" + netbeansIns.nb_version_short);
+            
             }
             $("#NBM_DETAILS").append($("<option>")
                     .text("v" + netbeansIns.version + " (NetBeans IDE v" + netbeansIns.nb_version + ")")
                     .attr("nb_version", netbeansIns.nb_version)
+                    .attr("nb_version_short", netbeansIns.nb_version_short)
                     .attr("version", netbeansIns.version)
+                    .attr("uc", netbeansIns.uc)
                     .attr("url", netbeansIns.url));
         }
 
         $(".OS").each(function () {
             var OS_Data = data[$(this).attr("id")];
-            if(OS_Data==undefined){
+            if (OS_Data === undefined) {
                 $(this).hide();
             } else {
-            var download = $(this).find(".download");
-            download.attr("href", OS_Data.url);
-            download.text("Download v" + OS_Data.version);
-        }
+                var download = $(this).find(".download");
+                download.attr("href", OS_Data.url);
+                download.text("Download v" + OS_Data.version);
+            }
         });
-        
-        if($(".OS:visible").size()==0){
+
+        if ($(".OS:visible").size() == 0) {
             $("#OS_DOWNLOAD .container .row div:nth-child(1)").hide();
         }
 
@@ -45,11 +50,32 @@
             var option = $(this).find(":selected");
             $("#NBM_DOWNLOAD").attr("href", option.attr("url"));
             $("#NBM_DOWNLOAD").text("Download v" + option.attr("version"));
+            if (option.attr("uc") !== undefined) {
+                $("#NBM_UC").text("Update Center v" + option.attr("nb_version_short"));
+            } else {
+                $("#NBM_UC").fadeIn(300);
+                $("#NBM_UC").text("Update Center v" + option.attr("nb_version_short") + "(not available)");
+            }
+
         })
+    }
+    function copyToClipboard() {
+        var netbeans = $('#NBM_DETAILS option:selected')
+        var uc =  netbeans.attr('uc');
+        if(uc === undefined){
+            alert("Update Center not available for NetBeans IDE " + netbeans.attr("nb_version"))
+        }else {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(uc).select();
+        document.execCommand("copy");
+        $temp.remove();
+        alert("Update Center URL [ "+uc+" ] copied")
+    }
     }
 </script>
 
-<section class="padding wow fadeInUp margin-bottom" data-wow-duration="400ms" data-wow-delay="400ms">
+<section class="padding wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
@@ -58,7 +84,7 @@
             </div>
         </div>
         <div class="row center-block" id="NETBEANS">
-            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 price-one col-centered">
                 <select id="NBM_DETAILS" class="btn btn-link download">
                 </select>
                 <a id="NBM_DOWNLOAD" href="#" class="btn btn-buynow download">Download</a>
@@ -66,7 +92,25 @@
         </div>
         <div class="row">
             <div class="col-sm-10 text-center pull-right">
-               <a href="page.html?l=tutorial/Installation" class="btn btn-link" target="_blank">Installation Instructions</a>
+                <a href="page.html?l=p/installation" class="btn btn-link" target="_blank">Installation Instructions</a>
+            </div>
+        </div>
+        <div class="row center-block">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
+                <div class="col-sm-12 text-center">
+                    <h4 class="margin-top">OR</h4>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="row center-block" >
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 price-one col-centered">
+                <a id="NBM_UC" href="#" onclick="copyToClipboard()" class="btn btn-buynow download">Update Center</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 text-center pull-right">
+                <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>
     </div>
@@ -117,5 +161,5 @@
 <!--/#services-->
 <script>removeSidebar();</script>
 
-<script>paginate( "page.html?l=tutorial/Requirement", "page.html?l=tutorial/Installation");
+<script>paginate("page.html?l=tutorial/Requirement", "page.html?l=tutorial/QuickStart");
 </script>
