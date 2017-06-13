@@ -1,0 +1,90 @@
+<style>
+    .download {
+        text-transform: none !important;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $.getJSON("https://api.github.com/repos/jeddict/uc/releases", function (data) {
+            loadGithubUCData(data);
+        });
+        $.getJSON("https://api.github.com/repos/jeddict/jeddict/releases", function (data) {
+            loadGithubReleaseData(data);
+        });
+        $.get("http://plugins.netbeans.org/plugin/53057/jeddict", function (data) {
+            loadNetBeansReleaseData(data);
+        });
+        
+        
+        
+    });
+
+function loadGithubReleaseData(data) {
+        var UC_DATA_CONTAINER = $("#DATA_CONTAINER");
+        var totalDownload = 0;
+                var row = $("<tr>");
+                UC_DATA_CONTAINER.append(row);
+                row.append($("<td>").text("Github Release"));
+                data.forEach(function (release) {
+                    release.assets.forEach(function (asset) {
+                        totalDownload = totalDownload + asset.download_count;
+                    });
+                });
+                row.append($("<td>").text(totalDownload));
+                row.append($("<td>").append($("<a>").attr("href", "http://www.somsubhra.com/github-release-stats/?username=jeddict&repository=jeddict").text("Full Data")));
+}
+    function loadGithubUCData(data) {
+        var UC_DATA_CONTAINER = $("#UC_DATA_CONTAINER");
+        var totalDownload = 0;
+        var totalFetch = 0;
+        data.forEach(function (release) {
+            var row = $("<tr>");
+            UC_DATA_CONTAINER.append(row);
+            row.append($("<td>").text(release.name));
+            release.assets.forEach(function (asset) {
+                if (asset.name === "org-netbeans-modeler.nbm") {
+                    totalDownload = totalDownload + asset.download_count;
+                    row.append($("<td>").text(asset.download_count));
+                }
+                if (asset.name === "updates.xml") {
+                    totalFetch = totalFetch + asset.download_count;
+                    row.append($("<td>").text(asset.download_count));
+                }
+            });
+        });
+
+        var masterRow = $("<tr>");
+        UC_DATA_CONTAINER.append(masterRow);
+        masterRow.append($("<td>"));
+        masterRow.append($("<td>").text(totalDownload));
+        masterRow.append($("<td>").text(totalFetch));
+    }
+    
+    function loadNetBeansReleaseData(data) {
+        debugger;
+    }
+
+</script>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center wow fadeIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                <table>
+                    <thead><tr><th>UC Release</th><th>Download</th><th>Fetch</th></tr></thead>
+                    <tbody id="UC_DATA_CONTAINER" ></tbody>
+                    <thead><tr><th>UC Release</th><th>Download</th><th>Fetch</th></tr></thead>
+                </table>
+                <br/><br/><br/><br/>
+                <table>
+                    <thead><tr><th>Release</th><th>Download</th><th>Info</th></tr></thead>
+                    <tbody id="DATA_CONTAINER" ></tbody>
+                    <thead><tr><th>Release</th><th>Download</th><th>Info</th></tr></thead>
+                </table>
+                <a href="https://analytics.google.com/analytics/web/#my-reports/N96wzI0rREye2vjGHD4SQw/a74432114w112593616p117570215/%3F_u.date00%3D20170613%26_u.date01%3D20170613/">Event report</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script>removeSidebar();</script>
+
