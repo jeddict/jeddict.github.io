@@ -1,10 +1,10 @@
 {
     "NETBEANS": [ 
         {
-            "version": "4.2.4",
+            "version": "4.3",
             "nb_version": "8.2 Patch 2 (Build 201705191307)",
             "nb_version_short": "8.2.P2",
-            "url": "http://plugins.netbeans.org/download/plugin/9213",
+            "url": "http://plugins.netbeans.org/download/plugin/9216",
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2/updates.xml"
         },
         {
