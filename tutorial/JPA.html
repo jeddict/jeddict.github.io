@@ -1,0 +1,566 @@
+<h3 data-toc-skip>Attribute Mapping</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+Jeddict supports the following JPA Annotations:
+<nav id="toc-head" ></nav>
+
+
+
+<!--<h3 id="Access">@Access :</h3>
+The @Access annotation is used to specify the access type of the associated entity class,
+mapped superclass, or embeddable class, or entity attribute.-->
+
+<!--<h3 id="AssociationOverride">@AssociationOverride</h3>
+
+The @AssociationOverride annotation is used to override an association mapping (e.g. @ManyToOne, @OneToOne, @OneToMany, @ManyToMany) inherited from a mapped superclass or an embeddable.
+
+<h3 id="AssociationOverrides">@AssociationOverrides</h3>
+
+The @AssociationOverrides is used to group several @AssociationOverride annotations.
+
+<h3 id="AttributeOverride">@AttributeOverride</h3>
+
+The @AttributeOverride annotation is used to override an attribute mapping inherited from a mapped superclass or an embeddable.
+
+<h3 id="AttributeOverrides">@AttributeOverrides</h3>
+
+The @AttributeOverrides is used to group several @AttributeOverride annotations.-->
+
+<h3 id="Basic">@Basic</h3>
+
+The @Basic annotation is used to map a basic attribute type to a database column.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#BM">Basic</a> types mapping for more info.
+
+<h3 id="Cacheable">@Cacheable</h3>
+
+The @Cacheable annotation is used to specify whether an entity should be stored in the second-level cache.
+
+If the persistence.xml shared-cache-mode XML attribute is set to ENABLE_SELECTIVE, then only the entities annotated with the @Cacheable are going to be stored in the second-level cache.
+
+If shared-cache-mode XML attribute value is DISABLE_SELECTIVE, then the entities marked with the @Cacheable annotation are not going to be stored in the second-level cache, while all the other entities are stored in the cache.
+
+<br/><br/>
+<img src="tutorial\JPA\CACHEABLE.gif"  caption="@Cacheable"/>
+
+<!--<h3 id="CollectionTable">@CollectionTable</h3>
+
+The @CollectionTable annotation is used to specify the database table that stores the values of a basic or an embeddable type collection.
+
+<br/><br/>
+See the Collections of embeddable types section for more info.-->
+
+<h3 id="Column">@Column</h3>
+
+The @Column annotation is used to specify the mapping between a basic entity attribute and the database table column.
+
+<br/><br/>
+<img src="tutorial\JPA\COLUMN.gif"  caption="@Column"/>
+See the <a target="_blank" href="page.html?l=tutorial/QuickStart#MD">Column</a> annotation section for more info.
+
+<!--<h3 id="ColumnResult">@ColumnResult</h3>
+
+The @ColumnResult annotation is used in conjunction with the @SqlResultSetMapping or @ConstructorResult annotations to map a SQL column for a given SELECT query.
+
+<br/><br/>
+See the Entity associations with named native queries section for more info.-->
+
+<h3 id="ConstructorResult">@ConstructorResult</h3>
+
+The @ConstructorResult annotation is used in conjunction with the @SqlResultSetMapping annotations to map columns of a given SELECT query to a certain object constructor.
+
+<h3 id="Convert">@Convert</h3>
+
+The @Convert annotation is used to specify the AttributeConverter implementation used to convert the current annotated basic attribute.
+
+If the AttributeConverter uses autoApply, then all entity attributes with the same target type are going to be converted automatically.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeConverter">AttributeConverter</a> section for more info.
+
+<h3 id="Converter">@Converter</h3>
+
+The @Converter annotation is used to specify that the current annotate AttributeConverter implementation can be used as a JPA basic attribute converter.
+
+If the autoApply attribute is set to true, then the JPA provider will automatically convert all basic attributes with the same Java type as defined by the current converter.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeConverter">AttributeConverter</a> section for more info.
+
+<!--<h3 id="Converts">@Converts</h3>
+
+The @Converts annotation is used to group multiple @Convert annotations.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeConverter">AttributeConverter</a> section for more info.-->
+
+<h3 id="DiscriminatorColumn">@DiscriminatorColumn</h3>
+
+The @DiscriminatorColumn annotation is used to specify the discriminator column name and the discriminator type for the SINGLE_TABLE and JOINED Inheritance strategies.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/Inheritance#IS">Inheritance Strategies and Discriminator</a> section for more info.
+
+<h3 id="DiscriminatorValue">@DiscriminatorValue</h3>
+
+The @DiscriminatorValue annotation is used to specify what value of the discriminator column is used for mapping the current annotated entity.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/Inheritance#IS">Inheritance Strategies and Discriminator</a> section for more info.
+
+<h3 id="ElementCollection">@ElementCollection</h3>
+
+The @ElementCollection annotation is used to specify a collection of a basic or embeddable types.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#ECBM">ElementCollection(@Basic)</a> and <a target="_blank" href="page.html?l=tutorial/AttributeMapping#ECEM">ElementCollection(@Embedded)</a> mapping section for more info.
+
+<h3 id="Embeddable">@Embeddable</h3>
+
+The @Embeddable annotation is used to specify embeddable types. Like basic types, embeddable types do not have any identity, being managed by their owning entity.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/Embeddable#EMB">Embeddables</a> section for more info.
+
+<h3 id="Embedded">@Embedded</h3>
+
+The @Embedded annotation is used to specify that a given entity attribute represents an embeddable type.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#EM">Embedded</a> mapping section for more info.
+
+<h3 id="Embedded">@EmbeddedId</h3>
+
+The @EmbeddedId annotation is used to specify the entity identifier is an embeddable type.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/DerivedIdentities">Derived Identities</a> section for more info.
+
+<h3 id="Entity">@Entity</h3>
+
+The @Entity annotation is used to specify that the currently annotate class represents an entity type. Unlike basic and embeddable types, entity types have an identity and their state is managed by the underlying Persistence Context.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/QuickStart#CE">Entity</a> section for more info.
+
+<h3 id="EntityListeners">@EntityListeners</h3>
+
+The @EntityListeners annotation is used to specify an array of callback listener classes that are used by the current annotated entity.
+
+<br/><br/>
+<!--See the JPA callbacks section for more info.-->
+<img src="tutorial\JPA\ENTITY_LISTENERS.gif"  caption="@EntityListeners"/>
+
+<!--<h3 id="EntityResult">@EntityResult</h3>
+
+The @EntityResult annotation is used with the @SqlResultSetMapping annotation to map the selected columns to an entity.
+
+<br/><br/>
+See the Entity associations with named native queries section for more info.-->
+
+<h3 id="Enumerated">@Enumerated</h3>
+
+The @Enumerated annotation is used to specify that an entity attribute represents an enumerated type.
+
+<br/><br/>
+<img src="tutorial\JPA\ENUMERATED.gif"  caption="@Enumerated"/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#BMTYPE">Enumerated</a> basic type mapping section for more info.
+
+<!--<h3 id="ExcludeDefaultListeners">@ExcludeDefaultListeners</h3>
+
+The @ExcludeDefaultListeners annotation is used to specify that the current annotated entity skips the invocation of any default listener.
+
+<h3 id="ExcludeSuperclassListeners">@ExcludeSuperclassListeners</h3>
+
+The @ExcludeSuperclassListeners annotation is used to specify that the current annotated entity skips the invocation of listeners declared by its superclass.-->
+
+<!--<h3 id="FieldResult">@FieldResult</h3>
+
+The @FieldResult annotation is used with the @EntityResult annotation to map the selected columns to the fields of some specific entity.
+
+<br/><br/>
+See the Entity associations with named native queries section for more info.
+
+<h3 id="ForeignKey">@ForeignKey</h3>
+
+The @ForeignKey annotation is used to specify the associated foreign key of a @JoinColumn mapping. The @ForeignKey annotation is only used if the automated schema generation tool is enabled, in which case, it allows you to customize the underlying foreign key definition.
+
+<br/><br/>
+See the @ManyToOne with @ForeignKey section for more info.
+
+<h3 id="GeneratedValue">@GeneratedValue</h3>
+
+The @GeneratedValue annotation specifies that the entity identifier value is automatically generated using an identity column, a database sequence, or a table generator. Hibernate supports the @GeneratedValue mapping even for UUID identifiers.
+
+<br/><br/>
+See the Automatically-generated identifiers section for more info.-->
+
+<h3 id="Id">@Id</h3>
+
+The @Id annotation specifies the entity identifier. An entity must always have an identifier attribute which is used when loading the entity in a given Persistence Context.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#IDM">Identifiers</a> section for more info.
+
+<h3 id="IdClass">@IdClass</h3>
+
+The @IdClass annotation is used if the current entity defined a composite identifier. A separate class encapsulates all the identifier attributes, which are mirrored by the current entity mapping.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/DerivedIdentities">Derived Identities</a> section for more info.
+
+<h3 id="Index">@Index</h3>
+
+The @Index annotation is used by the automated schema generation tool to create a database index.
+
+<h3 id="Inheritance">@Inheritance</h3>
+
+The @Inheritance annotation is used to specify the inheritance strategy of a given entity class hierarchy.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/Inheritance">Inheritance</a> section for more info.
+
+<h3 id="JoinColumn">@JoinColumn</h3>
+
+The @JoinColumn annotation is used to specify the FOREIGN KEY column used when joining an entity association or an embeddable collection.
+
+<br/><br/>
+
+See the <a target="_blank" href="page.html?l=tutorial/QuickStart#DJT">JoinColumn</a> mapping section for more info.
+
+<h3 id="Access">@JoinColumns</h3>
+
+The @JoinColumns annotation is used to group multiple @JoinColumn annotations, which are used when mapping entity association or an embeddable collection using a composite identifier
+
+<h3 id="JoinTable">@JoinTable</h3>
+
+The @JoinTable annotation is used to specify the link table between two other database tables.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/QuickStart#DJT">JoinTable</a> mapping section for more info.
+
+<h3 id="Lob">@Lob</h3>
+
+The @Lob annotation is used to specify that the current annotated entity attribute represents a large object type.
+
+<br/><br/>
+<img src="tutorial\JPA\LOB.gif"  caption="@Lob"/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#BMTYPE">Lob</a> basic type mapping section for more info.
+
+<h3 id="ManyToMany">@ManyToMany</h3>
+
+The @ManyToMany annotation is used to specify a many-to-many database relationship.
+
+<br/><br/>
+See the @ManyToMany <a target="_blank" href="page.html?l=tutorial/AssociationMapping#UMTM">Unidirectional</a>
+and <a target="_blank" href="page.html?l=tutorial/AssociationMapping#BMTM">Bidirectional</a> mapping section for more info.
+
+<h3 id="ManyToOne">@ManyToOne</h3>
+
+The @ManyToOne annotation is used to specify a many-to-one database relationship.
+
+<br/><br/>
+See the @ManyToOne <a target="_blank" href="page.html?l=tutorial/AssociationMapping#UMTO">Unidirectional</a>
+and <a target="_blank" href="page.html?l=tutorial/AssociationMapping#BMTO">Bidirectional</a> mapping section for more info.
+
+<!--<h3 id="MapKey">@MapKey</h3>
+
+The @MapKey annotation is used to specify the key of a java.util.Map association for which the key type is either the primary key or an attribute of the entity which represents the value of the map.
+
+<br/><br/>
+See the @MapKey mapping section for more info.
+
+<h3 id="MapKeyClass">@MapKeyClass</h3>
+
+The @MapKeyClass annotation is used to specify the type of the map key of a java.util.Map associations.
+
+<h3 id="MapKeyColumn">@MapKeyColumn</h3>
+
+The @MapKeyColumn annotation is used to specify the database column which stores the key of a java.util.Map association for which the map key is a basic type.
+
+<h3 id="MapKeyEnumerated">@MapKeyEnumerated</h3>
+
+The @MapKeyEnumerated annotation is used to specify that the key of java.util.Map association is a Java Enum.
+
+<br/><br/>
+See the @MapKeyEnumerated mapping section for more info.
+
+<h3 id="MapKeyJoinColumn">@MapKeyJoinColumn</h3>
+
+The @MapKeyJoinColumn annotation is used to specify that the key of java.util.Map association is an entity association. The map key column is a FOREIGN KEY in a link table that also joins the Map owner’s table with the table where the Map value resides.
+
+<br/><br/>
+See the @MapKeyJoinColumn mapping section for more info.
+
+<h3 id="MapKeyJoinColumns">@MapKeyJoinColumns</h3>
+
+The @MapKeyJoinColumns annotation is used to group several @MapKeyJoinColumn mappings when the java.util.Map association key uses a composite identifier.
+
+<h3 id="MapKeyTemporal">@MapKeyTemporal</h3>
+
+The @MapKeyTemporal annotation is used to specify that the key of java.util.Map association is a @TemporalType (e.g. DATE, TIME, TIMESTAMP).
+
+<br/><br/>
+See the @MapKeyTemporal mapping section for more info.-->
+
+<h3 id="MappedSuperclass">@MappedSuperclass</h3>
+
+The @MappedSuperclass annotation is used to specify that the current annotated type attributes are inherited by any subclass entity.
+
+<br/><br/>
+<img src="tutorial\JPA\MAPPED_SUPERCLASS.gif"  caption="@MappedSuperclass"/>
+
+<!--<h3 id="MapsId">@MapsId</h3>
+
+The @MapsId annotation is used to specify that the entity identifier is mapped by the current annotated @ManyToOne or @OneToOne association.
+
+<br/><br/>
+See the @MapsId mapping section for more info.-->
+
+<h3 id="NamedAttributeNode">@NamedAttributeNode</h3>
+
+The @NamedAttributeNode annotation is used to specify each individual attribute node that needs to be fetched by an Entity Graph.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/NamedEntityGraph#NES">NamedSubgraph</a> section for more info.
+
+<h3 id="NamedEntityGraph">@NamedEntityGraph</h3>
+
+The @NamedEntityGraph annotation is used to specify an Entity Graph that can be used by an entity query to override the default fetch plan.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/NamedEntityGraph#CEG">NamedEntityGraph</a> section for more info.
+
+<h3 id="NamedEntityGraphs">@NamedEntityGraphs</h3>
+
+The @NamedEntityGraphs annotation is used to group multiple @NamedEntityGraph annotations.
+
+<!--<h3 id="NamedNativeQueries">@NamedNativeQueries</h3>
+
+The @NamedNativeQueries annotation is used to group multiple @NamedNativeQuery annotations.
+
+<br/><br/>
+See the Custom CRUD mapping section for more info.
+
+<h3 id="NamedNativeQuery">@NamedNativeQuery</h3>
+
+The @NamedNativeQuery annotation is used to specify a native SQL query that can be retrieved later by its name.
+
+<br/><br/>
+See the Custom CRUD mapping section for more info.-->
+
+<h3 id="NamedQueries">@NamedQueries</h3>
+
+The @NamedQueries annotation is used to group multiple @NamedQuery annotations.
+
+<h3 id="NamedQuery">@NamedQuery</h3>
+
+The @NamedQuery annotation is used to specify a JPQL query that can be retrieved later by its name.
+
+<h3 id="NamedStoredProcedureQueries">@NamedStoredProcedureQueries</h3>
+
+The @NamedStoredProcedureQueries annotation is used to group multiple @NamedStoredProcedureQuery annotations.
+
+<h3 id="NamedStoredProcedureQuery">@NamedStoredProcedureQuery</h3>
+
+The @NamedStoredProcedureQuery annotation is used to specify a stored procedure query that can be retrieved later by its name.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/NamedStoredProcedureQuery#CSP">NamedStoredProcedureQuery</a> mapping section for more info.
+
+<h3 id="NamedSubgraph">@NamedSubgraph</h3>
+
+The @NamedSubgraph annotation used to specify a subgraph in an Entity Graph.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/NamedEntityGraph#NES">NamedSubgraph</a> section for more info.
+
+<h3 id="OneToMany">@OneToMany</h3>
+
+The @OneToMany annotation is used to specify a one-to-many database relationship.
+
+<br/><br/>
+See the @OneToMany <a target="_blank" href="page.html?l=tutorial/AssociationMapping#UOTM">Unidirectional</a> mapping section for more info.
+
+<h3 id="OneToOne">@OneToOne</h3>
+
+The @OneToOne annotation is used to specify a one-to-one database relationship.
+
+<br/><br/>
+See the @OneToOne <a target="_blank" href="page.html?l=tutorial/AssociationMapping#UOTO">Unidirectional</a> 
+and <a target="_blank" href="page.html?l=tutorial/AssociationMapping#BOTO">Bidirectional</a>  mapping section for more info.
+
+<!--<h3 id="OrderBy">@OrderBy</h3>
+
+The @OrderBy annotation is used to specify the entity attributes used for sorting when fetching the current annotated collection.
+
+<br/><br/>
+See the @OrderBy mapping section for more info.
+
+<h3 id="OrderColumn">@OrderColumn</h3>
+
+The @OrderColumn annotation is used to specify that the current annotation collection order should be materialized in the database.
+
+<br/><br/>
+See the @OrderColumn mapping section for more info.-->
+
+<!--<h3 id="PersistenceContext">@PersistenceContext</h3>
+
+The @PersistenceContext annotation is used to specify the EntityManager that needs to be injected as a dependency.
+
+<h3 id="PersistenceContexts">@PersistenceContexts</h3>
+
+The @PersistenceContexts annotation is used to group multiple @PersistenceContext annotations.
+
+<h3 id="PersistenceProperty">@PersistenceProperty</h3>
+
+The @PersistenceProperty annotation is used by the @PersistenceContext annotation to declare JPA provider properties that are passed to the underlying container when the EntityManager instance is created.
+
+<h3 id="PersistenceUnit">@PersistenceUnit</h3>
+
+The @PersistenceUnit annotation is used to specify the EntityManagerFactory that needs to be injected as a dependency.
+
+<h3 id="PersistenceUnits">@PersistenceUnits</h3>
+
+The @PersistenceUnits annotation is used to group multiple @PersistenceUnit annotations.-->
+
+<!--<h3 id="PostLoad">@PostLoad</h3>
+
+The @PostLoad annotation is used to specify a callback method that fires after an entity is loaded.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="PostPersist">@PostPersist</h3>
+
+The @PostPersist annotation is used to specify a callback method that fires after an entity is persisted.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="Access">@PostRemove</h3>
+
+The @PostRemove annotation is used to specify a callback method that fires after an entity is removed.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="Access">@PostUpdate</h3>
+
+The @PostUpdate annotation is used to specify a callback method that fires after an entity is updated.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="Access">@PrePersist</h3>
+
+The @PrePersist annotation is used to specify a callback method that fires before an entity is persisted.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="Access">@PreRemove</h3>
+
+The @PreRemove annotation is used to specify a callback method that fires before an entity is removed.
+
+<br/><br/>
+See the JPA callbacks section for more info.
+
+<h3 id="Access">@PreUpdate</h3>
+
+The @PreUpdate annotation is used to specify a callback method that fires before an entity is updated.
+
+<br/><br/>
+See the JPA callbacks section for more info.-->
+
+<h3 id="PrimaryKeyJoinColumn">@PrimaryKeyJoinColumn</h3>
+
+The @PrimaryKeyJoinColumn annotation is used to specify that the primary key column of the current annotated entity is also a foreign key to some other entity (e.g. a base class table in a JOINED inheritance strategy, the primary table in a secondary table mapping, or the parent table in a @OneToOne relationship).
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/Inheritance#PKJC">PrimaryKeyJoinColumn</a> mapping section for more info.
+
+<h3 id="PrimaryKeyJoinColumns">@PrimaryKeyJoinColumns</h3>
+
+The @PrimaryKeyJoinColumns annotation is used to group multiple @PrimaryKeyJoinColumn annotations.
+
+<h3 id="QueryHint">@QueryHint</h3>
+
+The @QueryHint annotation is used to specify a JPA provider hint used by a @NamedQuery or a @NamedNativeQuery annotation.
+
+<!--<h3 id="SecondaryTable">@SecondaryTable</h3>
+
+The @SecondaryTable annotation is used to specify a secondary table for the current annotated entity.
+
+<br/><br/>
+See the @SecondaryTable mapping section for more info.
+
+<h3 id="SecondaryTables">@SecondaryTables</h3>
+
+The @SecondaryTables annotation is used to group multiple @SecondaryTable annotations.-->
+
+<h3 id="SequenceGenerator">@SequenceGenerator</h3>
+
+The @SequenceGenerator annotation is used to specify the database sequence used by the identifier generator of the current annotated entity.
+
+<!--<h3 id="SqlResultSetMapping">@SqlResultSetMapping</h3>
+
+The @SqlResultSetMapping annotation is used to specify the ResultSet mapping of a native SQL query or stored procedure.
+
+<br/><br/>
+See the SqlResultSetMapping mapping section for more info.
+
+<h3 id="SqlResultSetMappings">@SqlResultSetMappings</h3>
+
+The @SqlResultSetMappings annotation is group multiple @SqlResultSetMapping annotations.-->
+
+<h3 id="StoredProcedureParameter">@StoredProcedureParameter</h3>
+
+The @StoredProcedureParameter annotation is used to specify a parameter of a @NamedStoredProcedureQuery.
+
+<h3 id="Table">@Table</h3>
+
+The @Table annotation is used to specify the primary table of the current annotated entity.
+
+<br/><br/>
+<img src="tutorial\JPA\TABLE.gif"  caption="@Table"/>
+See the <a target="_blank" href="page.html?l=tutorial/QuickStart#MD">Table</a> mapping section for more info.
+
+<h3 id="TableGenerator">@TableGenerator</h3>
+
+The @TableGenerator annotation is used to specify the database table used by the identity generator of the current annotated entity.
+
+<h3 id="Temporal">@Temporal</h3>
+
+The @Temporal annotation is used to specify the TemporalType of the current annotated java.util.Date or java.util.Calendar entity attribute.
+
+<br/><br/>
+<img src="tutorial\JPA\TEMPORAL.gif"  caption="@Temporal"/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#BMTYPE">Temporal</a> basic type mapping section for more info.
+
+<h3 id="Transient">@Transient</h3>
+
+The @Transient annotation is used to specify that a given entity attribute should not be persisted.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#TM">Transient</a> mapping section for more info.
+
+<h3 id="UniqueConstraint">@UniqueConstraint</h3>
+
+The @UniqueConstraint annotation is used to specify a unique constraint to be included by the automated schema generator for the primary or secondary table associated with the current annotated entity.
+
+<h3 id="Version">@Version</h3>
+
+The @Version annotation is used to specify the version attribute used for optimistic locking.
+
+<br/><br/>
+See the <a target="_blank" href="page.html?l=tutorial/AttributeMapping#VM">Version</a> mapping section for more info.
+
+
+
+<style>
+    a {
+    font-weight: 700;
+    color: #ff17a2;
+}
+</style>

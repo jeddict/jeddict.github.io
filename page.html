@@ -115,9 +115,8 @@
                             loadImage();
                             loadTOC();
                             loadTOCHead();
-
                             $('#LOAD').loadGist();
-
+                            setTimeout(function() {jump(window.location.hash.substring(1))},500);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log(textStatus, errorThrown);
@@ -128,6 +127,7 @@
                 }
 
             });
+
             var getUrlParameter = function getUrlParameter(sParam) {
                 var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                         sURLVariables = sPageURL.split('&'),
@@ -202,6 +202,11 @@
                     return table;
                 })
             });
+        }
+        function jump(h){
+            var url = location.href;               //Save down the URL without hash.
+            location.href = "#"+h;                 //Go to the target element.
+            history.replaceState(null,null,url);   //Don't like hashes. Changing it back.
         }
     </script>
 </html>

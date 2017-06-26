@@ -1,0 +1,32 @@
+<h3 data-toc-skip>Attribute Converter</h3>
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<nav id="toc-head" ></nav>
+
+<h3 id="IN">Introduction</h3>
+<blockquote>The attribute conversion facility allows the developer to specify methods to convert between the entity
+    attribute representation and the database representation for attributes of basic types. Converters can be
+    used to convert basic attributes defined by entity classes, mapped superclasses, or embeddable classes.
+</blockquote> 
+Converter annotation is not applicable on Id attributes, version attributes, 
+relationship attributes and attributes annotated as Temporal or Enumerated.
+
+<h3 id="IC">Implement Converter :</h3>
+A Converter must implement the <code>javax.persistence.AttributeConverter&lt;X,Y&gt;</code> interface, 
+where X is the class of the entity representation and Y the class of the database representation of the attribute. 
+A converter implementation class must be annotated with the  <code>javax.persistence.Converter</code> annotation.
+
+<h3 id="CS">Converter Scope :</h3>
+<ol>
+    <li>
+        If the value of the <code>autoApply</code> element of the <code>Converter</code> annotation is <code>true</code>, 
+        the converter will be applied to all target attributes of the given type.
+    </li>
+    <li>
+        If the value of the <code>autoApply</code> element of the <code>Converter</code> annotation is <code>false</code>, 
+        you need to add the <code>javax.persistence.Convert</code> annotation to all attributes that shall be converted and specify the Converter class. 
+    </li>
+</ol>
+
+<h3 id="AC">Apply Converter :</h3>
+The following screen cast shows an example for this approach:<br/><br/>
+<img src="tutorial\JPA\CONVERTER.gif"  caption="@Convert"/>
