@@ -116,7 +116,10 @@
                             loadTOC();
                             loadTOCHead();
                             $('#LOAD').loadGist();
-                            setTimeout(function() {jump(window.location.hash.substring(1))},500);
+                            setTimeout(function() {
+                                var hash = window.location.hash.substring(1);
+                                if(hash.length >= 1)jump(hash)
+                            },500);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log(textStatus, errorThrown);
