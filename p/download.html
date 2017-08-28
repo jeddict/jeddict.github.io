@@ -13,21 +13,24 @@
 
     function loadVersion(data) {
         for (var i in data.NETBEANS) {
-            var netbeansIns = data.NETBEANS[i];
-            if (i == 0) {
-                $("#NBM_DOWNLOAD").attr("href", netbeansIns.url);
-                $("#NBM_DOWNLOAD").text("Download v" + netbeansIns.version);
-//                $("#NBM_UC").attr("href", netbeansIns.uc);
-                $("#NBM_UC").text("Update Center v" + netbeansIns.nb_version_short);
+            var plugin = data.NETBEANS[i];
+            if (i === 0) {
+                $("#NBM_DOWNLOAD").attr("href", plugin.url);
+                $("#NBM_DOWNLOAD").text("Download v" + plugin.version);
+                $("#NBM_UC").text("Update Center v" + plugin.nb_version_short);
             
             }
             $("#NBM_DETAILS").append($("<option>")
-                    .text("v" + netbeansIns.version + " (NetBeans IDE v" + netbeansIns.nb_version + ")")
-                    .attr("nb_version", netbeansIns.nb_version)
-                    .attr("nb_version_short", netbeansIns.nb_version_short)
-                    .attr("version", netbeansIns.version)
-                    .attr("uc", netbeansIns.uc)
-                    .attr("url", netbeansIns.url));
+                    .text("v" + plugin.version 
+                    + " (NetBeans v" + plugin.nb_version
+                    + " - Java EE" + plugin.java_ee
+                    //+ " - Java" + plugin.java
+                    + ")")
+                    .attr("nb_version", plugin.nb_version)
+                    .attr("nb_version_short", plugin.nb_version_short)
+                    .attr("version", plugin.version)
+                    .attr("uc", plugin.uc)
+                    .attr("url", plugin.url));
         }
 
         $(".OS").each(function () {
@@ -83,15 +86,21 @@
                 <h1 class="margin-bottom">NetBeans IDE Plugin</h1>
             </div>
         </div>
-        <div class="row center-block" id="NETBEANS">
-            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 price-one col-centered">
-                <select id="NBM_DETAILS" class="btn btn-link download">
-                </select>
+        <div class="row center-block">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
+                <h3 class="margin-bottom">STEP : 1</h3>
+                <label for="NBM_DETAILS">Select version :</label>
+                <select id="NBM_DETAILS" class="btn btn-link download"></select>
+            </div>
+        </div>
+        <div class="row center-block">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
+                 <h3 class="margin-bottom">STEP : 2</h3>
                 <a id="NBM_DOWNLOAD" href="#" class="btn btn-buynow download">Download</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-10 text-center pull-right">
+            <div class="col-sm-8 text-center pull-right">
                 <a href="page.html?l=p/installation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>
@@ -104,12 +113,12 @@
             </div>
         </div>
         <div class="row center-block" >
-            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-5 price-one col-centered">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
                 <a id="NBM_UC" href="#" onclick="copyToClipboard()" class="btn btn-buynow download">Update Center</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-10 text-center pull-right">
+            <div class="col-sm-8 text-center pull-right">
                 <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>

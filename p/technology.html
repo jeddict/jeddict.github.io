@@ -2,37 +2,47 @@
 
 <script>
     var serverside = [
-        {logo: "p/images/technology/JAVA_EE.png", width: '65%', name: 'JAVA_EE', url: 'http://www.oracle.com/technetwork/java/javaee/downloads/index.html'},
+        {logo: "p/images/technology/JAVA_EE.png", width: '65%', name: 'JAVA EE 8', url: 'http://www.oracle.com/technetwork/java/javaee/downloads/index.html'},
+        {logo: "p/images/technology/MP.png", width: '70%', name: 'MICRO PROFILE', url: 'http://microprofile.io/'},
+        {logo: "p/images/technology/PAYARA.png", width: '90%', name: 'PAYARA', url: 'http://www.payara.fish/'},
+        {logo: "p/images/technology/PAYARA_MICRO.jpg", width: '90%', name: 'PAYARA MICRO', url: 'http://www.payara.fish/'},
         {logo: "p/images/technology/DOCKER.png", width: '60%', name: 'DOCKER', url: 'https://www.docker.com/'},
+        {logo: "p/images/technology/JSONB.png", width: '60%', name: 'JSON-B', url: 'http://json-b.net'},
+        {logo: "p/images/technology/HIBERNATE.png", width: '40%', name: 'HIBERNATE ORM', url: 'http://hibernate.org/orm/'},
+        {logo: "p/images/technology/ECLIPSELINK.png", width: '88%', name: 'ECLIPSELINK ORM', url: 'http://www.eclipse.org/eclipselink/#jpa'},
+        {logo: "p/images/technology/JSONP.png", width: '42%', name: 'JSON PROCESSING', url: 'https://javaee.github.io/jsonp/'},
+        {logo: "p/images/technology/BV.png", width: '50%', name: 'BEAN VALIDATION', url: 'http://beanvalidation.org/2.0/ri/'},
         {logo: "p/images/technology/FABRIC8.png", width: '60%', name: 'FABRIC8', url: 'https://fabric8.io/'},
         {logo: "p/images/technology/DELTASPIKE.png", width: '70%', name: 'DELTASPIKE', url: 'https://deltaspike.apache.org/'},
-        {logo: "p/images/technology/PAYARA.png", width: '90%', name: 'PAYARA', url: 'http://www.payara.fish/'},
-        {logo: "p/images/technology/PAYARA_MICRO.jpg", width: '90%', name: 'PAYARA_MICRO', url: 'http://www.payara.fish/'},
-        {logo: "p/images/technology/WILDFLY.png", width: '120%', name: 'WILDFLY', url: 'http://wildfly.org/'},
-        {logo: "p/images/technology/WILDFLY_SWARM.png", width: '120%', name: 'WILDFLY_SWARM', url: 'http://wildfly-swarm.io'},
         {logo: "p/images/technology/POSTGRESQL.png", width: '90%', name: 'POSTGRESQL', url: 'https://www.postgresql.org/'},
         {logo: "p/images/technology/MARIADB.png", width: '90%', name: 'MARIADB', url: 'https://mariadb.com/'},
         {logo: "p/images/technology/MYSQL.png", width: '90%', name: 'MYSQL', url: 'https://www.mysql.com/'},
-        {logo: "p/images/technology/DERBY.png", width: '90%', name: 'DERBY', url: 'https://db.apache.org/derby/'},
+        {logo: "p/images/technology/DERBY.png", width: '80%', name: 'DERBY', url: 'https://db.apache.org/derby/'},
+        {logo: "p/images/technology/H2.png", width: '40%', name: 'H2', url: 'http://www.h2database.com'},
         {logo: "p/images/technology/MAVEN.png", width: '80%', name: 'MAVEN', url: 'https://maven.apache.org/'},
         {logo: "p/images/technology/ARQUILLIAN.png", width: '90%', name: 'ARQUILLIAN', url: 'http://arquillian.org/'},
         {logo: "p/images/technology/JACOCO.png", width: '100%', name: 'JACOCO', url: 'http://www.eclemma.org/jacoco/'},
         {logo: "p/images/technology/METRICS.png", width: '55%', name: 'METRICS', url: 'https://github.com/codahale/metrics'},
+        {logo: "p/images/technology/WILDFLY.png", width: '120%', name: 'WILDFLY', url: 'http://wildfly.org/'},
+        {logo: "p/images/technology/WILDFLY_SWARM.png", width: '90%', name: 'WILDFLY SWARM', url: 'http://wildfly-swarm.io'},
+        {logo: "p/images/technology/WELD.jpg", width: '50%', name: 'WELD', url: 'http://weld.cdi-spec.org/'},
+        {logo: "p/images/technology/KUBERNETES.png", width: '50%', name: 'KUBERNETES', url: 'https://kubernetes.io/'},
         {logo: "p/images/technology/SWAGGER.png", width: '60%', name: 'SWAGGER', url: 'http://swagger.io/'},
     ];
     ``
 
     var clientside = [
-        {logo: "p/images/technology/YARN.png", width: '50%', name: 'Yarn', url: 'https://yarnpkg.com/en/'},
-        {logo: "p/images/technology/WEBPACK.png", width: '60%', name: 'Webpack', url: 'https://webpack.github.io/'},
+        {logo: "p/images/technology/YARN.png", width: '50%', name: 'YARN', url: 'https://yarnpkg.com/en/'},
+        {logo: "p/images/technology/WEBPACK.png", width: '60%', name: 'WEBPACK', url: 'https://webpack.github.io/'},
         {logo: "p/images/technology/BOOTSTRAP.png", width: '45%', name: 'BOOTSTRAP', url: 'http://getbootstrap.com/'},
         {logo: "p/images/technology/ANGULAR-JS.png", width: '50%', name: 'ANGULAR-JS', url: 'https://angularjs.org/'},
         {logo: "p/images/technology/ANGULAR.png", width: '50%', name: 'ANGULAR', url: 'https://angular.io/'},
         {logo: "p/images/technology/HTML.png", width: '55%', name: 'HTML', url: '#'},
         {logo: "p/images/technology/CSS.svg", width: '38%', name: 'CSS', url: '#'},
-        {logo: "p/images/technology/PROTARCTOR.png", width: '50%', name: 'Protarctor', url: 'http://www.protractortest.org/#/'},
+        {logo: "p/images/technology/PROTARCTOR.png", width: '50%', name: 'PROTARCTOR', url: 'http://www.protractortest.org/#/'},
         {logo: "p/images/technology/JQUERY.gif", width: '50%', name: 'JQUERY', url: 'https://jquery.com/'},
         {logo: "p/images/technology/TYPESCRIPT.png", width: '55%', name: 'TYPESCRIPT', url: 'https://www.typescriptlang.org/'},
+        {logo: "p/images/technology/SASS.svg", width: '55%', name: 'SASS', url: 'http://sass-lang.com/'},
         {logo: "p/images/technology/KARMA.svg", width: '50%', name: 'KARMA', url: 'http://karma-runner.github.io/1.0/index.html'},
         {logo: "p/images/technology/BROWSERSYNC.svg", width: '30%', name: 'BROWSERSYNC', url: 'https://www.browsersync.io/'},
         {logo: "p/images/technology/BOWER.svg", width: '55%', name: 'BOWER', url: 'https://bower.io/'}
@@ -51,20 +61,30 @@
                     .css("width", comp.width)
                     .css("padding-top", comp.paddingtop)
                     .parent().attr("href", comp.url);
-//            template.find("p").text(comp.name);
+            template.find("p").text(comp.name);
         }
     }
     load(serverside, "SERVERSIDE");
     load(clientside, "CLIENTSIDE");
 </script>
-
+<style>
+    .imgWrapper {
+    height: 0;
+    padding-bottom: 66%;
+    position: relative;
+    }
+</style>
 <section>
     <div class="container">
-        <div id="TEMPLATE" style="display: none;width:280px;height:200px" class="col-xs-4 col-sm-4 col-md-4 col-4">
+        <div id="TEMPLATE" style="display: none;width:290px;height:320px" class="col-xs-4 col-sm-4 col-md-4 col-4">
+            <div class="imgWrapper">
             <a style="cursor: pointer" target="_blank" href="#">
-                <img src="#" class="img-responsive" alt=""><p></p>
+                <img src="#" class="img-responsive" alt="" style="margin: 0 auto;">
             </a>
-            
+            </div>
+            <div class="caption">
+              <p class="IMG_CAPTION"></p>
+            </div>
         </div>
         <h3>Server side technology</h3>
         <div id="SERVERSIDE" class="row padding">               
