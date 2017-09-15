@@ -10,7 +10,7 @@
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2/updates.xml"
         },
         {
-            "version": "4.5.2-ALPHA",
+            "version": "4.5.3",
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee" : 8,
