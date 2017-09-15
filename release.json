@@ -11,11 +11,11 @@
         },
         {
             "version": "4.5.2-ALPHA",
-            "nb_version": "8.2 Patch 2 (Build 2016093001017)",
+            "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee" : 8,
             "java" : 8,
-            "url": "https://github.com/jeddict/jeddict/releases/download/4.5.2-ALPHA/JEDDICTv4.5.2_NBv8.2.P2.zip"
+            "url": "https://github.com/jeddict/jeddict/releases/download/4.5.3/JEDDICTv4.5.3_NBv8.2.P2.zip"
         },
         {
             "version": "4.2.1",
