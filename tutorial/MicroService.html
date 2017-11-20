@@ -1,0 +1,168 @@
+<h2>Java EE MicroServices Generator</h2>
+
+<h6 id="TOC" style="text-align: left;">Table of Content :</h6>
+<nav id="toc-head" ></nav>
+
+<!--    <li><a href="#INSP">Inspecting The Generated Code</a></li>
+    <li><a href="#DR">Deploy Registry</a></li>
+    <li><a href="#DG">Deploy Gateway</a></li>
+    <li><a href="#DM">Deploy MicroServices</a></li>
+    <li><a href="#OP">Output</a></li>
+    <li><a href="#LIM">Future impro</a></li>-->
+
+
+
+<h3 id="PRE">Prerequisite :</h3>
+The requirements for this tutorial are:
+<ol>
+    <li>Java 1.8</li>
+    <li>NetBeans 9.0</li>
+    <li>Jeddict v4.7+</li>
+    <li>Java EE 8 Server (e.g Payara 5.0.0.173 Snapshot +)</li>
+</ol>
+
+<b style="font-size: large;">
+    <u style="color:#ff0000">Note :</u> 
+    Before continuing, make sure to first learn about <a href="page.html?l=tutorial/Monolith">Monolith application generator</a> tutorial.
+</b>
+
+<h3 id="ARC">Architecture :</h3>
+<p>
+Microservice architectural paradigm allows you to develop a single application as a set of loosely coupled, collaborating services. 
+Each service implements a set of narrowly, related functions and communicates with lightweight mechanisms, such as an REST API. 
+So instead of having a single codebase that handles all of the entities, now you have different services that are being deployed and scaled independently from each other.
+</p>
+<img src="tutorial/MicroService/architecture.svg"/>
+
+<!--Service Discovery and Registry provided by Snoop
+Reques routing is provided by Netflix Zuul.
+Client side load balancing is provided by Ribbon.-->
+
+
+<h3 id="CP">Create Gateway and MicroService Projects</h3>
+<p>
+Let’s imagine that you are building an e-commerce application that have product catalog, takes orders from customers, and ships them. 
+The application consists of several components including the front-end, along with some backend services for customer registration, product catalog, and shipping orders. 
+</p>
+<img src="tutorial/MicroService/CREATE_PROJECT.png" caption="Create Projects" />
+
+
+<h3 id="DM">Design MicroServices Domain</h3>
+<p>Now create the JPA diagram in MicroService project to design domain model.</p>
+
+<ul>
+    <li>
+        <h5 id="DMP">Design Product MicroService Domain</h5>
+        <img src="tutorial/MicroService/PRODUCT_DOMAIN.png" caption="Design domain model" />
+    </li>
+    <li>
+        <h5 id="DMC">Design Customer MicroService Domain</h5>
+        <img src="tutorial/MicroService/CUSTOMER_DOMAIN.png" caption="Design domain model" />
+    </li>
+</ul>
+
+<!----------------------------------------------------------------------------->
+
+<h3 id="GG">Generate Gateway</h3>
+<p>
+    ECartGateway is an API gateway that provides a single, unified API entry point across one or more internal services like Product or Customer services etc. 
+    Rather than invoking different services, clients simply talk to the gateway. 
+    The API gateway is responsible for request routing. All requests from clients first go through the API Gateway, it then routes requests to the appropriate microservice.
+</p>
+<ul>
+    <li>
+        To generate API Gateway, right click on any existing domain diagram (product, customer or any new empty diagram) :
+        <img src="tutorial/MicroService/GATEWAY_GENERATE_0.png" caption="generate" />
+    </li>
+    <li>
+        Select the Gateway option and then select the project in which API Gateway source code will be generated, here we selected the <b>ECartGateway</b> project :
+        <img src="tutorial/MicroService/GATEWAY_GENERATE_1.png" caption="configure docker" />
+    </li>
+    <li>
+        In the following screen, you can configure the <b>angular module</b> and application title :
+        <img src="tutorial/MicroService/GATEWAY_GENERATE_2.png" caption="configure angular" />
+    </li>
+    <li>
+        <img src="tutorial/MicroService/GATEWAY_GENERATE_3.png" caption="source generated" />
+    </li>
+</ul>
+
+<!----------------------------------------------------------------------------->
+
+<h3 id="GMP">Generate Product MicroService</h3>
+In the previous section, we generated the API Gateway, Now we will generate the first microservice.
+<ul>
+    <li>
+        Right click on the Product <b>diagram &gt; Generate Source Code</b> or <b>(ctrl + G)</b>
+        <img src="tutorial/MicroService/PRODUCT_MICROSERVICE_GENERATOR_1.png" caption="configure docker" />
+    </li>
+    <li>
+        Make sure the front-end configuration (e.g angular here) should match with the API Gateway configuration because fontend code will be generated in ECartGateway Project.
+        <img src="tutorial/MicroService/PRODUCT_MICROSERVICE_GENERATOR_2.png" caption="configure angular" />
+    </li>
+    <li>
+        <img src="tutorial/MicroService/PRODUCT_MICROSERVICE_GENERATOR_3.png" caption="source generated" />
+    </li>
+</ul>
+
+<!----------------------------------------------------------------------------->
+
+<h3 id="GMC">Generate Customer and other MicroService</h3>
+Similar to Product microservice; Customer, Order and other microservices can be generated.
+<img src="tutorial/MicroService/CUSTOMER_MICROSERVICE_GENERATOR_1.png" caption="source generated" />
+
+
+<h3 id="DE">Deploy :</h3>
+<ul>
+    <li>
+        <h5 id="DED">Check docker environment</h5>
+        <img src="tutorial/MicroService/DOCKER_ENV.png" caption="docker-machine env" />
+    </li>
+    <li>
+        <h5 id="DER">Deploy Registry</h5>
+        First start the consul, for registry service.<br/>
+        <console>docker run -d --name=consul -p 8500:8500 consul</console><br/><br/>
+        <img src="tutorial/MicroService/REGISTRY_DEPLOYMENT_DOCKER.png" caption="Registry docker container" />
+    </li>
+    <li>
+        <h5 id="DEG">Deploy Gateway</h5>
+        Copy the mvn command from source generation console of ECartGateway Project :
+        <ul>
+            <li>Replace container ip with docker-machine ip</li>
+            <li>Define port, here we taken 8081 for Gateway</li>
+            <li>Set registry url for Service Discovery => registry ip + registry port</li>
+        </ul>
+        <console>mvn install -Pdocker,dev,webpack -DskipTests -Dregistry.url="http://192.168.99.100:8500"</console>
+        <img src="tutorial/MicroService/GATEWAY_DEPLOYMENT.png" caption="Gateway deployed" />
+        <img src="tutorial/MicroService/GATEWAY_DEPLOYMENT_DOCKER.png" caption="Gateway docker container" />
+    </li>
+    <li>
+        <h5 id="DEMP">Deploy Product MicroService</h5>
+        Copy the mvn command from source generation console of ProductService Project :
+        <ul>
+            <li>Replace container ip with docker-machine ip</li>
+            <li>Define port, here we taken 8082 for Product MicroService</li>
+            <li>Set registry url for Service Discovery => registry ip + registry port</li>
+        </ul>
+        <console>mvn install -P dev,docker -DskipTests -Dweb.host="http://192.168.99.100" -Dweb.port="8081" -Dregistry.url="http://192.168.99.100:8500"</console>
+        <img src="tutorial/MicroService/MICROSERVICE_DEPLOYMENT.png" caption="Product MicroService deployed" />
+        <img src="tutorial/MicroService/MICROSERVICE_DEPLOYMENT_DOCKER.png" caption="Product MicroService docker container" />
+    </li>
+    <li>
+        <h5 id="DEMC">Deploy Customer and other MicroServices</h5>
+        Similar to Product microservice deployment; Customer, Order and other microservices can be deployed, only make sure new port is assigned.
+        <console>mvn install -P dev,docker -DskipTests -Dweb.host="http://192.168.99.100" -Dweb.port="8082" -Ddb.port="3308" -Dregistry.url="http://192.168.99.100:8500"</console>
+        <img src="tutorial/MicroService/CUSTOMER_MICROSERVICE_DEPLOYMENT.png" caption="Customer MicroService deployed" />
+        <img src="tutorial/MicroService/CUSTOMER_MICROSERVICE_DEPLOYMENT_DOCKER.png" caption="Customer MicroService docker container" />
+    </li>
+</ul>
+
+<h3 id="OP">Output :</h3>
+<img src="tutorial/MicroService/OUTPUT_LOGIN.png" caption="" />
+
+<!--<h3 id="FI">Future improvement :</h3>
+<ul>
+    <li>Load balancer support</li>
+</ul>-->
+
+<script>paginate("page.html?l=tutorial/Monolith", "page.html?l=tutorial/Docker");</script>

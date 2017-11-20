@@ -1,5 +1,5 @@
-<h3>JAX-RS + Angular Generator</h3>
-<p>Welcome to Jeddict! This tutorial provides a very simple and quick introduction to the Angular application generator 
+<h2>Monolith application generator (JAX-RS + Angular)</h2>
+<p>Welcome to Jeddict! This tutorial provides a very simple and quick introduction to the Monolith application generator 
     by walking you through the creation of a complete application (Login, User management, Account settings, metric etc .). 
     The best thing, in minutes you get an application ready to deploy.
     This tutorial takes less than 5 minutes to complete.</p>
@@ -56,7 +56,7 @@ To create an IDE project:
         <img src="tutorial/JavaEE_MVC/PROJECT_CAT.png" caption="choose Project" />
     </li>
     <li>Enter <b>ShoppingSystem</b> in the Project name text box and specify the Project Location to any directory on your computer and click next (as shown in the figure below):
-        <img src="tutorial/Angular/PROJECT_SETUP1.png" caption="choose Name and Location" />
+        <img src="tutorial/Monolith/PROJECT_SETUP1.png" caption="choose Name and Location" />
     </li>
     <li>Select the version of Java EE you want to use with your application and 
         the server to which you want to deploy your application.
@@ -117,10 +117,10 @@ To create an IDE project:
 <h3 id="FP">Front-end properties :</h3>
 <ol>
 <li><b>Set entity display reference attribute</b> :  Click on attribute > Properties > UI properties > Entity Display Reference :
-    <img src="tutorial/Angular/UI_DISPLAY_REF.png" caption="entity display" />
+    <img src="tutorial/Monolith/UI_DISPLAY_REF.png" caption="entity display" />
 </li>
 <li><b>Exclude attribute in UI</b> :  Click on attribute > Properties > UI properties > Include in UI :
-    <img src="tutorial/Angular/UI_INLUDE.png" caption="exclude from UI" />
+    <img src="tutorial/Monolith/UI_INLUDE.png" caption="exclude from UI" />
 </li>
 </ol>
 
@@ -135,25 +135,25 @@ To create an IDE project:
 <h3 id="GEN">Generate the entity classes :</h3>
 <ul style="text-align: left;">
     <li>Right click on the <b>diagram &gt; Generate Source Code</b> or <b>(ctrl + G)</b>
-        <img src="tutorial/Angular/GEN_SRC.png" caption="Generate Source Code" />
+        <img src="tutorial/Monolith/GEN_SRC.png" caption="Generate Source Code" />
     </li>
     <li><h4 id="BU">Business Service :</h4>
         Click on the <b>Business Service &gt; select Session Facade</b>.
-        <img src="tutorial/Angular/BUSINESS_SERVICE.png" caption="" />
+        <img src="tutorial/Monolith/BUSINESS_SERVICE.png" caption="" />
 
         In the following screen, you can configure the <b>SessionBean package</b> and <b>class name pattern</b> for the EJB facade 
         that will be created for your application:
-        <img src="tutorial/Angular/SESSION.png" caption="configure package and class name pattern" />
+        <img src="tutorial/Monolith/SESSION.png" caption="configure package and class name pattern" />
     </li>
     <li>
         <h4 id="CO">REST Controller :</h4>
         Click on the <b>Controller &gt; select REST</b>
-        <img src="tutorial/Angular/CONTROLLER.PNG" caption="" />
+        <img src="tutorial/Monolith/CONTROLLER.PNG" caption="" />
         <h5>Implement the Controller:</h5>
 
         In the following screen, you can configure the <b>Controller package</b> and <b>class name pattern</b> for the REST api 
         that will be created for your application:
-        <img src="tutorial/Angular/REST.png" caption="configure package and class name pattern" />
+        <img src="tutorial/Monolith/REST.png" caption="configure package and class name pattern" />
 
 
         <h5>Configure the application:</h5>
@@ -167,24 +167,24 @@ To create an IDE project:
     <li>
         <h4 id="VI">Viewer :</h4>
         Click on the <b>Viewer &gt; select Angular 4</b> 
-        <img src="tutorial/Angular/VIEWER.PNG" caption="" />
+        <img src="tutorial/Monolith/VIEWER.PNG" caption="" />
         
         In the following screen, you can configure the <b>angular module and application title</b> :
-        <img src="tutorial/Angular/ANGULAR_JS.png" caption="configure angular module name" />
+        <img src="tutorial/Monolith/ANGULAR_JS.png" caption="configure angular module name" />
     </li>
     <li>
         Now, click on the <b>Generate</b> button.
-        <img src="tutorial/Angular/GEN_SRC_LOG.png" caption="" />
+        <img src="tutorial/Monolith/GEN_SRC_LOG.png" caption="" />
     </li>
 </ul>
 
 <h3 id="INSP">Inspecting The Generated Code :</h3>
 NetBeans IDE has generated multiple files under source packages and under Web Pages.
 Here is a break-down of what was created:
-<img src="tutorial/Angular/GEN_SRC_WEB.PNG" caption="under web page" />
+<img src="tutorial/Monolith/GEN_SRC_WEB.PNG" caption="under web page" />
 
 Java source structure of this project seems like below.
-<img src="tutorial/Angular/GEN_SRC_JAVA.PNG" caption="under java source" />
+<img src="tutorial/Monolith/GEN_SRC_JAVA.PNG" caption="under java source" />
 
 <!--The expected outcome will be a Java EE 8 application which uses an EJB facade to mediate the requests with the Model class,
 the Customer Entity.-->
@@ -202,18 +202,18 @@ the Customer Entity.-->
 <h3 id="OP">Output :</h3>
 <ul>
     <li>Home page opened by NetBeans IDE after deployment.
-        <img src="tutorial/Angular/APP_INIT.png" caption="Application home page" />
+        <img src="tutorial/Monolith/APP_INIT.png" caption="Application home page" />
     </li>
     <li>
         Click on "Create a new Customer" button :
-        <img src="tutorial/Angular/NEW_CUSTOMER.png" caption="Customer empty data table" />
+        <img src="tutorial/Monolith/NEW_CUSTOMER.png" caption="Customer empty data table" />
     </li>
     <li> Click on "Save" button to create new Customer :
-        <img src="tutorial/Angular/CREATE_CUSTOMER.png" caption="create new Customer" />
+        <img src="tutorial/Monolith/CREATE_CUSTOMER.png" caption="create new Customer" />
     </li>
     <li>
         Customer created and returned to data table :
-        <img src="tutorial/Angular/VIEW_CUSTOMER.png" caption="Customer data Table" />
+        <img src="tutorial/Monolith/VIEW_CUSTOMER.png" caption="Customer data Table" />
     </li>
 </ul>
 
@@ -253,3 +253,4 @@ Front-end templates also does not support the code generation for :
     <li>Composite Primary key</li>
 </ul>
 
+<script>paginate("page.html?l=tutorial/QuickStart", "page.html?l=tutorial/MicroService");</script>

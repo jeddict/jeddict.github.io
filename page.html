@@ -111,6 +111,7 @@
                         url: link + ".html",
                         dataType: "html",
                         success: function (content) {
+                            debugger;
                             $('#PAGE_CONTENT').html(content);
                             loadImage();
                             loadTOC();
@@ -122,6 +123,7 @@
                             },500);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
+                            alert("This page does not exist anymore.")
                             console.log(textStatus, errorThrown);
                         }
                     });
