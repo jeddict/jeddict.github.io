@@ -121,7 +121,7 @@ Similar to Product microservice; Customer, Order and other microservices can be 
     <li>
         <h5 id="DER">Deploy Registry</h5>
         First start the consul, for registry service.<br/>
-        <console>docker run -d --name=consul -p 8500:8500 consul</console><br/><br/>
+        <console>docker run -d --name=consul -p 8500:8500 consul</console>
         <img src="tutorial/MicroService/REGISTRY_DEPLOYMENT_DOCKER.png" caption="Registry docker container" />
     </li>
     <li>
@@ -129,7 +129,7 @@ Similar to Product microservice; Customer, Order and other microservices can be 
         Copy the mvn command from source generation console of ECartGateway Project :
         <ul>
             <li>Set registry url for Service Discovery</li>
-            <li>Both system properties and environment variables can be used for configuration.<li>
+            <li>Both system properties and environment variables can be used for configuration.</li>
         </ul>
         <console>mvn install -Pdocker,dev,webpack -DskipTests -Dregistry.url="http://192.168.99.100:8500"</console>
         <img src="tutorial/MicroService/GATEWAY_DEPLOYMENT.png" caption="Gateway deployed" />
@@ -141,7 +141,7 @@ Similar to Product microservice; Customer, Order and other microservices can be 
         <ul>
             <li>Replace container ip with docker-machine ip</li>
             <li>Define port, here we taken 8081 for Product MicroService</li>
-            <li>Set registry url for Service Discovery</li>
+            <li>Set registry url for Service Registry</li>
         </ul>
         <console>mvn install -P dev,docker -DskipTests -Dweb.host="http://192.168.99.100" -Dweb.port="8081" -Dregistry.url="http://192.168.99.100:8500"</console>
         <img src="tutorial/MicroService/MICROSERVICE_DEPLOYMENT.png" caption="Product MicroService deployed" />
