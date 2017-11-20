@@ -128,9 +128,8 @@ Similar to Product microservice; Customer, Order and other microservices can be 
         <h5 id="DEG">Deploy Gateway</h5>
         Copy the mvn command from source generation console of ECartGateway Project :
         <ul>
-            <li>Replace container ip with docker-machine ip</li>
-            <li>Define port, here we taken 8081 for Gateway</li>
-            <li>Set registry url for Service Discovery => registry ip + registry port</li>
+            <li>Set registry url for Service Discovery</li>
+            <li>Both system properties and environment variables can be used for configuration.<li>
         </ul>
         <console>mvn install -Pdocker,dev,webpack -DskipTests -Dregistry.url="http://192.168.99.100:8500"</console>
         <img src="tutorial/MicroService/GATEWAY_DEPLOYMENT.png" caption="Gateway deployed" />
@@ -141,8 +140,8 @@ Similar to Product microservice; Customer, Order and other microservices can be 
         Copy the mvn command from source generation console of ProductService Project :
         <ul>
             <li>Replace container ip with docker-machine ip</li>
-            <li>Define port, here we taken 8082 for Product MicroService</li>
-            <li>Set registry url for Service Discovery => registry ip + registry port</li>
+            <li>Define port, here we taken 8081 for Product MicroService</li>
+            <li>Set registry url for Service Discovery</li>
         </ul>
         <console>mvn install -P dev,docker -DskipTests -Dweb.host="http://192.168.99.100" -Dweb.port="8081" -Dregistry.url="http://192.168.99.100:8500"</console>
         <img src="tutorial/MicroService/MICROSERVICE_DEPLOYMENT.png" caption="Product MicroService deployed" />
