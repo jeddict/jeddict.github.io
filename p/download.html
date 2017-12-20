@@ -14,7 +14,7 @@
     function loadVersion(data) {
         for (var i in data.NETBEANS) {
             var plugin = data.NETBEANS[i];
-            if (i === 0) {
+            if (i == 0) {
                 $("#NBM_DOWNLOAD").attr("href", plugin.url);
                 $("#NBM_DOWNLOAD").text("Download v" + plugin.version);
                 $("#NBM_UC").text("Update Center v" + plugin.nb_version_short);
