@@ -7,14 +7,16 @@ If you want to add a company to the list, please
 
 <script>
     var companies_data = [
+        {logo: "p/images/companies/atos.png", width: '50%', url: 'https://atos.net/en/'},
+        {logo: "p/images/companies/shenll.png", width: '72%',paddingtop: '8px', url: 'http://shenll.com'},
         {logo: "p/images/companies/axa.svg", width: '95%', url: 'http://axa.com'},
         {logo: "p/images/companies/t-systems.png", width: '80%', paddingtop: '14px', url: 'http://t-systems.com'},
         {logo: "p/images/companies/versifit.png", width: '78%',paddingtop: '14px', url: 'http://versifit.com'},
-        {logo: "p/images/companies/vendavo.jpg", width: '72%',paddingtop: '8px', url: 'http://www.vendavo.com'},
         {logo: "p/images/companies/fixner.png", width: '59%', url: 'http://fixner.com'},
-        {logo: "p/images/companies/inteacc.gif", width: '59%', url: 'http://inteacc.com'},
         {logo: "p/images/companies/redspark.png", width: '79%', url: 'http://repspark.com/'},
-        {logo: "p/images/companies/atos.png", width: '50%', url: 'https://atos.net/en/'},
+        {logo: "p/images/companies/inteacc.gif", width: '59%', url: 'http://inteacc.com'},
+        {logo: "p/images/companies/vendavo.jpg", width: '72%',paddingtop: '8px', url: 'http://www.vendavo.com'},
+        {logo: "p/images/companies/webnetproject.png", width: '85%', backgroundcolor: '#aaaaaa', url: 'http://webnetproject.com'},
         {name: "Oracle", url: 'https://www.oracle.com'},
         {name: "Furore", url: 'http://furore.com'},
         {name: "SOS HARD & SOFT", url: 'http://soshardandsoft.com/'},
@@ -31,7 +33,6 @@ If you want to add a company to the list, please
         {name: 'Home Studio', url: 'http://homestudio.com/'},
         {name: 'OtherLevels', url: 'https://www.otherlevels.com/'},
         {name: 'Lokamisa', url: 'https://lokamisa.com.br/'},
-        {name: 'Shenll Technology Solutions', url: 'www.shenll.com'},
         {name: 'BIOMedis', url: 'http://www.biomedis.ru/en'},
         {name: 'Sault College', url: 'http://www.saultcollege.ca'},
         {name: "Norwich", url: 'http://norwich.edu'},
@@ -45,7 +46,10 @@ If you want to add a company to the list, please
             var companyTemp = $("#COMPANT_TEMPLATE").clone().attr("id", "").css("display", "block");
             $("#COMPANIES").append(companyTemp);
             companyTemp.find(".img-responsive").attr("src", company.logo)
-                    .attr("alt", company.name).css("width", company.width).css("padding-top", company.paddingtop)
+                    .attr("alt", company.name)
+                    .css("width", company.width)
+                    .css("padding-top", company.paddingtop)
+                    .css("background-color", company.backgroundcolor)
                     .parent().attr("href", company.url);
         }
     }
@@ -63,7 +67,7 @@ If you want to add a company to the list, please
 
         <div class="row">
             <div class="col-xs-12">
-                <h4>Other companies</h4>
+                <h4>Other companies and institutes</h4>
                 <ul id="COMPANIES_RAW" ></ul> 
             </div>
         </div>
