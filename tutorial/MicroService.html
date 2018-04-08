@@ -3,15 +3,6 @@
 <h6 id="TOC" style="text-align: left;">Table of Content :</h6>
 <nav id="toc-head" ></nav>
 
-<!--    <li><a href="#INSP">Inspecting The Generated Code</a></li>
-    <li><a href="#DR">Deploy Registry</a></li>
-    <li><a href="#DG">Deploy Gateway</a></li>
-    <li><a href="#DM">Deploy MicroServices</a></li>
-    <li><a href="#OP">Output</a></li>
-    <li><a href="#LIM">Future impro</a></li>-->
-
-
-
 <h3 id="PRE">Prerequisite :</h3>
 The requirements for this tutorial are:
 <ol>
@@ -105,7 +96,6 @@ In the previous section, we generated the API Gateway, Now we will generate the 
     </li>
 </ul>
 
-<!----------------------------------------------------------------------------->
 
 <h3 id="GMC">Generate Customer and other MicroService</h3>
 Similar to Product microservice; Customer, Order and other microservices can be generated.
@@ -126,6 +116,14 @@ Similar to Product microservice; Customer, Order and other microservices can be 
     </li>
     <li>
         <h5 id="DEG">Deploy Gateway</h5>
+        
+        Install all the dependencies listed within package.json : 
+<!--        yarn install is used when you have just checked out the project
+        or new dependency is added in package.json :-->
+        <br/> <console>yarn install</console>
+        <br/> <console>yarn prettier:format</console>
+        <br/>
+        
         Copy the mvn command from source generation console of ECartGateway Project :
         <ul>
             <li>Set registry url for Service Discovery</li>
@@ -159,9 +157,28 @@ Similar to Product microservice; Customer, Order and other microservices can be 
 <h3 id="OP">Output :</h3>
 <img src="tutorial/MicroService/OUTPUT_LOGIN.png" caption="" />
 
-<!--<h3 id="FI">Future improvement :</h3>
+<h3 id="NUD">Deployment without docker env :</h3>
 <ul>
-    <li>Load balancer support</li>
-</ul>-->
+    <li>
+        <h6>Start Registry : </h6> 
+        <console>consul agent -dev</console> 
+    </li>
+    <li>
+        <h6>Build Gateway : </h6> 
+        <console>yarn install</console>
+        <br/> <console>yarn prettier:format</console>
+        <br/> <console>mvn install -Pdev,webpack -DskipTests -Dregistry.url="http://localhost:8500"</console> 
+    </li>
+    <li>
+        <h6>Build Product MicroService : </h6> 
+        <console>mvn install -P dev -DskipTests -Dweb.host="http://localhost" -Dweb.port="8081" -Dregistry.url="http://localhost:8500"</console>
+    </li>
+    <li>
+        <h6>Build Customer MicroService : </h6> 
+        <console>mvn install -P dev -DskipTests -Dweb.host="http://localhost" -Dweb.port="8082" -Dregistry.url="http://localhost:8500"</console>
+    </li>
+</ul>
+
+
 
 <script>paginate("page.html?l=tutorial/Monolith", "page.html?l=tutorial/Docker");</script>
