@@ -4,33 +4,36 @@
     }
 </style>
 <script>
+    var releaseData;
     $(document).ready(function () {
         $.getJSON("release.json", function (data) {
-            loadVersion(data);
+            releaseData = data;
+            loadVersion(releaseData)
         });
     });
 
+    function getNBPluginInstance(version) {
+        for (var i in releaseData.NETBEANS) {
+            var plugin = releaseData.NETBEANS[i];
+            if (plugin.version == version) {
+                return plugin;
+            }
+        }
+        return null;
+    }
 
     function loadVersion(data) {
         for (var i in data.NETBEANS) {
             var plugin = data.NETBEANS[i];
             if (i == 0) {
-                $("#NBM_DOWNLOAD").attr("href", plugin.url);
-                $("#NBM_DOWNLOAD").text("Download v" + plugin.version);
-                $("#NBM_UC").text("Update Center v" + plugin.nb_version_short);
-            
+                updateButton(plugin);
             }
             $("#NBM_DETAILS").append($("<option>")
-                    .text("v" + plugin.version 
-                    + " (NetBeans v" + plugin.nb_version
-                    + " - Java EE" + plugin.java_ee
-                    //+ " - Java" + plugin.java
-                    + ")")
-                    .attr("nb_version", plugin.nb_version)
-                    .attr("nb_version_short", plugin.nb_version_short)
-                    .attr("version", plugin.version)
-                    .attr("uc", plugin.uc)
-                    .attr("url", plugin.url));
+                    .text("v" + plugin.version
+                            + " (NetBeans v" + plugin.nb_version
+                            + " - Java EE" + plugin.java_ee
+                            + ")")
+                    .attr("version", plugin.version));
         }
 
         $(".OS").each(function () {
@@ -48,54 +51,68 @@
             $("#OS_DOWNLOAD .container .row div:nth-child(1)").hide();
         }
 
-
         $("#NBM_DETAILS").on("change", function () {
             var option = $(this).find(":selected");
-            $("#NBM_DOWNLOAD").attr("href", option.attr("url"));
-            $("#NBM_DOWNLOAD").text("Download v" + option.attr("version"));
-            if (option.attr("uc") !== undefined) {
-                $("#NBM_UC").text("Update Center v" + option.attr("nb_version_short"));
-            } else {
-                $("#NBM_UC").fadeIn(300);
-                $("#NBM_UC").text("Update Center v" + option.attr("nb_version_short") + "(not available)");
-            }
-
+            var plugin = getNBPluginInstance(option.attr("version"));
+            updateButton(plugin);
         })
     }
-    function copyToClipboard() {
-        var netbeans = $('#NBM_DETAILS option:selected')
-        var uc =  netbeans.attr('uc');
-        if(uc === undefined){
-            alert("Update Center not available for NetBeans IDE " + netbeans.attr("nb_version"))
-        }else {
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val(uc).select();
-        document.execCommand("copy");
-        $temp.remove();
-        alert("Update Center URL [ "+uc+" ] copied")
+
+    function updateButton(plugin) {
+        $("#REQUIREMENT_BLOCK").show();
+        var reqBody = $("#REQUIREMENT").find("tbody");
+        reqBody.html("");
+        reqBody.append("<tr><td>Java " + plugin.java + "</td></tr>");
+        reqBody.append("<tr><td>Java EE " + plugin.java_ee + "</td></tr>");
+        reqBody.append("<tr><td>NetBeans IDE " + plugin.nb_version + "</td></tr>");
+        reqBody.append("<tr><td>Maven v3.5.0</td></tr>");
+
+        var nbmDownload = $("#NBM_DOWNLOAD");
+        var updateCenter = $("#NBM_UC");
+        nbmDownload.attr("href", plugin.url);
+        nbmDownload.text("Download v" + plugin.version);
+        if (plugin.uc !== undefined) {
+            updateCenter.text("Update Center v" + plugin.nb_version_short);
+        } else {
+            updateCenter.fadeIn(300);
+            updateCenter.text("Update Center v" + plugin.nb_version_short + "(not available)");
+        }
     }
+
+    function copyToClipboard() {
+        var option = $('#NBM_DETAILS option:selected')
+        var plugin = getNBPluginInstance(option.attr("version"));
+        if (plugin.uc === undefined) {
+            alert("Update Center not available for NetBeans IDE " + plugin.nb_version)
+        } else {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(plugin.uc).select();
+            document.execCommand("copy");
+            $temp.remove();
+            alert("Update Center URL [ " + plugin.uc + " ] copied")
+        }
     }
 </script>
 
-<section class="padding wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
+<section class="padding wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms" style="padding:10px 0">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <img src="p/images/download/netbeans.png"  alt="">
-                <h1 class="margin-bottom">NetBeans IDE Plugin</h1>
+                <img src="p/images/download/netbeans.png" width=80 height=80>
+                <h2>NetBeans IDE Plugin</h2>
             </div>
         </div>
-        <div class="row center-block">
+        <div class="row">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
-                <h3 class="margin-bottom">STEP : 1</h3>
+                <h3>STEP : 1</h3>
                 <label for="NBM_DETAILS">Select version :</label>
-                <select id="NBM_DETAILS" class="btn btn-link download"></select>
+                <select id="NBM_DETAILS" class="btn btn-link download" style="width: 100%;border-color:#0d6fb1"></select>
             </div>
         </div>
-        <div class="row center-block">
+        <div class="row">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
-                 <h3 class="margin-bottom">STEP : 2</h3>
+                <h3>STEP : 2</h3>
                 <a id="NBM_DOWNLOAD" href="#" class="btn btn-buynow download">Download</a>
             </div>
         </div>
@@ -104,15 +121,15 @@
                 <a href="page.html?l=p/installation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>
-        <div class="row center-block">
+        <div class="row">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
                 <div class="col-sm-12 text-center">
-                    <h4 class="margin-top">OR</h4>
+                    <h4>OR</h4>
                     <br/>
                 </div>
             </div>
         </div>
-        <div class="row center-block" >
+        <div class="row" >
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
                 <a id="NBM_UC" href="#" onclick="copyToClipboard()" class="btn btn-buynow download">Update Center</a>
             </div>
@@ -120,6 +137,16 @@
         <div class="row">
             <div class="col-sm-8 text-center pull-right">
                 <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
+            </div>
+        </div>
+        
+        <div class="row" id="REQUIREMENT_BLOCK">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered table-responsive">
+                <h3 class="margin-bottom">Minimum Requirements</h3>
+                <p style="font-size: 11px;">Before installing Jeddict, ensure that your environment meets the following minimum requirements:</p>
+                <table id="REQUIREMENT" class="table table-hover table-striped">
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
     </div>
