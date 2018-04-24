@@ -1,12 +1,12 @@
 {
     "NETBEANS": [ 
         {
-            "version": "4.8.1",
+            "version": "4.8.2",
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee" : 8,
             "java" : 8,
-            "url": "http://plugins.netbeans.org/download/plugin/9608",
+            "url": "http://plugins.netbeans.org/download/plugin/9610",
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2-EE8/updates.xml"
         },
         {

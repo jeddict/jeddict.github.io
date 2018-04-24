@@ -113,6 +113,10 @@ Similar to Product microservice; Customer, Order and other microservices can be 
         First start the consul, for registry service.<br/>
         <console>docker run -d --name=consul -p 8500:8500 consul</console>
         <img src="tutorial/MicroService/REGISTRY_DEPLOYMENT_DOCKER.png" caption="Registry docker container" />
+        
+        Now, Consul should be available on<console>${docker_ip}:8500</console>
+        <img src="tutorial/MicroService/CONSUL_HOME.png" caption="Consul home page" />
+        
     </li>
     <li>
         <h5 id="DEG">Deploy Gateway</h5>
