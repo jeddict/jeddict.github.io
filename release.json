@@ -2,6 +2,7 @@
     "NETBEANS": [ 
         {
             "version": "4.9",
+            "jeddict_version" : "4.9",
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee" : 8,
@@ -10,7 +11,8 @@
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2-EE8/updates.xml"
         },
         {
-            "version": "4.9",
+            "version": "4.9_8.2.P2",
+            "jeddict_version" : "4.9",
             "nb_bundled" : true,
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
@@ -21,6 +23,7 @@
         },
         {
             "version": "4.8.4",
+            "jeddict_version" : "4.8.4",
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee": 8,
@@ -30,6 +33,7 @@
         },
         {
             "version": "4.7",
+            "jeddict_version" : "4.7",
             "nb_version": "8.2 Patch 2 (Build 201609300101)",
             "nb_version_short": "8.2.P2",
             "java_ee": 8,
@@ -38,6 +42,7 @@
         },
         {
             "version": "4.4.1",
+            "jeddict_version" : "4.4.1",
             "nb_version": "8.2 Patch 2 (Build 201705191307)",
             "nb_version_short": "8.2.P2",
             "java_ee" : 7,
@@ -47,6 +52,7 @@
         },
         {
             "version": "4.2.1",
+            "jeddict_version" : "4.2.1",
             "nb_version": "8.2 (Build 201609300101)",
             "nb_version_short": "8.2",
             "java_ee" : 7,
@@ -55,6 +61,7 @@
         },
         {
             "version": "2.6",
+            "jeddict_version" : "2.6",
             "nb_version": "8.1",
             "nb_version_short": "8.1",
             "java_ee" : 7,
