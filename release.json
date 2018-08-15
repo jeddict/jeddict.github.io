@@ -1,5 +1,16 @@
 {
-    "NETBEANS": [ 
+    "NETBEANS": [
+        {
+            "version": "5.0",
+            "jeddict_version": "5.0",
+            "nb_version": "9.0 (Build incubator-netbeans-release-334-on-20180708)",
+            "nb_version_short": "9.0",
+            "java_ee": 8,
+            "java": 8,
+            "url": "http://plugins.netbeans.org/download/plugin/9699",
+            "nb_bundled_url": "https://github.com/jeddict/jeddict/releases/download/5.0/Jeddict_5.0_with_Apache_NetBeans_IDE_9.0.zip",
+            "uc": "https://github.com/jeddict/uc/releases/download/9.0/updates.xml"
+        },
         {
             "version": "4.9",
             "jeddict_version" : "4.9",
@@ -8,37 +19,8 @@
             "java_ee" : 8,
             "java" : 8,
             "url": "http://plugins.netbeans.org/download/plugin/9661",
+            "nb_bundled_url": "https://github.com/jeddict/jeddict/releases/download/4.9/Jeddict_4.9_with_NetBeans_IDE_8.2.zip",
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2-EE8/updates.xml"
-        },
-        {
-            "version": "4.9_8.2.P2",
-            "jeddict_version" : "4.9",
-            "nb_bundled" : true,
-            "nb_version": "8.2 Patch 2 (Build 201609300101)",
-            "nb_version_short": "8.2.P2",
-            "java_ee": 8,
-            "java": 8,
-            "url": "https://github.com/jeddict/jeddict/releases/download/4.9/Jeddict_4.9_with_NetBeans_IDE_8.2.zip",
-            "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2-EE8/updates.xml"
-        },
-        {
-            "version": "4.8.4",
-            "jeddict_version" : "4.8.4",
-            "nb_version": "8.2 Patch 2 (Build 201609300101)",
-            "nb_version_short": "8.2.P2",
-            "java_ee": 8,
-            "java": 8,
-            "url": "http://plugins.netbeans.org/download/plugin/9625",
-            "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2-EE8/updates.xml"
-        },
-        {
-            "version": "4.7",
-            "jeddict_version" : "4.7",
-            "nb_version": "8.2 Patch 2 (Build 201609300101)",
-            "nb_version_short": "8.2.P2",
-            "java_ee": 8,
-            "java": 8,
-            "url": "http://plugins.netbeans.org/download/plugin/9489"
         },
         {
             "version": "4.4.1",
@@ -49,24 +31,6 @@
             "java" : 8,
             "url": "http://plugins.netbeans.org/download/plugin/9266",
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2/updates.xml"
-        },
-        {
-            "version": "4.2.1",
-            "jeddict_version" : "4.2.1",
-            "nb_version": "8.2 (Build 201609300101)",
-            "nb_version_short": "8.2",
-            "java_ee" : 7,
-            "java" : 8,
-            "url": "http://plugins.netbeans.org/download/plugin/9154"
-        },
-        {
-            "version": "2.6",
-            "jeddict_version" : "2.6",
-            "nb_version": "8.1",
-            "nb_version_short": "8.1",
-            "java_ee" : 7,
-            "java" : 8,
-            "url": "http://plugins.netbeans.org/download/plugin/8638"
         }],
 
     "_comment": " 'WINDOWS': {url: <>, version: 1.4},  LINUX: {url: <>, version: 1.4},  OSX: {url: <>, version: 1.4} "

@@ -9,6 +9,8 @@
         $.getJSON("release.json", function (data) {
             releaseData = data;
             loadVersion(releaseData)
+            $("#NBM_DETAILS").find('option:eq(0)').prop('selected', true);
+            $("#NBM_DETAILS").trigger("change");
         });
     });
 
@@ -28,22 +30,18 @@
             if (i == 0) {
                 updateButton(plugin);
             }
-            if(plugin.nb_bundled) {
+
+            $("#NBM_DETAILS").append($("<option>")
+                    .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version_short + " - Java EE" + plugin.java_ee + ")")
+                                .attr("version", plugin.version));
+
+            if (plugin.nb_bundled_url) {
                 $("#NBM_DETAILS").append($("<option>")
-                        .text("v" + plugin.jeddict_version
-                                + " bundled with NetBeans v" + plugin.nb_version_short
-                                + " ( Java EE" + plugin.java_ee
-                                + ")")
-                        .attr("version", plugin.version));
-            } else {
-                $("#NBM_DETAILS").append($("<option>")
-                        .text("v" + plugin.jeddict_version
-                                + " (NetBeans v" + plugin.nb_version
-                                + " - Java EE" + plugin.java_ee
-                                + ")")
-                        .attr("version", plugin.version));
-            }
-        }
+                                    .text("v" + plugin.jeddict_version + " bundled with NetBeans v" + plugin.nb_version_short + " (Java EE" + plugin.java_ee + ")")
+                                    .attr("version", plugin.version)
+                                    .attr("nb_bundle", true));
+                        }
+                    }
 
         $(".OS").each(function () {
             var OS_Data = data[$(this).attr("id")];
@@ -63,11 +61,17 @@
         $("#NBM_DETAILS").on("change", function () {
             var option = $(this).find(":selected");
             var plugin = getNBPluginInstance(option.attr("version"));
-            updateButton(plugin);
+            var url;
+            if (option.attr("nb_bundle")) {
+                url = plugin.nb_bundled_url;
+            } else {
+                url = plugin.url;
+            }
+            updateButton(plugin, url);
         })
     }
 
-    function updateButton(plugin) {
+    function updateButton(plugin, url) {
         $("#REQUIREMENT_BLOCK").show();
         var reqBody = $("#REQUIREMENT").find("tbody");
         reqBody.html("");
@@ -78,7 +82,7 @@
 
         var nbmDownload = $("#NBM_DOWNLOAD");
         var updateCenter = $("#NBM_UC");
-        nbmDownload.attr("href", plugin.url);
+        nbmDownload.attr("href", url);
         nbmDownload.text("Download v" + plugin.jeddict_version);
         if (plugin.uc !== undefined) {
             updateCenter.text("Update Center v" + plugin.nb_version_short);
@@ -132,9 +136,8 @@
         </div>
         <div class="row">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
-                <div class="col-sm-12 text-center">
-                    <h4>OR</h4>
-                    <br/>
+                <div class="col-sm-12 text-center" style="padding-bottom: 15px;">
+                    OR
                 </div>
             </div>
         </div>
@@ -148,7 +151,7 @@
                 <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>
-        
+
         <div class="row" id="REQUIREMENT_BLOCK">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered table-responsive">
                 <h3 class="margin-bottom">Minimum Requirements</h3>
