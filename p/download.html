@@ -37,12 +37,10 @@
                         .attr("version", plugin.version)
                         .attr("nb_bundle", true));
             }
-        }
-        $("#NBM_DETAILS").append($("<option>")
-                    .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version + " - Java EE" + plugin.java_ee + ")")
+            $("#NBM_DETAILS").append($("<option>")
+            .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version + " - Java EE" + plugin.java_ee + ")")
                                 .attr("version", plugin.version));
-
-           
+        }
 
         $(".OS").each(function () {
             var OS_Data = data[$(this).attr("id")];
