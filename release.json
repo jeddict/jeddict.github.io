@@ -1,6 +1,27 @@
 {
     "NETBEANS": [
         {
+            "version": "5.2",
+            "jeddict_version": "5.2",
+            "nb_version": "9.0 (Build incubator-netbeans-release-334-on-20180708)",
+            "nb_version_short": "9.0",
+            "java_ee": 8,
+            "java": 8,
+            "url": "http://plugins.netbeans.org/download/plugin/9796",
+            "nb_bundled_url": "https://github.com/jeddict/jeddict/releases/download/5.2/Jeddict_5.2_with_Apache_NetBeans_IDE_9.0.zip",
+            "uc": "https://github.com/jeddict/uc/releases/download/9.0/updates.xml"
+        },
+        {
+            "version": "5.2",
+            "jeddict_version": "5.2",
+            "nb_version": "8.2 (Build 201609300101)",
+            "nb_version_short": "8.2",
+            "java_ee": 8,
+            "java": 8,
+            "url": "http://plugins.netbeans.org/download/plugin/9797",
+            "uc": "https://github.com/jeddict/uc/releases/download/8.2/updates.xml"
+        },
+        {
             "version": "5.1",
             "jeddict_version": "5.1",
             "nb_version": "9.0 (Build incubator-netbeans-release-334-on-20180708)",
