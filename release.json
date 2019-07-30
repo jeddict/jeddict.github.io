@@ -105,7 +105,8 @@
             "java" : 8,
             "url": "http://plugins.netbeans.org/download/plugin/9266",
             "uc": "https://github.com/jeddict/uc/releases/download/8.2.P2/updates.xml"
-        }],
+        }
+    ],
 
     "_comment": " 'WINDOWS': {url: <>, version: 1.4},  LINUX: {url: <>, version: 1.4},  OSX: {url: <>, version: 1.4} "
 }
