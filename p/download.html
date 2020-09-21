@@ -33,12 +33,12 @@
 
         if (plugin.nb_bundled_url) {
                 $("#NBM_DETAILS").append($("<option>")
-                        .text("v" + plugin.jeddict_version + " bundled with NetBeans v" + plugin.nb_version_short + " (Java EE" + plugin.java_ee + ")")
+                        .text("v" + plugin.jeddict_version + " bundled with NetBeans v" + plugin.nb_version_short + " (Jakarta EE" + plugin.jakarta_ee + ")")
                         .attr("version", plugin.version)
                         .attr("nb_bundle", true));
             }
             $("#NBM_DETAILS").append($("<option>")
-            .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version + " - Java EE" + plugin.java_ee + ")")
+            .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version + " - Jakarta EE" + plugin.jakarta_ee + ")")
                                 .attr("version", plugin.version));
         }
 
@@ -75,7 +75,7 @@
         var reqBody = $("#REQUIREMENT").find("tbody");
         reqBody.html("");
         reqBody.append("<tr><td>Java " + plugin.java + "</td></tr>");
-        reqBody.append("<tr><td>Java EE " + plugin.java_ee + "</td></tr>");
+        reqBody.append("<tr><td>Jakarta EE " + plugin.jakarta_ee + "</td></tr>");
         reqBody.append("<tr><td>NetBeans IDE " + plugin.nb_version + "</td></tr>");
         reqBody.append("<tr><td>Maven v3.5.0</td></tr>");
 
