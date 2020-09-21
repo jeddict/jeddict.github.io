@@ -1,6 +1,17 @@
 {
     "NETBEANS": [
         {
+            "version": "5.4.3",
+            "jeddict_version": "5.4.3",
+            "nb_version": "12.1",
+            "nb_version_short": "12.1",
+            "java_ee": 8,
+            "java": 8,
+            "url": "https://github.com/jeddict/jeddict/releases/download/5.4.3/Jeddict_5.4.3_for_NetBeans_IDE_12.1.zip",
+            "nb_bundled_url": "https://github.com/jeddict/jeddict/releases/download/5.4.3/Jeddict_5.4.3_with_NetBeans_IDE_12.1.zip",
+            "uc": "https://github.com/jeddict/uc/releases/download/12.1/updates.xml"
+        },
+        {
             "version": "5.4.2",
             "jeddict_version": "5.4.2",
             "nb_version": "12.0",
