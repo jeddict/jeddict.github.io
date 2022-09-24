@@ -81,13 +81,19 @@
 
         var nbmDownload = $("#NBM_DOWNLOAD");
         var updateCenter = $("#NBM_UC");
+        var or = $("#OR");
+        var ii = $("#II");
         nbmDownload.attr("href", url);
         nbmDownload.text("Download v" + plugin.jeddict_version);
         if (plugin.uc !== undefined) {
+            updateCenter.show();
             updateCenter.text("Update Center v" + plugin.nb_version_short);
+            or.show();
+            ii.show();
         } else {
-            updateCenter.fadeIn(300);
-            updateCenter.text("Update Center v" + plugin.nb_version_short + "(not available)");
+            updateCenter.hide();
+            or.hide();
+            ii.hide();
         }
     }
 
@@ -111,7 +117,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <img src="p/images/download/netbeans.png" width=80 height=80>
+                <img src="p/images/download/apache-netbeans.svg" width=80 height=80>
                 <h2>NetBeans IDE Plugin</h2>
             </div>
         </div>
@@ -133,7 +139,7 @@
                 <a href="page.html?l=p/installation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>
         </div>
-        <div class="row">
+        <div id="OR" class="row">
             <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
                 <div class="col-sm-12 text-center" style="padding-bottom: 15px;">
                     OR
@@ -145,7 +151,7 @@
                 <a id="NBM_UC" href="#" onclick="copyToClipboard()" class="btn btn-buynow download">Update Center</a>
             </div>
         </div>
-        <div class="row">
+        <div id="II" class="row">
             <div class="col-sm-8 text-center pull-right">
                 <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
             </div>

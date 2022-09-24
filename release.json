@@ -6,7 +6,7 @@
             "nb_version": "15",
             "nb_version_short": "15",
             "jakarta_ee": 10,
-            "java": 8,
+            "java": 11,
             "url": "https://github.com/jeddict/jeddict/releases/download/6.0.1/jeddict-6.0.1.nbm"
         },
         {
