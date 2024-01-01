@@ -1,6 +1,15 @@
 {
     "NETBEANS": [
         {
+            "version": "6.2.0",
+            "jeddict_version": "6.2.0",
+            "nb_version": "20",
+            "nb_version_short": "20",
+            "jakarta_ee": 10,
+            "java": 11,
+            "url": "https://repo1.maven.org/maven2/io/github/jeddict/jeddict/6.2.0/jeddict-6.2.0.nbm"
+        },
+        {
             "version": "6.1.0",
             "jeddict_version": "6.1.0",
             "nb_version": "15",
