@@ -1,0 +1,124 @@
+<div class="container mt-5">
+
+    <h2 class="display-4">Jeddict AI Assistant</h2>
+    <p>
+        The <strong>Jeddict AI Assistant</strong>  for Apache NetBeans is a powerful and intuitive plugin designed to integrate AI-driven functionality into the Apache NetBeans IDE, offering specialized support for developers working with <strong>Jakarta EE</strong>. This plugin leverages OpenAI’s capabilities to provide real-time suggestions, code enhancements, documentation insights, and best practices, significantly reducing development time and improving code quality. It is particularly well-suited for developers engaged in complex <strong>enterprise applications</strong> built on Jakarta EE technologies, offering tailored recommendations based on the context of the code and project structure.
+    </p>
+
+    <h3>Download the Jeddict AI Assistant</h3>
+    <p>
+        Get started with the Jeddict AI Assistant for Apache NetBeans by downloading the plugin from the official Apache NetBeans Plugin Portal.
+        <br>
+        Click the link below to access the download page:
+    </p><p>
+    <em>Note:</em> This plugin is not included with the bundled Jeddict plugin nor does it depend on it. You will need to install it independently to access its features.
+</p><p>
+        <a href="https://plugins.netbeans.apache.org/catalogue/?id=103" class="btn btn-primary">Download Now</a>
+    </p>
+
+    <h3>Configuration</h3>
+    <p>The plugin supports configurable AI models and keys, allowing developers to seamlessly integrate their OpenAI accounts. The plugin searches for the API key and model in both environment variables and system properties, ensuring flexibility in how the integration is managed.</p>
+    <p>Here are the supported configurations:</p>
+    <ul>
+        <li><strong>"OPENAI_API_KEY"</strong> environment variable to set the OpenAI API key.</li>
+        <li>Alternatively, <strong>"openai.api.key"</strong> system property to set the OpenAI API key.</li>
+        <li><strong>"OPENAI_MODEL"</strong> environment variable to set the OpenAI model.</li>
+        <li>Alternatively, <strong>"openai.model"</strong> system property also allows setting the OpenAI model.</li>
+    </ul>
+    <p>If the OpenAI API key is not explicitly configured via environment variables or system properties, the plugin will first check the user preferences for previously stored values. If the API key is still not found, the plugin will prompt the user to enter the API key manually through an input dialog. The entered API key will be saved in preferences for future use, ensuring a seamless experience during subsequent sessions.</p>
+    <p>By default, if no specific model is configured via environment variables or system properties, the plugin will use the <strong>gpt-4o-mini</strong> model as a fallback, ensuring that the functionality remains available even without explicit user configuration.</p>
+
+
+
+    <h3>Key Features & Support</h3>
+    <p>The AI Assistant provides a variety of intelligent hints and recommendations, enhancing different aspects of Jakarta EE development. Below are the supported features and hints that the plugin offers:</p>
+
+    <div class="mb-4">
+        <h4>Smart Code Completion</h4>
+        <p>Boost productivity with AI-powered code completion, offering context-aware suggestions for completing code, renaming variables and methods, and improving log messages or comments.</p>
+        <p><strong>How to use:</strong> Press Ctrl+Space to see a list of relevant suggestions.</p>
+        <img src="jeddict-ai/resource/0-SmartSuggestions.gif" alt="Smart Suggestions" class="feature-img" width="1200" />
+    </div>
+
+
+    <div class="mb-4">
+        <h4>Method Enhancement</h4>
+        <p>Improve the logic, structure, or efficiency of methods using AI-powered enhancements tailored to your project's specific requirements.</p>
+        <p><strong>How to use:</strong> Highlight any method and press the hint: <em>"AI: Enhance the method"</em></p>
+        <img src="https://raw.githubusercontent.com/jeddict/jeddict.github.io/master/jeddict-ai/resource/1-AI%20Enhance%20the%20method.gif" alt="Enhance Method" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Javadoc Creation</h4>
+        <p>Automatically generate Javadoc for any method, class, or interface using AI assistance, ensuring comprehensive and well-structured documentation based on the code context.</p>
+        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Create Javadoc for {0} using assistance"</em></p>
+        <img src="jeddict-ai/resource/2-AI-powered%20Javadoc%20Creation.gif" alt="Javadoc Creation" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Javadoc Improvement</h4>
+        <p>Improve and enhance existing Javadoc comments by leveraging AI suggestions, ensuring clarity, accuracy, and best practices.</p>
+        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Enhance existing Javadoc for {0}"</em></p>
+        <img src="jeddict-ai/resource/3-AI-enhanced%20Javadoc%20Improvement.gif" alt="Javadoc Improvement" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Variable Naming Suggestions</h4>
+        <p>Automatically suggest more meaningful and contextually appropriate variable names, enhancing code readability and maintainability.</p>
+        <p><strong>How to use:</strong> Highlight any variable/param and press the hint: <em>"AI: Improve variable name using assistance"</em></p>
+        <img src="jeddict-ai/resource/4-AI%20Improve%20variable%20name%20using%20assistance.gif" alt="Variable Naming Suggestions" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Grammar Fixes</h4>
+        <p>Detect and correct grammar issues within comments, Javadoc, or other textual components in your code, ensuring professional and polished documentation.</p>
+        <p><strong>How to use:</strong> Select any String literal text and press the hint: <em>"AI: Fix grammar issues using assistance"</em></p>
+        <img src="jeddict-ai/resource/5-AI%20Fix%20grammar%20issues%20using%20assistance.gif" alt="Grammar Fixes" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Text Enhancement</h4>
+        <p>Improve the quality and readability of textual content (such as comments, documentation, or log messages) by providing more concise and impactful alternatives.</p>
+        <p><strong>How to use:</strong> Select any String literal text and press the hint: <em>"AI: Enhance text quality using assistance"</em></p>
+        <img src="jeddict-ai/resource/6-AI%20Enhance%20text%20quality%20using%20assistance.gif" alt="Text Enhancement" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Code Line Enhancement</h4>
+        <p>Suggest enhancements or optimizations for individual lines of code, ensuring concise, efficient, and maintainable expressions.</p>
+        <p><strong>How to use:</strong> Select any single line snippet and press the hint: <em>"AI: Enhance a single line of code"</em></p>
+        <img src="jeddict-ai/resource/7-AI%20Enhance%20a%20single%20line%20of%20code.gif" alt="Code Line Enhancement" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Learn about Class</h4>
+        <p>Provide insights and detailed explanations about a specific class, including its methods, properties, and usage within the project and continue chat to ask specific queries.</p>
+        <p><strong>How to use:</strong> Highlight the class name and press the hint: <em>"AI: Learn about Class"</em></p>
+        <img src="jeddict-ai/resource/8-AI%20Learn%20about%20Class%20and%20ASK%20Query.gif" alt="Learn about Class" class="feature-img" width="800" />
+    </div>
+
+    <div class="mb-4">
+        <h4>Ask Query about Class</h4>
+        <p>Ask specific questions about a class to receive detailed answers, helping to clarify usage, functionality, and best practices.</p>
+        <p><strong>How to use:</strong> Highlight the class name and press the hint: <em>"AI: Ask query about Class"</em></p>
+    </div>
+
+    <div class="mb-4">
+        <h4>Jeddict AI Settings Panel </h4>
+        <p>You can access the Jeddict AI settings panel from the application's main settings or configuration menu, typically found under <strong>Tools > Options > Editor > Jeddict AI Assistance</strong></p>
+        <img src="jeddict-ai/resource/Settings.png" alt="Settings" class="feature-img" width="600" />
+    </div>
+    
+    
+    <h3>Request a Feature or Report an Issue</h3>
+    <p>
+        We value your feedback! If you have suggestions for new features or encounter any issues while using the Jeddict AI Assistant, please let us know. You can request features or report problems by visiting our GitHub repository:
+    </p>
+    <p>
+        <a href="https://github.com/jeddict/jeddict/issues" class="btn btn-secondary">Report an Issue</a>
+    </p>
+
+
+</div>
+
+
