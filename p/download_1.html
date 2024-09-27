@@ -1,0 +1,217 @@
+<style>
+    .download {
+        text-transform: none !important;
+    }
+</style>
+<script>
+    var releaseData;
+    $(document).ready(function () {
+        $.getJSON("release.json", function (data) {
+            releaseData = data;
+            loadVersion(releaseData)
+            $("#NBM_DETAILS").find('option:eq(0)').prop('selected', true);
+            $("#NBM_DETAILS").trigger("change");
+        });
+    });
+
+    function getNBPluginInstance(version) {
+        for (var i in releaseData.NETBEANS) {
+            var plugin = releaseData.NETBEANS[i];
+            if (plugin.version === version) {
+                return plugin;
+            }
+        }
+        return null;
+    }
+
+    function loadVersion(data) {
+        for (var i in data.NETBEANS) {
+            var plugin = data.NETBEANS[i];
+            if (i == 0) {
+                updateButton(plugin);
+            }
+
+        if (plugin.nb_bundled_url) {
+                $("#NBM_DETAILS").append($("<option>")
+                        .text("v" + plugin.jeddict_version + " bundled with NetBeans v" + plugin.nb_version_short + " (Jakarta EE" + plugin.jakarta_ee + ")")
+                        .attr("version", plugin.version)
+                        .attr("nb_bundle", true));
+            }
+            $("#NBM_DETAILS").append($("<option>")
+            .text("v" + plugin.jeddict_version + " (NetBeans v" + plugin.nb_version + " - Jakarta EE" + plugin.jakarta_ee + ")")
+                                .attr("version", plugin.version));
+        }
+
+        $(".OS").each(function () {
+            var OS_Data = data[$(this).attr("id")];
+            if (OS_Data === undefined) {
+                $(this).hide();
+            } else {
+                var download = $(this).find(".download");
+                download.attr("href", OS_Data.url);
+                download.text("Download v" + OS_Data.jeddict_version);
+            }
+        });
+
+        if ($(".OS:visible").size() == 0) {
+            $("#OS_DOWNLOAD .container .row div:nth-child(1)").hide();
+        }
+
+        $("#NBM_DETAILS").on("change", function () {
+            var option = $(this).find(":selected");
+            var plugin = getNBPluginInstance(option.attr("version"));
+            var url;
+            if (option.attr("nb_bundle")) {
+                url = plugin.nb_bundled_url;
+            } else {
+                url = plugin.url;
+            }
+            updateButton(plugin, url);
+        })
+    }
+
+    function updateButton(plugin, url) {
+        $("#REQUIREMENT_BLOCK").show();
+        var reqBody = $("#REQUIREMENT").find("tbody");
+        reqBody.html("");
+        reqBody.append("<tr><td>Java " + plugin.java + "</td></tr>");
+        reqBody.append("<tr><td>Jakarta EE " + plugin.jakarta_ee + "</td></tr>");
+        reqBody.append("<tr><td>NetBeans IDE " + plugin.nb_version + "</td></tr>");
+        reqBody.append("<tr><td>Maven v3.5.0</td></tr>");
+
+        var nbmDownload = $("#NBM_DOWNLOAD");
+        var updateCenter = $("#NBM_UC");
+        var or = $("#OR");
+        var ii = $("#II");
+        nbmDownload.attr("href", url);
+        nbmDownload.text("Download v" + plugin.jeddict_version);
+        if (plugin.uc !== undefined) {
+            updateCenter.show();
+            updateCenter.text("Update Center v" + plugin.nb_version_short);
+            or.show();
+            ii.show();
+        } else {
+            updateCenter.hide();
+            or.hide();
+            ii.hide();
+        }
+    }
+
+    function copyToClipboard() {
+        var option = $('#NBM_DETAILS option:selected')
+        var plugin = getNBPluginInstance(option.attr("version"));
+        if (plugin.uc === undefined) {
+            alert("Update Center not available for NetBeans IDE " + plugin.nb_version)
+        } else {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(plugin.uc).select();
+            document.execCommand("copy");
+            $temp.remove();
+            alert("Update Center URL [ " + plugin.uc + " ] copied")
+        }
+    }
+</script>
+
+<section class="padding wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms" style="padding:10px 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <img src="p/images/download/apache-netbeans.svg" width=80 height=80>
+                <h2>Apache NetBeans IDE Plugin</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
+                <h3>STEP : 1</h3>
+                <label for="NBM_DETAILS">Select type & version :</label>
+                <select id="NBM_DETAILS" class="btn btn-link download" style="width: 100%;border-color:#0d6fb1"></select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
+                <h3>STEP : 2</h3>
+                <a id="NBM_DOWNLOAD" href="#" class="btn btn-buynow download">Download</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 text-center pull-right">
+                <a href="page.html?l=p/installation" class="btn btn-link" target="_blank">Installation Instructions</a>
+            </div>
+        </div>
+        <div id="OR" class="row">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 price-one col-centered">
+                <div class="col-sm-12 text-center" style="padding-bottom: 15px;">
+                    OR
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered">
+                <a id="NBM_UC" href="#" onclick="copyToClipboard()" class="btn btn-buynow download">Update Center</a>
+            </div>
+        </div>
+        <div id="II" class="row">
+            <div class="col-sm-8 text-center pull-right">
+                <a href="page.html?l=p/ucinstallation" class="btn btn-link" target="_blank">Installation Instructions</a>
+            </div>
+        </div>
+
+        <div class="row" id="REQUIREMENT_BLOCK">
+            <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6 price-one col-centered table-responsive">
+                <h3 class="margin-bottom">Minimum Requirements</h3>
+                <p style="font-size: 11px;">Before installing Jeddict, ensure that your environment meets the following minimum requirements:</p>
+                <table id="REQUIREMENT" class="table table-hover table-striped">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#about-company-->
+
+<section id="OS_DOWNLOAD">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center wow fadeIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                <h3>Get Jeddict for your OS</h3>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div id="WINDOWS" class="OS single-service price-one">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="p/images/download/windows.png" alt="">
+                    </div>
+                    <h2>WINDOWS</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <div id="LINUX" class="OS single-service price-three">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
+                        <img src="p/images/download/linux.png" alt="">
+                    </div>
+                    <h2>LINUX</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
+                <div id="OSX" class="OS single-service price-one">
+                    <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
+                        <img src="p/images/download/osx.png" alt="">
+                    </div>
+                    <h2>OSX</h2>
+                    <p><a href="#" class="btn btn-buynow download">Download</a></p>
+                </div>
+            </div>
+
+            <div class="col-sm-12 text-center wow fadeIn" data-wow-duration="1000ms" data-wow-delay="1200ms">
+                <a href="https://github.com/jeddict/jeddict/releases" class="btn btn-link download">Click here for older version</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--/#services-->
+<script>removeSidebar();</script>
+
+<script>paginate("page.html?l=tutorial/Requirement", "page.html?l=tutorial/QuickStart");</script>
