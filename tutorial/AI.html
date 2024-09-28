@@ -25,7 +25,7 @@
         <li><strong>"OPENAI_MODEL"</strong> environment variable to set the OpenAI model.</li>
         <li>Alternatively, <strong>"openai.model"</strong> system property also allows setting the OpenAI model.</li>
     </ul>
-    <p>If the OpenAI API key is not explicitly configured via environment variables or system properties, the plugin will first check the user preferences for previously stored values. If the API key is still not found, the plugin will prompt the user to enter the API key manually through an input dialog. The entered API key will be saved in preferences for future use, ensuring a seamless experience during subsequent sessions.</p>
+    <p>If the OpenAI API key is not explicitly configured via environment variables or system properties, the plugin will first check the user preferences for previously stored values. If the API key is still not found, the plugin will <b>prompt the user to enter the API key manually through an input dialog</b>. The entered API key will be saved in preferences for future use, ensuring a seamless experience during subsequent sessions.</p>
     <p>By default, if no specific model is configured via environment variables or system properties, the plugin will use the <strong>gpt-4o-mini</strong> model as a fallback, ensuring that the functionality remains available even without explicit user configuration.</p>
 
 
@@ -103,12 +103,28 @@
         <p><strong>How to use:</strong> Highlight the class name and press the hint: <em>"AI: Ask query about Class"</em></p>
     </div>
 
+    <br/><br/><br/>
     <div class="mb-4">
-        <h4>Jeddict AI Settings Panel </h4>
+        <h2>Jeddict AI Settings Panel </h2>
         <p>You can access the Jeddict AI settings panel from the application's main settings or configuration menu, typically found under <strong>Tools > Options > Editor > Jeddict AI Assistance</strong></p>
         <img src="jeddict-ai/resource/Settings.png" alt="Settings" class="feature-img" width="600" />
     </div>
-    
+    <div class="mb-4">
+        <h4>Class Context Scope</h4>
+        <p>In the settings, you can configure the Class Context Scope to define the range of classes that the AI Assistant will analyze. The options include:</p>
+        <ul>
+            <li><strong>Current Class</strong>: Focuses on the current class being analyzed.</li>
+            <li><strong>Referenced Classes</strong>: Includes all classes that are referenced from the current class.</li>
+            <li><strong>Current Package</strong>: Examines all classes within the current package, as well as those referenced by the current class.</li>
+            <li><strong>Entire Project</strong>: Covers all classes in the entire project.</li>
+        </ul>
+    </div>
+    <div class="mb-4">
+        <h4>Disabling the AI Assistance</h4>
+        <p>If you wish to disable the Jeddict AI Assistant, go to <strong>Tools > Options > Editor > AI Assistance</strong> and uncheck the <strong>Activate AI Assistance</strong> checkbox.</p>
+        <p>Alternatively, if you want to bypass AI assistance while it is activated, you can use <code><strong>CTRL+ALT+SPACE</strong></code> instead of <code><strong>CTRL+SPACE</strong></code> for inline suggestions.</p>
+    </div>
+
     
     <h3>Request a Feature or Report an Issue</h3>
     <p>

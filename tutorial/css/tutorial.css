@@ -371,8 +371,10 @@ input.span-24,textarea.span-24 {
 }
 
 body #LOAD {
-overflow-x: hidden;
-    font-weight: normal;margin: 6px;}
+    font-weight: normal;
+/*overflow-x: hidden;
+    margin: 6px;*/
+}
 .post-body.entry-content {
 float: none;
 }
