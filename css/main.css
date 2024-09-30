@@ -11,6 +11,45 @@ body {
     color: #000;
 }
 
+
+.slide-text {
+    top: 10px;
+    width: 48%;
+}
+
+#home-slider {
+    height: auto;
+}
+
+.btn-download{
+    font-size: 16px; 
+    font-weight: bold;
+}
+
+/* Media query for mobile view */
+@media only screen and (max-width: 768px) {
+    #home-slider {
+        height: 500px;
+    }
+
+    .slide-text {
+        width: 100%;
+    }
+
+    .btn-download{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    #LOGO {
+        width: 75%;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
 html {
     height: 100%;
 }
