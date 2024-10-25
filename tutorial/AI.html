@@ -11,22 +11,11 @@
         <br>
         Click the link below to access the download page:
     </p><p>
-    <em>Note:</em> This plugin is not included with the bundled Jeddict plugin nor does it depend on it. You will need to install it independently to access its features.
-</p><p>
+        <em>Note:</em> This plugin is not included with the bundled Jeddict plugin nor does it depend on it. You will need to install it independently to access its features.
+    </p><p>
         <a href="https://plugins.netbeans.apache.org/catalogue/?id=103" class="btn btn-primary">Download Now</a>
     </p>
 
-    <h3>Configuration</h3>
-    <p>The plugin supports configurable AI models and keys, allowing developers to seamlessly integrate their OpenAI accounts. The plugin searches for the API key and model in both environment variables and system properties, ensuring flexibility in how the integration is managed.</p>
-    <p>Here are the supported configurations:</p>
-    <ul>
-        <li><strong>"OPENAI_API_KEY"</strong> environment variable to set the OpenAI API key.</li>
-        <li>Alternatively, <strong>"openai.api.key"</strong> system property to set the OpenAI API key.</li>
-        <li><strong>"OPENAI_MODEL"</strong> environment variable to set the OpenAI model.</li>
-        <li>Alternatively, <strong>"openai.model"</strong> system property also allows setting the OpenAI model.</li>
-    </ul>
-    <p>If the OpenAI API key is not explicitly configured via environment variables or system properties, the plugin will first check the user preferences for previously stored values. If the API key is still not found, the plugin will <b>prompt the user to enter the API key manually through an input dialog</b>. The entered API key will be saved in preferences for future use, ensuring a seamless experience during subsequent sessions.</p>
-    <p>By default, if no specific model is configured via environment variables or system properties, the plugin will use the <strong>gpt-4o-mini</strong> model as a fallback, ensuring that the functionality remains available even without explicit user configuration.</p>
 
 
 
@@ -51,14 +40,14 @@
     <div class="mb-4">
         <h4>Javadoc Creation</h4>
         <p>Automatically generate Javadoc for any method, class, or interface using AI assistance, ensuring comprehensive and well-structured documentation based on the code context.</p>
-        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Create Javadoc for {0} using assistance"</em></p>
+        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Create Javadoc using assistance"</em></p>
         <img src="jeddict-ai/resource/2-AI-powered%20Javadoc%20Creation.gif" alt="Javadoc Creation" class="feature-img" width="800" />
     </div>
 
     <div class="mb-4">
         <h4>Javadoc Improvement</h4>
         <p>Improve and enhance existing Javadoc comments by leveraging AI suggestions, ensuring clarity, accuracy, and best practices.</p>
-        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Enhance existing Javadoc for {0}"</em></p>
+        <p><strong>How to use:</strong> Highlight any class and press the hint: <em>"AI: Enhance existing Javadoc"</em></p>
         <img src="jeddict-ai/resource/3-AI-enhanced%20Javadoc%20Improvement.gif" alt="Javadoc Improvement" class="feature-img" width="800" />
     </div>
 
@@ -97,35 +86,98 @@
         <img src="jeddict-ai/resource/8-AI%20Learn%20about%20Class%20and%20ASK%20Query.gif" alt="Learn about Class" class="feature-img" width="800" />
     </div>
 
-    <div class="mb-4">
-        <h4>Ask Query about Class</h4>
-        <p>Ask specific questions about a class to receive detailed answers, helping to clarify usage, functionality, and best practices.</p>
-        <p><strong>How to use:</strong> Highlight the class name and press the hint: <em>"AI: Ask query about Class"</em></p>
-    </div>
-
     <br/><br/><br/>
     <div class="mb-4">
-        <h2>Jeddict AI Settings Panel </h2>
-        <p>You can access the Jeddict AI settings panel from the application's main settings or configuration menu, typically found under <strong>Tools > Options > Editor > Jeddict AI Assistance</strong></p>
-        <img src="jeddict-ai/resource/Settings.png" alt="Settings" class="feature-img" width="600" />
+        <h1>Jeddict AI Settings Panel </h1>
+        <p>You can access the Jeddict AI settings panel from the application's main settings or configuration menu, typically found under <strong>Tools > Options > Jeddict AI Assistant</strong></p>
     </div>
+
+    <br/><br/>
+    <h2>Providers and Global settings</h2>
+    <img src="jeddict-ai/resource/Settings.png" alt="Settings" class="feature-img" width="600" />
+
     <div class="mb-4">
-        <h4>Class Context Scope</h4>
-        <p>In the settings, you can configure the Class Context Scope to define the range of classes that the AI Assistant will analyze. The options include:</p>
+        <h4>Providers</h4>
+        <p>The plugin supports configurable AI models and keys, allowing developers to seamlessly integrate their OpenAI accounts and other providers. Ensure you have the required API key and model based on the selected provider for optimal integration.</p>
+        <p>Supported providers include:</p>
         <ul>
-            <li><strong>Current Class</strong>: Focuses on the current class being analyzed.</li>
-            <li><strong>Referenced Classes</strong>: Includes all classes that are referenced from the current class.</li>
-            <li><strong>Current Package</strong>: Examines all classes within the current package, as well as those referenced by the current class.</li>
-            <li><strong>Entire Project</strong>: Covers all classes in the entire project.</li>
+            <li><strong>OPEN_AI</strong>: <a href="https://platform.openai.com/docs/models">Models Documentation</a>, <a href="https://platform.openai.com/api-keys">API Keys</a></li>
+            <li><strong>CUSTOM_OPEN_AI</strong>: OpenAI configurations with a custom provider URI.</li>
+            <li><strong>GOOGLE</strong>: <a href="https://ai.google.dev/gemini-api/docs/models/gemini">Models Documentation</a>, <a href="https://console.cloud.google.com/apis/credentials">API Keys</a></li>
+            <li><strong>DEEPINFRA</strong>: <a href="https://deepinfra.com/models">Models Documentation</a>, <a href="https://deepinfra.com/dash/api_keys">API Keys</a></li>
+            <li><strong>DEEPSEEK</strong>: <a href="https://api-docs.deepseek.com/quick_start/pricing">API Documentation</a>, <a href="https://platform.deepseek.com/api_keys">API Keys</a></li>
+            <li><strong>GROQ</strong>: <a href="https://console.groq.com/docs/models">Models Documentation</a>, <a href="https://console.groq.com/keys">API Keys</a></li>
+            <li><strong>MISTRAL</strong>: <a href="https://docs.mistral.ai/getting-started/models/models_overview/">Models Documentation</a>, <a href="https://console.mistral.ai/api-keys/">API Keys</a></li>
+            <li><strong>ANTHROPIC</strong>: <a href="https://docs.anthropic.com/en/docs/about-claude/models">Models Documentation</a>, <a href="https://console.anthropic.com/settings/keys">API Keys</a></li>
+            <li><strong>OLLAMA</strong>: <a href="https://ollama.com/models">Models Documentation</a></li>
+            <li><strong>LM_STUDIO</strong>: <a href="https://lmstudio.ai/models">Models Documentation</a></li>
+            <li><strong>GPT4ALL</strong>: <a href="https://docs.gpt4all.io/gpt4all_desktop/models.html">Models Documentation</a></li>
         </ul>
     </div>
     <div class="mb-4">
-        <h4>Disabling the AI Assistance</h4>
-        <p>If you wish to disable the Jeddict AI Assistant, go to <strong>Tools > Options > Editor > AI Assistance</strong> and uncheck the <strong>Activate AI Assistance</strong> checkbox.</p>
-        <p>Alternatively, if you want to bypass AI assistance while it is activated, you can use <code><strong>CTRL+ALT+SPACE</strong></code> instead of <code><strong>CTRL+SPACE</strong></code> for inline suggestions.</p>
+        <h4>Disabling AI Assistance</h4>
+        <p>If you wish to disable the Jeddict AI Assistant, navigate to <strong>Tools > Options > Editor > AI Assistance</strong> and uncheck the <strong>Activate AI Assistance</strong> checkbox.</p>
+        <p>To bypass AI assistance while it remains activated, use <code><strong>CTRL+ALT+SPACE</strong></code> instead of <code><strong>CTRL+SPACE</strong></code> for inline suggestions.</p>
     </div>
 
-    
+    <br/><br/>
+    <h2>AI Chat Settings</h2>
+    <img src="jeddict-ai/resource/AIChatSettings.png" alt="AI Chat Settings" class="feature-img" width="600" />
+
+    <div class="mb-4">
+        <h4>File Extensions to Include in Context</h4>
+        <p>The <strong>File Extensions to Include in Context</strong> setting allows you to specify which file types the AI assistant should consider when analyzing your codebase. This helps provide more accurate suggestions based on the specified file types.</p>
+        <p>You can enter multiple file extensions separated by commas. For example:</p>
+        <pre>java, php, jsf, kt, groovy, scala, xml, json, yaml, yml, properties, txt, md, js, ts, css, scss, html, xhtml, sh, bat, sql, jsp, rb, cs, go, swift, rs, c, cpp, h, py</pre>
+    </div>
+
+    <div class="mb-4">
+        <h4>Directories and Files to Exclude from Context</h4>
+        <p>The <strong>Directories and Files to Exclude from Context</strong> setting allows you to specify specific directories or files that the AI assistant should ignore during its analysis. This is particularly useful to enhance performance and accuracy by concentrating on the most relevant sections of your codebase.</p>
+        <p>This setting is applicable at the Project Level within the AI Chat. To optimize results, please list the directories and files you wish to exclude, ensuring that the AI assistant focuses on the most pertinent data for your project.</p>
+    </div>
+
+    <br/><br/>
+    <h2>Inline Completion Settings</h2>
+    <img src="jeddict-ai/resource/InlineCompletionSettings.png" alt="Inline Completion Settings" class="feature-img" width="600" />
+
+    <div class="mb-4">
+        <h4>Context Scope (Default)</h4>
+        <p>In the settings, configure the Context Scope to define the range of classes the AI Assistant will analyze. Options include:</p>
+        <ul>
+            <li><strong>Current Class</strong>: Focus on the current class being analyzed.</li>
+            <li><strong>Referenced Classes</strong>: Include all classes referenced from the current class.</li>
+            <li><strong>Current Package</strong>: Examine all classes within the current package, as well as those referenced by the current class.</li>
+            <li><strong>Entire Project</strong>: Cover all classes in the entire project.</li>
+        </ul>
+    </div>
+
+    <div class="mb-4">
+        <h4>Context Scope for Variable Name, Method Name, String Literals</h4>
+        <p>Configure the Context Scope specifically for naming variables, methods, or generating string/text blocks, as these typically do not require a large context scope. Options include:</p>
+        <ul>
+            <li><strong>Current Class</strong>: Focus on the current class being analyzed.</li>
+            <li><strong>Referenced Classes</strong>: Include all classes referenced from the current class.</li>
+            <li><strong>Current Package</strong>: Examine all classes within the current package, as well as those referenced by the current class.</li>
+            <li><strong>Entire Project</strong>: Cover all classes in the entire project.</li>
+        </ul>
+    </div>
+
+    <div class="mb-4">
+        <h4>Show Snippet with Description</h4>
+        <p>Enable the option to show a description alongside inline code snippets for improved understanding of AI-generated suggestions. This helps explain the reasoning behind suggested code.</p>
+        <img src="jeddict-ai/resource/ShowSnippetWithDescription.png" alt="Show Snippet with Description" class="feature-img" width="1000" />
+    </div>
+
+    <br/><br/>
+    <h2>Hints</h2>
+    <img src="jeddict-ai/resource/HintsSettings.png" alt="Hints Settings" class="feature-img" width="600" />
+
+    <div class="mb-4">
+        <h4>Generate Test Case Prompt</h4>
+        <p>Type the prompt for generating test cases based on your class context or project. For example: <code>Generate TestNG tests with Arquillian</code></p>
+    </div>
+
     <h3>Request a Feature or Report an Issue</h3>
     <p>
         We value your feedback! If you have suggestions for new features or encounter any issues while using the Jeddict AI Assistant, please let us know. You can request features or report problems by visiting our GitHub repository:
@@ -133,8 +185,6 @@
     <p>
         <a href="https://github.com/jeddict/jeddict/issues" class="btn btn-secondary">Report an Issue</a>
     </p>
-
-
 </div>
 
 
