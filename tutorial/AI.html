@@ -4,7 +4,7 @@
     <p>
         The <strong>Jeddict AI Assistant</strong>  for Apache NetBeans is a powerful and intuitive plugin designed to integrate AI-driven functionality into the Apache NetBeans IDE, offering specialized support for developers working with <strong>Jakarta EE</strong>. This plugin leverages OpenAI’s capabilities to provide real-time suggestions, code enhancements, documentation insights, and best practices, significantly reducing development time and improving code quality. It is particularly well-suited for developers engaged in complex <strong>enterprise applications</strong> built on Jakarta EE technologies, offering tailored recommendations based on the context of the code and project structure.
     </p>
-    
+
     <h3>Key Components of Jeddict AI Assistant</h3>
     <p>The Jeddict AI Assistant primarily consists of three broad components:</p>
     <ul>
@@ -91,7 +91,7 @@
         <p><strong>How to use:</strong> Highlight the class name and press the hint: <em>"AI: Learn about Class"</em></p>
         <img src="jeddict-ai/resource/8-AI%20Learn%20about%20Class%20and%20ASK%20Query.gif" alt="Learn about Class" class="feature-img" width="800" />
     </div>
-    
+
     <div class="mb-4">
         <h4>Generate Test Cases</h4>
         <p>Automatically generate test cases for your classes or methods based on contextual hints provided by the AI Assistant. This feature streamlines the process of writing tests, ensuring that your code is thoroughly tested and adheres to best practices.</p>
@@ -99,6 +99,52 @@
         <img src="jeddict-ai/resource/GenerateTest.png" alt="Generate Test Cases from Hints" class="feature-img" width="800" />
     </div>
 
+    <div class="mb-4">
+        <h4>Project Context-Aware AI Chat</h4>
+        <p>Engage in conversations with the AI that take into account the entire project context, allowing for comprehensive insights and support tailored to your project's structure and components.</p>
+        <p><strong>How to use:</strong> Right-click on the project and select "AI Assistant" to initiate the AI chat while the project is open, enabling you to receive context-aware responses.</p>
+         <img src="jeddict-ai/resource/AIChatProject.png" alt="AI Assistant Project" class="feature-img" width="400" />
+   </div>
+
+    <div class="mb-4">
+        <h4>Java Packages & Classes Context-Aware AI Chat</h4>
+        <p>Interact with the AI regarding specific Java packages or classes, gaining insights and recommendations that reflect the context of the particular package or class you are focused on.</p>
+        <p><strong>How to use:</strong> Select the desired packages or classes, right-click, and choose "AI Assistant" to start the chat and receive tailored responses.</p>
+        <img src="jeddict-ai/resource/AIChatPackage.png" alt="AI Assistant Package" class="feature-img" width="400" />
+   </div>
+    
+    <div class="feature-section mb-4">
+        <h4>Tailored AI Chat for Individual Java Classes from Editor</h4>
+        <p>Engage in targeted discussions with the AI Assistant on a single Java class, receiving detailed analysis and improvement suggestions tailored specifically to that class.</p>
+        <p><strong>Usage Instructions:</strong> Open the desired Java class in the Editor, right-click, and select "AI Assistant" to initiate a focused, context-specific conversation.</p>
+
+        <h5>How the AI Assistant Adapts Based on Your Interaction:</h5>
+        <ul>
+            <li>
+                <strong>When a specific code snippet is selected:</strong> The AI Assistant analyzes only the highlighted code, focusing strictly on the selected portion for suggestions and analysis without broader class context.
+                <br/><img src="jeddict-ai/resource/AIChatEditorSelected.png" alt="AI Assistant Editor Selected" class="feature-img" width="600" />
+            </li>
+            <li>
+                <strong>When the entire class is opened in the Editor:</strong> The AI Assistant accesses the full class context. This enables more comprehensive responses and suggestions informed by the complete class design.
+                <br/><img src="jeddict-ai/resource/AIChatEditor.png" alt="AI Assistant Editor" class="feature-img" width="600" />
+            </li>
+        </ul>
+        <p>In summary, selecting a snippet narrows the analysis to just that section, while opening the full class provides broader insights for richer, context-aware interactions.</p>
+    </div>
+
+    <div class="mb-4">
+        <h4>Web Development Context-Aware AI Chat (HTML, CSS, JS, JSF)</h4>
+        <p>Communicate with the AI regarding web application components such as HTML, CSS, JavaScript, and JSF, enabling context-aware support and recommendations specific to web development.</p>
+        <p><strong>How to use:</strong> Select the webapp dir or any child directory, right-click, and choose "AI Assistant" to start the chat while working on web files to receive relevant insights.</p>
+        <img src="jeddict-ai/resource/AIChatWebApp.png" alt="AI Assistant WebApp" class="feature-img" width="400" />
+    </div>
+
+    <div class="mb-4">
+        <h4>General AI Chat (No Context Required)</h4>
+        <p>Utilize the AI chat feature without the context of your code or project, allowing for general inquiries or discussions that are not tied to specific code elements, making it cost-effective and faster.</p>
+        <p><strong>How to use:</strong> Click the Jeddict button from the top toolbar.</p>
+        <img src="jeddict-ai/resource/AIChatToolBar.png" alt="AI Assistant ToolBar" class="feature-img" width="1000" />
+    </div>
 
     <div class="mb-4">
         <h4>SQL AI Chat Assistant</h4>
@@ -110,7 +156,7 @@
         <h4>SQL Inline Completion with AI</h4>
         <p>Your coding experience is further enhanced with <strong>SQL inline completion with AI</strong>, which is available in the Execute Command Window. To open this functionality, go to <strong>Services > Databases > Register DB in Apache NetBeans</strong>, right-click on your database connection, and select <strong>Execute Command...</strong>. A new window will open where you can compose SQL queries. Here, AI-powered inline completion suggestions will assist you as you write, and you can execute the query in the same window to instantly view the results, streamlining your workflow and reducing the time spent on query formulation.</p>
         <img src="jeddict-ai/resource/SQLAIInlineCompletion.png" alt="SQL AI Inline Completion" class="feature-img" width="400" />
-        
+
     </div>
 
 
@@ -213,7 +259,7 @@
     <p>
         <a href="https://github.com/jeddict/jeddict/issues" class="btn btn-secondary">Report an Issue</a>
     </p>
-    
+
     <blockquote>
         <p>“You possess the ability to harness the true power of AI by intelligently defining the context, crafting precise prompts, and utilizing filtered settings. Together, we’re excited to push the boundaries of innovation, exploring and introducing more cutting-edge features in the ever-evolving landscape of technology!”</p>
         <footer>- Jeddict Team</footer>
