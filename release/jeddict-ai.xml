@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jeddictReleases>
     <release>
-        <version>1.8</version>
+        <version>1.9</version>
         <compatibleNetBeansVersion>23</compatibleNetBeansVersion>
-        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/567/jeddict-ai-1.8.nbm</nbmFile>
+        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/568/jeddict-ai-1.9.nbm</nbmFile>
+        <releaseNotes>Features: Customizable prompt rules, Streaming support in chat</releaseNotes>
     </release>
 </jeddictReleases>
