@@ -149,7 +149,8 @@
     <div class="mb-4">
         <h4>AI Commit Message</h4>
         <p>Generate meaningful commit messages based on the differences detected in your Git repository. This feature analyzes the `git diff` and `git status` to create concise and informative commit messages, streamlining your version control workflow.</p>
-        <p><strong>How to use:</strong> Right-click on the project and select "AI Commit Message" to generate a commit message automatically.</p>
+        <p><strong>How to use:</strong> Right-click on the project and select "AI Commit Message" to generate a commit message automatically. This option will only be visible when changes have been detected by Git.</p>
+        <img src="jeddict-ai/resource/AICommitMessage.png" alt="ChatWindow" class="feature-img" width="300" />
     </div>
 
     <div class="mb-4">
@@ -162,9 +163,23 @@
         <h4>SQL Inline Completion with AI</h4>
         <p>Your coding experience is further enhanced with <strong>SQL inline completion with AI</strong>, which is available in the Execute Command Window. To open this functionality, go to <strong>Services > Databases > Register DB in Apache NetBeans</strong>, right-click on your database connection, and select <strong>Execute Command...</strong>. A new window will open where you can compose SQL queries. Here, AI-powered inline completion suggestions will assist you as you write, and you can execute the query in the same window to instantly view the results, streamlining your workflow and reducing the time spent on query formulation.</p>
         <img src="jeddict-ai/resource/SQLAIInlineCompletion.png" alt="SQL AI Inline Completion" class="feature-img" width="400" />
-
     </div>
 
+    <div class="mb-4">
+        <h4>Chat Window Feature and Settings</h4>
+        <p>The chat window provides options to interact with the AI, incorporating files relevant to the current chat context. It includes the following features:</p>
+        <ul>
+            <li><strong>Custom Common Rules:</strong> Users can define specific rules that will be consistently applied during chat interactions, enhancing the personalization of the experience.</li>
+            <li><strong>View Files in Chat Context:</strong> This option allows users to see which files are included in the current chat context, ensuring clarity and relevance in the conversation.</li>
+            <li><strong>Copy to Clipboard:</strong> Users can easily copy all generated content to the clipboard for further use, streamlining the workflow.</li>
+            <li><strong>Save to File System:</strong> The generated source can be saved directly to the file system, allowing for easy access and organization of outputs.</li>
+            <li><strong>Update Source in Editor:</strong> This experimental feature enables users to update the source code directly within the editor, making the AI Assistant more integrated and context-aware. We are actively working to enhance this feature to make it smarter and more intelligent, ensuring that it better understands the context of the ongoing conversation and user needs. This will be a game-changing feature in the future for fueling developer productivity.</li>
+            <li><strong>View Chat History:</strong> Users can navigate through previous chat interactions, providing a reference for past inquiries and responses.</li>
+            <li><strong>Reset Chat:</strong> This option allows users to clear all chat history, starting a fresh conversation without prior context.</li>
+            <li><strong>Last Chat History Sent:</strong> For every question asked, only the most recent chat history is sent to the AI model, optimizing performance and relevance of responses.</li>
+        </ul>
+        <img src="jeddict-ai/resource/ChatWindow.png" alt="ChatWindow" class="feature-img" width="1000" />
+    </div>
 
     <br/><br/><br/><br/>
     <div class="mb-4">
@@ -201,7 +216,7 @@
     </div>
 
     <br/><br/>
-    <h2>AI Chat Settings</h2>
+    <h2>Chat Settings</h2>
     <img src="jeddict-ai/resource/AIChatSettings.png" alt="AI Chat Settings" class="feature-img" width="600" />
 
     <div class="mb-4">
@@ -215,6 +230,17 @@
         <h4>Directories and Files to Exclude from Context</h4>
         <p>The <strong>Directories and Files to Exclude from Context</strong> setting allows you to specify specific directories or files that the AI assistant should ignore during its analysis. This is particularly useful to enhance performance and accuracy by concentrating on the most relevant sections of your codebase.</p>
         <p>This setting is applicable at the Project Level within the AI Chat. To optimize results, please list the directories and files you wish to exclude, ensuring that the AI assistant focuses on the most pertinent data for your project.</p>
+    </div>
+    
+
+    <div class="mb-4">
+        <h4>Streaming Mode Activation</h4>
+        <p>The <strong>Enable Stream</strong> option significantly enhances the responsiveness of the AI Assistant, creating a more fluid and engaging interaction experience. By activating this feature, users can enjoy a chat environment that feels dynamic and interactive, allowing for quicker responses and a smoother workflow within the chat window. This is particularly beneficial during complex discussions where prompt feedback is essential for maintaining the momentum of the conversation.</p>
+    </div>
+
+    <div class="mb-4">
+        <h4>Excluding Javadoc Comments</h4>
+        <p>The <strong>Exclude Javadoc Comments in Context</strong> feature empowers the AI Assistant to disregard Javadoc comments during its analysis of the code. This capability helps to optimize token usage, thereby enhancing both performance and accuracy. By avoiding unnecessary input from Javadoc comments, the AI Assistant can focus more effectively on the substantive elements of the code, leading to more relevant and precise suggestions while maintaining clarity and efficiency in the recommendations provided.</p>
     </div>
 
     <br/><br/>
