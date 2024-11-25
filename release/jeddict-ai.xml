@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jeddictReleases>
     <release>
-        <version>1.9</version>
+        <version>2.0</version>
         <compatibleNetBeansVersion>23</compatibleNetBeansVersion>
-        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/568/jeddict-ai-1.9.nbm</nbmFile>
-        <releaseNotes>Features: Customizable prompt rules, Streaming support in chat</releaseNotes>
+        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/575/jeddict-ai-2.0.nbm</nbmFile>
+        <releaseNotes>Features: Diff view, Streaming support in Google Gemini, Project Metadata JDK/JakartaEE version</releaseNotes>
     </release>
 </jeddictReleases>
