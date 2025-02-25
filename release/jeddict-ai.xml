@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jeddictReleases>
     <release>
-        <version>2.3</version>
+        <version>2.4</version>
         <compatibleNetBeansVersion>25</compatibleNetBeansVersion>
-        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/596/jeddict-ai-2.3.nbm</nbmFile>
-        <releaseNotes>Features: Provider Setings, Inline Hint</releaseNotes>
+        <nbmFile>https://plugins.netbeans.apache.org/catalogue/download/598/jeddict-ai-2.4.nbm</nbmFile>
+        <releaseNotes>Features: Dark Theme, Provider Setings, Inline Hint</releaseNotes>
     </release>
 </jeddictReleases>
