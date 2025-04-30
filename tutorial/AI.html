@@ -33,6 +33,7 @@
         <p>Boost productivity with AI-powered code completion, offering context-aware suggestions for completing code, renaming variables and methods, and improving log messages or comments.</p>
         <p><strong>How to use:</strong> Press Ctrl+Space or Ctrl+Alt+Space to see a list of relevant suggestions.</p>
         <img src="jeddict-ai/resource/0-SmartSuggestions.gif" alt="Smart Suggestions" class="feature-img" width="1200" />
+        <em>Note: The Ctrl+Space or Ctrl+Alt+Space shortcuts are switchable and configurable via <strong>Tools &gt; Options &gt; Jeddict AI Assistant &gt; Inline Completion</strong> tab.</em></p>
     </div>
 
     <div class="mb-4">
@@ -49,6 +50,25 @@
         </ul>
         This functionality enhances the coding experience by offering contextual recommendations that can improve code quality and efficiency without requiring you to navigate away from your current task.
         <img src="jeddict-ai/resource/0-InlineHints.gif" alt="Inline Hint" class="feature-img" width="800" />
+    </div>
+    
+    <div class="mb-4">
+        <h4>Providing Context to Inline Hint</h4>
+        <p>By default, the Inline Hint feature uses the existing code around the cursor as context to generate the next possible lines. 
+            However, you can also provide custom input to guide the AI more effectively:
+        </p>
+        <ul>
+            <li>
+                <strong>Use comments as hints:</strong> Write a comment in your source code describing what you want, then press Enter. The comment along with the current code will be used as context.
+                <img src="jeddict-ai/resource/InlineComment.gif" alt="Inline Hint via Comment" class="feature-img" width="800" />
+            </li>
+            <li>
+                <strong>Use saved prompts:</strong> You can define longer prompts in <em>Settings</em> and reuse them in the editor by typing <code>/${prompt-id}</code> and pressing Enter. The full saved prompt will be sent to the AI.
+                <img src="jeddict-ai/resource/InlinePrompt.gif" alt="Inline Hint via Prompt" class="feature-img" width="800" />
+            </li>
+            <li><strong>Extend saved prompts on the fly:</strong> Add more info inline using <code>/${prompt-id} your additional context</code>. The AI will process both the saved prompt and your added text.</li>
+        </ul>
+        These methods give you fine-grained control over the AI’s suggestions, helping tailor them to your current task more accurately.
     </div>
     
     <div class="mb-4">
@@ -160,6 +180,41 @@
         <p><strong>How to use:</strong> Click the Jeddict button from the top toolbar.</p>
         <img src="jeddict-ai/resource/AIChatToolBar.png" alt="AI Assistant ToolBar" class="feature-img" width="1000" />
     </div>
+
+    <div class="mb-4">
+        <h4>Chat Window Feature and Settings</h4>
+        <p>The chat window provides options to interact with the AI, incorporating files relevant to the current chat context. It includes the following features:</p>
+        <ul>
+            <li><strong>Custom Common Rules:</strong> Users can define specific rules that will be consistently applied during chat interactions, enhancing the personalization of the experience.</li>
+            <li><strong>Drag-and-Drop Files and Packages Support:</strong> Users can drag and drop files or java packages from their operating system or directly from the NetBeans project explorer into the chat input pane. These files are automatically added to the current chat context and included in the conversation, making it easy to bring in relevant code or documentation.</li>
+            <li><strong>View Files in Chat Context:</strong> This option allows users to see which files are included in the current chat context, ensuring clarity and relevance in the conversation.</li>
+            <li><strong>Copy to Clipboard:</strong> Users can easily copy all generated content to the clipboard for further use, streamlining the workflow.</li>
+            <li><strong>Save to File System:</strong> The generated source can be saved directly to the file system, allowing for easy access and organization of outputs.</li>
+            <li><strong>Update Source in Editor:</strong> This experimental feature enables users to update the source code directly within the editor, making the AI Assistant more integrated and context-aware. We are actively working to enhance this feature to make it smarter and more intelligent, ensuring that it better understands the context of the ongoing conversation and user needs. This will be a game-changing feature in the future for fueling developer productivity.</li>
+            <li><strong>View Chat History:</strong> Users can navigate through previous chat interactions, providing a reference for past inquiries and responses.</li>
+            <li><strong>Reset Chat:</strong> This option allows users to clear all chat history, starting a fresh conversation without prior context.</li>
+            <li><strong>Last Chat History Sent:</strong> For every question asked, only the most recent chat history is sent to the AI model, optimizing performance and relevance of responses.</li>
+        </ul>
+        <img src="jeddict-ai/resource/ChatWindow.png" alt="ChatWindow" class="feature-img" width="1200" />
+    </div>
+    
+    <div class="mb-4">
+        <h4>Internationalization Support</h4>
+        <p>You can configure the AI to respond in a specific language by setting a <strong>System Message</strong> in the settings panel. For example, use <em>"Respond in French"</em> to receive replies in French.</p>
+        <img src="jeddict-ai/resource/InternationalizationSettings.png" alt="Internationalization Settings" class="feature-img" width="800" />
+        <p>📝 <strong>Font Tips:</strong> Most languages work well with the default fonts, but for some languages like Hindi, you may need to use a compatible font such as <code>Nirmala UI</code> to properly render the text in the chat window and editor.</p>
+        <p>This allows seamless multilingual interaction and makes the AI Assistant more accessible and useful for developers across different regions and language preferences.</p>
+        <img src="jeddict-ai/resource/FrenchI18N.png" alt="French I18N" class="feature-img" width="800" />
+    </div>
+    
+    <div class="mb-4">
+        <h4>PlantUML and Markdown Support in Chat</h4>
+        <p>You can now view and edit <strong>PlantUML diagrams</strong> and <strong>Markdown content</strong> directly inside the chat window. When you ask for a diagram or formatted text, it’s shown instantly so you can preview and make changes before submitting.</p>
+        <p>✏️ <strong>Edit in-place:</strong> Just click on the diagram or markdown block to edit it right in the chat.</p>
+        <img src="jeddict-ai/resource/PlantUML-Markdown.png" alt="PlantUML-Markdown" class="feature-img" width="800" />
+        <p>⚠️ <strong>Note:</strong> Any changes you make are <em>not sent to the AI</em> until you explicitly copy-n-paste the updated content to the input box and submit them. This gives you full control before updating the conversation.</p>
+        <p>This feature makes it easy to create, tweak, and refine diagrams and documentation without switching tools—great for faster feedback and better communication.</p>
+    </div>
     
     <div class="mb-4">
         <h4>AI Commit Message</h4>
@@ -179,22 +234,6 @@
         <p>Your coding experience is further enhanced with <strong>SQL inline completion with AI</strong>, which is available in the Execute Command Window. To open this functionality, go to <strong>Services > Databases > Register DB in Apache NetBeans</strong>, right-click on your database connection, and select <strong>Execute Command...</strong>. A new window will open where you can compose SQL queries. Here, AI-powered inline completion suggestions will assist you as you write, and you can execute the query in the same window to instantly view the results, streamlining your workflow and reducing the time spent on query formulation.</p>
         <img src="jeddict-ai/resource/SQLAIInlineCompletion.png" alt="SQL AI Inline Completion" class="feature-img" width="400" />
         <img src="jeddict-ai/resource/DBExecuteCommand.gif" alt="SQL AI Inline Completion" class="feature-img" width="1400" />
-    </div>
-
-    <div class="mb-4">
-        <h4>Chat Window Feature and Settings</h4>
-        <p>The chat window provides options to interact with the AI, incorporating files relevant to the current chat context. It includes the following features:</p>
-        <ul>
-            <li><strong>Custom Common Rules:</strong> Users can define specific rules that will be consistently applied during chat interactions, enhancing the personalization of the experience.</li>
-            <li><strong>View Files in Chat Context:</strong> This option allows users to see which files are included in the current chat context, ensuring clarity and relevance in the conversation.</li>
-            <li><strong>Copy to Clipboard:</strong> Users can easily copy all generated content to the clipboard for further use, streamlining the workflow.</li>
-            <li><strong>Save to File System:</strong> The generated source can be saved directly to the file system, allowing for easy access and organization of outputs.</li>
-            <li><strong>Update Source in Editor:</strong> This experimental feature enables users to update the source code directly within the editor, making the AI Assistant more integrated and context-aware. We are actively working to enhance this feature to make it smarter and more intelligent, ensuring that it better understands the context of the ongoing conversation and user needs. This will be a game-changing feature in the future for fueling developer productivity.</li>
-            <li><strong>View Chat History:</strong> Users can navigate through previous chat interactions, providing a reference for past inquiries and responses.</li>
-            <li><strong>Reset Chat:</strong> This option allows users to clear all chat history, starting a fresh conversation without prior context.</li>
-            <li><strong>Last Chat History Sent:</strong> For every question asked, only the most recent chat history is sent to the AI model, optimizing performance and relevance of responses.</li>
-        </ul>
-        <img src="jeddict-ai/resource/ChatWindow.png" alt="ChatWindow" class="feature-img" width="1200" />
     </div>
 
     <br/><br/><br/><br/>
@@ -234,6 +273,11 @@
     <h2>Provider Settings</h2>
     <img src="jeddict-ai/resource/ProviderSettings.png" alt="Provider Settings" class="feature-img" width="600" />
 
+    <div class="mb-4">
+        <h4>Streaming Mode Activation</h4>
+        <p>The <strong>Enable Stream</strong> option significantly enhances the responsiveness of the AI Assistant, creating a more fluid and engaging interaction experience. By activating this feature, users can enjoy a chat environment that feels dynamic and interactive, allowing for quicker responses and a smoother workflow within the chat window. This is particularly beneficial during complex discussions where prompt feedback is essential for maintaining the momentum of the conversation.</p>
+    </div>
+
     <br/><br/>
     <h2>Chat Settings</h2>
     <img src="jeddict-ai/resource/AIChatSettings.png" alt="AI Chat Settings" class="feature-img" width="600" />
@@ -251,10 +295,13 @@
         <p>This setting is applicable at the Project Level within the AI Chat. To optimize results, please list the directories and files you wish to exclude, ensuring that the AI assistant focuses on the most pertinent data for your project.</p>
     </div>
     
-
-    <div class="mb-4">
-        <h4>Streaming Mode Activation</h4>
-        <p>The <strong>Enable Stream</strong> option significantly enhances the responsiveness of the AI Assistant, creating a more fluid and engaging interaction experience. By activating this feature, users can enjoy a chat environment that feels dynamic and interactive, allowing for quicker responses and a smoother workflow within the chat window. This is particularly beneficial during complex discussions where prompt feedback is essential for maintaining the momentum of the conversation.</p>
+    <div class="mb-4"> 
+        <h4>Default AI Assistant Chat Placement</h4> 
+        <p>
+            You may also configure the chat window placement using the <strong>Default AI Assistant Placement</strong> option. 
+            This allows you to choose whether the AI chat interface appears on the <strong>left</strong>, <strong>center</strong>, or <strong>right</strong>
+            of the IDE window, based on your personal layout preference for better accessibility and workflow efficiency.
+        </p> 
     </div>
 
     <div class="mb-4">
@@ -299,13 +346,6 @@
     <img src="jeddict-ai/resource/InlineHint.png" alt="Inline Hint Settings" class="feature-img" width="600" />
 
     <br/><br/>
-    <h2>Hints</h2>
-    <img src="jeddict-ai/resource/HintsSettings.png" alt="Hints Settings" class="feature-img" width="600" />
-
-    <div class="mb-4">
-        <h4>Generate Test Case Prompt</h4>
-        <p>Type the prompt for generating test cases based on your class context or project. For example: <code>Generate TestNG tests with Arquillian</code></p>
-    </div>
 
     <h3>Request a Feature or Report an Issue</h3>
     <p>
