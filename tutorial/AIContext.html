@@ -1,0 +1,136 @@
+<a href="page.html?l=tutorial/AI" style="display:inline-block; padding:10px 20px; margin-top:20px; text-decoration:none; border-radius:5px;">⬅ Back</a>
+
+<h1>🤖 AI Assistant: Context Rules, Scopes, and Code Analysis</h1>
+
+<p>
+    This document explains the different levels of prompts, rules, and attachment scoping used in the AI assistant
+    to customize responses based on different contexts within the IDE, project, session, and message levels.
+    Additionally, it introduces the feature <strong>🧠 Code Context Analysis</strong>, 
+    which enhances the way code is sent based on the user's selection.
+</p>
+
+<br/><br/>
+
+<h2>📚 Context Rules</h2>
+<p>The following sections define the different levels of prompts and rules applied to AI assistant queries.</p>
+
+<ol><li>
+        <h3>🌐 Global Rules</h3>
+        <p><strong>Scope:</strong>IDE-wide</p>
+        <p><strong>Description:</strong> Applied across the entire IDE environment and sent with every chat query, regardless of context.</p>
+        <p><strong>Configure via:</strong> <code>Tools > Options > Jeddict AI Assistant > Global Rules</code></p>
+        <img src="jeddict-ai/resource/Global-Rules.png" alt="Global Rules" class="feature-img" width="600" />
+    </li><li>
+        <h3>📁 Project Rules</h3>
+        <p><strong>Scope:</strong>Project-wide</p>
+        <p><strong>Description:</strong> Applied at the project level. These rules are sent with chat queries when a file is included in the context, affecting responses relevant to the project.</p>
+        <p><strong>Configure via:</strong> <code>Maven Project > Right-click > Properties > Jeddict AI > Project Rules</code></p>
+        <img src="jeddict-ai/resource/Project-Rules.png" alt="Project Rules" class="feature-img" width="600" />
+    </li><li>
+        <h3>💬 Session Rules</h3>
+        <p><strong>Scope:</strong>Current Chat Session</p>
+        <p><strong>Description:</strong> These rules are specific to the current chat session and are applied to every query during the session, providing context for ongoing interactions.</p>
+        <p><strong>Configure via:</strong> <code>AI Assistant Chat > Click "Session Context" > Session Rules</code></p>
+        <img src="jeddict-ai/resource/Session-Rules.gif" alt="Session Rules" class="feature-img" width="600" />
+    </li><li>
+        <h3>📨 Message Rules</h3>
+        <p><strong>Scope:</strong>Per Message</p>
+        <p><strong>Description:</strong> These rules apply only to the specific message or query you send. It represents your direct question to the AI assistant and is used to tailor the response for that individual message.</p>
+        <p><strong>Configure via:</strong> This is the actual query you send via chat.</p>
+        <img src="jeddict-ai/resource/Message-Rules.png" alt="Message Rules" class="feature-img" width="600" />
+    </li></ol>
+
+<br/><br/>
+<h2>📎 Context Scopes</h2>
+<p>The following table defines the different levels at which attachments can be applied during a chat session with the AI assistant.</p>
+
+<table>
+    <tr>
+        <th>Scope</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Chat session</td>
+        <td><span class="highlight">📂 Session Context Files</span></td>
+        <td>These files are attached during the chat session and are available throughout the duration of the session.</td>
+    </tr>
+    <tr>
+        <td>Message-only</td>
+        <td><span class="highlight">📨 Message Context Files</span></td>
+        <td>These files are attached specifically to the current message or query sent by the user, providing context for that particular interaction.</td>
+    </tr>
+</table>
+<h3>📂 Session vs 📨 Message Context Scope</h3>
+<h4>📂 Session Context Files</h4>
+<p><strong>Session Context Files</strong> are automatically determined when you start a chat and <strong>cannot be added or removed</strong> once the chat begins. They are based on where you initiate the chat:</p>
+<ul>
+    <li><strong>From a Java class</strong>: The class you selected is automatically part of the session.</li>
+    <li><strong>From a package</strong>: All files in the selected package become part of the session.</li>
+    <li><strong>From the project tree (multi-selection)</strong>: All selected Java classes are included in the session.</li>
+</ul>
+<img src="jeddict-ai/resource/Session-Scope.gif" alt="Session Scope" class="feature-img" width="1200" />
+<p><strong>Importance:</strong> These files are crucial because they ensure the assistant has the full context of your ongoing work. They are kept active throughout the session and are important for consistent, context-aware interactions during the chat.</p>
+
+<h4>📨 Message Context Files</h4>
+<p><strong>Message Context Files</strong> are specific to a single message and <strong>won't carry over to future queries</strong>. You can manually attach them as needed:</p>
+<ul>
+    <li>Drag and drop files into the query input area.</li>
+    <li>Click the <strong>Message Context</strong> button to browse and select files.</li>
+    <li><p><strong>Smart Java Auto-Completion:</strong> The <em>Query Pane</em> also supports auto-completion and intelligent Java class lookup across all opened projects. By typing <code>@</code> followed by a keyword (such as a class name or package), a dynamic list of matching Java classes will appear. Once selected, the fully qualified class name will be inserted into the Query Pane, and the class will automatically be added to the <strong>Message Context Files</strong> 📎. </p>
+        <p> These additions behave like manual attachments and provide precise context for the assistant’s response. 🔍 If no longer needed, you can easily remove them from the message context list with a single click, giving you full control over the scope of the current query. 🧹✅ </p>
+    </li>
+</ul>
+<img src="jeddict-ai/resource/Message-Scope.gif" alt="Message Scope" class="feature-img" width="1200" />
+<p><strong>Importance:</strong> Message context files are valuable for tailoring responses to the specifics of a single query. They allow you to provide focused context for each interaction, without affecting the session's broader context.</p>
+
+<br/><br/>
+<h2>🧠 Code Context Analysis</h2>
+
+<p><strong>Code Context Analysis</strong> allows you to control how much context is included when sending a Java class via <b>Inline Auto Completion and Inline Hints</b>. This helps provide more accurate and relevant suggestions from the AI based on your selected scope.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>What It Includes</th>
+            <th>What Is Sent</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="highlight">📄 Current Class</span></td>
+            <td>The Java class currently open and active in the editor.</td>
+            <td>Full source of the current class</td>
+        </tr>
+        <tr>
+            <td><span class="highlight">🔗 Referenced Classes</span></td>
+            <td>The Java class currently open and active in the editor + all referenced attribute classes</td>
+            <td>Full source of current class + public method signatures from referenced classes</td>
+        </tr>
+        <tr>
+            <td><span class="highlight">📦 Current Package</span></td>
+            <td>The Java class currently open and active in the editor + referenced attribute classes + all classes in the same package</td>
+            <td>Full source of current class + public method signatures from referenced and package classes</td>
+        </tr>
+        <tr>
+            <td><span class="highlight">🗃️ Entire Project</span></td>
+            <td>All classes in the project</td>
+            <td>Full source of current class + Only public method signatures from all classes in the project</td>
+        </tr>
+    </tbody>
+</table>
+<img src="jeddict-ai/resource/CodeContextAnalysis.png" alt="Code Context Analysis" class="feature-img" width="600" />
+<p><strong>Note:</strong> <strong>Code Context Analysis</strong> feature only applies to <b>inline code completion and inline hints</b> in the Java editor.
+    It <strong>does not apply</strong> to responses from the AI Chat Assistant. Chat responses only consider files that are explicitly attached in the session or message context.</p>
+<h3>💡 How to Use</h3>
+<p>Choose the appropriate level of context based on your needs:</p>
+
+<ul>
+    <li><span class="highlight">📄 Current Class</span> – Ideal for focused completion within the class you're editing.</li>
+    <li><span class="highlight">🔗 Referenced Classes</span> – Best when working with dependencies or helper classes.</li>
+    <li><span class="highlight">📦 Current Package</span> – Useful for contextual understanding within a module or feature set.</li>
+    <li><span class="highlight">🗃️ Entire Project</span> – Suitable for comprehensive understanding across the codebase.</li>
+</ul>
+
+<a href="page.html?l=tutorial/AI" style="display:inline-block; padding:10px 20px; margin-top:20px; text-decoration:none; border-radius:5px;">⬅ Back</a>
