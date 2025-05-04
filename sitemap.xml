@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <url>
-    <loc>http://jeddict.github.io/</loc>
-  </url>
     <url>
-    <loc>https://jeddict.github.io/page.html?l=p/download</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jeddict.github.io/page.html?l=tutorial/QuickStart</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>http://jeddict.github.io/page.html?l=tutorial/NamedEntityGraph</loc>
-  </url>
-  <url>
-    <loc>http://jeddict.github.io/page.html?l=tutorial/AttributeMapping</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>http://jeddict.github.io/page.html?l=tutorial/NamedStoredProcedureQuery</loc>
-  </url>
+        <loc>http://jeddict.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://jeddict.github.io/page.html?l=tutorial/AI</loc>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://jeddict.github.io/page.html?l=p/download</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://jeddict.github.io/page.html?l=tutorial/QuickStart</loc>
+        <priority>0.8</priority>
+    </url>
 </urlset>
