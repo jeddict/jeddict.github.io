@@ -1,0 +1,107 @@
+<a href="page.html?l=tutorial/AI" style="display:inline-block; padding:10px 20px; margin-top:20px; text-decoration:none; border-radius:5px;">⬅ Back</a>
+
+<h1>🤖 AI Assistant: How to install Copilot API Proxy</h1>
+
+<p>
+    This document explains how to install and activate Copilot API Proxy.
+</p>
+
+<br/><br/>
+
+<h2>📚Node.js</h2>
+<p>To run Copilot API Proxy, you need to have Node.js installed:</p>
+<a href="https://nodejs.org/en/download/current">Node.js</a>
+
+
+
+<br/><br/>
+<h2>📎 Copilot API Proxy installation and activation</h2>
+<p>Install and run the Copilot API Proxy from the command line.</p>
+
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 1em;">
+    <pre style="margin:0; padding: 0.5em 1em; background:#f9f9f9; border-radius:4px;"><code id="copilot-command">npx copilot-api@latest start</code></pre>
+    <button
+        onclick="copyToClipboard()"
+        style="padding: 4px 8px; border-radius: 4px; border: none; background-color: #eee; cursor: pointer; font-size: 1em;"
+        title="Copy"
+        >📋 Copy</button>
+</div>
+
+<script>
+    function copyToClipboard() {
+        const code = document.getElementById('copilot-command').innerText;
+        navigator.clipboard.writeText(code).then(function () {
+        }, function (err) {
+            alert('Failed to copy the command');
+        });
+    }
+</script>
+<p>On the first run, you need to activate the Copilot API Proxy in your GitHub account.</p>
+<img src="jeddict-ai/resource/AI-Copilot-activation.png" alt="Copilot Activation" class="feature-img" width="882" />
+<br/>
+<a href="https://github.com/login/device">https://github.com/login/device</a>
+<br/>
+<p>After activation, close Copilot API Proxy and you can start using the <strong>Jeddict AI Assistant</strong> in COPILOT_PROXY mode.</p>
+<br/><br/>
+<h2>📎 <strong>Jeddict AI Assistant</strong> in COPILOT_PROXY mode</h2>
+<p>After switching Jeddict AI Assistant to COPILOT_PROXY mode, Copilot API Proxy will start automatically. The plugin includes detection of multiple instances of Apache NetBeans. Copilot API Proxy will only start on the instance that was started first. If you close this instance, Proxy will automatically start on the next instance.</p>
+<img src="jeddict-ai/resource/AI-Copilot-Proxy.png" alt="Copilot Proxy" class="feature-img" width="882" />
+<br/><br/>
+<h3>Models</h3>
+<p>Tested with GitHub Copilot Pro account</p>
+<table style="border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f6f6f6; width:1%; white-space:nowrap;">Model</th>
+      <th style="border: 1px solid #ccc; padding: 8px; background: #f6f6f6;">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gpt-4.1</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gpt-4o</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gpt-4o-mini</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gpt-4o-copilot</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: red; font-weight: bold;">not working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">claude-3.5-sonnet</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">claude-3.7-sonnet</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">claude-sonnet-4</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gemini-2.0-flash-001</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: red; font-weight: bold;">not working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">gemini-2.5-pro</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: red; font-weight: bold;">not working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">o3-mini</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: green; font-weight: bold;">working</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 8px; white-space:nowrap;">o4-mini</td>
+      <td style="border: 1px solid #ccc; padding: 8px; color: red; font-weight: bold;">not working</td>
+    </tr>
+  </tbody>
+</table>
+<br/><br/>
+<a href="page.html?l=tutorial/AI" style="display:inline-block; padding:10px 20px; margin-top:20px; text-decoration:none; border-radius:5px;">⬅ Back</a>
