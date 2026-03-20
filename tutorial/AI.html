@@ -24,9 +24,206 @@
         <a href="https://plugins.netbeans.apache.org/catalogue/?id=103" class="btn btn-primary">Download Now</a>
     </p>
 
-
     <h3>Key Features & Support</h3>
     <p>The AI Assistant provides a variety of intelligent hints and recommendations, enhancing different aspects of application development. Below are the supported features and hints that the plugin offers:</p>
+
+    <div class="mb-4">
+        <h4>AI Interaction Modes and Automatic Actions</h4>
+        <p>Jeddict AI Assistant offers three distinct modes of interaction, allowing you to choose the level of autonomy the AI has when assisting you. You can switch between these modes using the dropdown menu in the AI Chat window.</p>
+
+        <div class="mb-4">
+            <h5>Ask Mode</h5>
+            <p>In <strong>Ask Mode</strong>, the AI functions primarily as a consultant. It will answer your questions, provide insights, and explain concepts but will not perform any actions that modify your files or project state. This mode is ideal for exploration, learning, and general inquiries where you want to maintain complete manual control.</p>
+        </div>
+
+        <div class="mb-4">
+            <h5>Agent Mode</h5>
+            <p>In <strong>Agent Mode</strong>, the AI operates with high autonomy. It can execute tools and make changes to your codebase directly to fulfill your requests. This mode is designed for high-efficiency tasks where you want the AI to handle implementation details independently, such as generating entire classes or performing complex refactorings.</p>
+        </div>
+
+        <div class="mb-4">
+            <h5>Interactive Mode</h5>
+            <p><strong>Interactive Mode</strong> strikes a balance between autonomy and control. While the AI can suggest and prepare changes, it will always ask for your explicit confirmation before executing any action that modifies your code or project. This collaborative workflow ensures you stay in the loop and maintain final authority over your project.</p>
+
+            <h5>Reviewing Changes with the Diff Tool</h5>
+            <p>A key feature of Interactive Mode is the <strong>Diff Tool</strong>. When the AI proposes modifications to a file, Jeddict opens a side-by-side comparison window that allows you to:</p>
+            <img src="jeddict-ai/resource/InteractiveFileEditor.png" alt="Interactive File Editor" class="feature-img" width="1200" />
+            <ul>
+                <li><strong>Compare:</strong> See exactly what is being added, removed, or changed compared to your original file.</li>
+                <li><strong>Review:</strong> Carefully examine the AI's logic before it is committed to your source code.</li>
+                <li><strong>Edit:</strong> Manually tweak the AI's suggestions directly in the diff view if they require minor adjustments.</li>
+                <li><strong>Accept or Reject:</strong> Choose to apply the changes to your file or discard them entirely if they don't meet your requirements.</li>
+            </ul>
+            <p>This "Human-in-the-Middle" approach guarantees that every AI-driven change is reviewed and approved by you, combining the speed of AI with the precision of manual oversight. </p>
+        </div>
+
+        <div class="mb-4">
+            <h5>Supported Automatic Actions (Tools)</h5>
+            <p>When in <strong>Agent</strong> or <strong>Interactive</strong> mode, the AI can utilize a variety of tools to interact with your project. Below is a list of the available tools and the actions they can perform:</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Action</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: top;">EditorTools</td>
+                        <td>insertLineAfterMethod</td>
+                        <td>Insert code immediately after a specified method.</td>
+                    </tr>
+                    <tr>
+                        <td>insertLineInFile</td>
+                        <td>Insert a line of text at a specific line number.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="vertical-align: top;">ExecutionTools</td>
+                        <td>executeBuild</td>
+                        <td>Trigger a project build.</td>
+                    </tr>
+                    <tr>
+                        <td>executeTest</td>
+                        <td>Run the project's tests.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="vertical-align: top;">ExplorationTools</td>
+                        <td>findUsages</td>
+                        <td>Find usages of a Java symbol across the project.</td>
+                    </tr>
+                    <tr>
+                        <td>listClassesInFile</td>
+                        <td>List all classes defined in a Java file.</td>
+                    </tr>
+                    <tr>
+                        <td>listMethodsInFile</td>
+                        <td>List all methods defined in a Java file.</td>
+                    </tr>
+                    <tr>
+                        <td>searchSymbol</td>
+                        <td>Search for a Java symbol (class, method, or field) in the project.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="10" style="vertical-align: top;">FileSystemTools</td>
+                        <td>createFile</td>
+                        <td>Create a new file with specified content.</td>
+                    </tr>
+                    <tr>
+                        <td>deleteFile</td>
+                        <td>Delete a file.</td>
+                    </tr>
+                    <tr>
+                        <td>dirTree</td>
+                        <td>List only directories in a tree structure.</td>
+                    </tr>
+                    <tr>
+                        <td>fileTree</td>
+                        <td>List files and directories in a tree structure.</td>
+                    </tr>
+                    <tr>
+                        <td>findFiles</td>
+                        <td>Search for files matching a regex pattern.</td>
+                    </tr>
+                    <tr>
+                        <td>listDir</td>
+                        <td>List the contents of a directory.</td>
+                    </tr>
+                    <tr>
+                        <td>readFile</td>
+                        <td>Read the content of a file.</td>
+                    </tr>
+                    <tr>
+                        <td>readFileLines</td>
+                        <td>Read specific lines from a file.</td>
+                    </tr>
+                    <tr>
+                        <td>replaceSnippetByLiteral</td>
+                        <td>Replace a snippet of code with literal text.</td>
+                    </tr>
+                    <tr>
+                        <td>searchInFile</td>
+                        <td>Search for a pattern within a file.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5" style="vertical-align: top;">MavenTools</td>
+                        <td>addDependency</td>
+                        <td>Add a new dependency to the Maven project.</td>
+                    </tr>
+                    <tr>
+                        <td>addDependencyWithScope</td>
+                        <td>Add a dependency with a specific scope.</td>
+                    </tr>
+                    <tr>
+                        <td>listDependencies</td>
+                        <td>List all Maven dependencies.</td>
+                    </tr>
+                    <tr>
+                        <td>removeDependency</td>
+                        <td>Remove a dependency from the Maven project.</td>
+                    </tr>
+                    <tr>
+                        <td>updateDependencyVersion</td>
+                        <td>Update the version of an existing Maven dependency.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="6" style="vertical-align: top;">ProjectTools</td>
+                        <td>projectDependencies</td>
+                        <td>List the project's dependencies.</td>
+                    </tr>
+                    <tr>
+                        <td>projectInfo</td>
+                        <td>Get general information about the project.</td>
+                    </tr>
+                    <tr>
+                        <td>projectSrcDir</td>
+                        <td>Get the project's source directory path.</td>
+                    </tr>
+                    <tr>
+                        <td>projectSrcResourceDir</td>
+                        <td>Get the project's source resources directory path.</td>
+                    </tr>
+                    <tr>
+                        <td>projectTestDir</td>
+                        <td>Get the project's test directory path.</td>
+                    </tr>
+                    <tr>
+                        <td>projectTestResourceDir</td>
+                        <td>Get the project's test resources directory path.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="7" style="vertical-align: top;">RefactoringTools</td>
+                        <td>addMethodJavadoc</td>
+                        <td>Generate or update Javadoc for a method.</td>
+                    </tr>
+                    <tr>
+                        <td>formatFile</td>
+                        <td>Apply code formatting to a file.</td>
+                    </tr>
+                    <tr>
+                        <td>listMethods</td>
+                        <td>List methods within a specific class.</td>
+                    </tr>
+                    <tr>
+                        <td>moveClass</td>
+                        <td>Move a Java class to a different package.</td>
+                    </tr>
+                    <tr>
+                        <td>renameClass</td>
+                        <td>Rename a Java class and update its references.</td>
+                    </tr>
+                    <tr>
+                        <td>renameMethod</td>
+                        <td>Rename a Java method and update its references.</td>
+                    </tr>
+                    <tr>
+                        <td>updateMethodBody</td>
+                        <td>Replace the implementation of a method.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <div class="mb-4">
         <h4>Smart Code Completion</h4>
@@ -38,11 +235,11 @@
 
     <div class="mb-4">
         <h4>Inline Hint</h4>
-        <p>The "Inline Hint" feature allows developers to receive AI-generated suggestions directly within the code editor. 
-            When you press Enter while editing a line of code, the AI Assistant will display an inline hint based on the context of the code you are working on. 
+        <p>The "Inline Hint" feature allows developers to receive AI-generated suggestions directly within the code editor.
+            When you press Enter while editing a line of code, the AI Assistant will display an inline hint based on the context of the code you are working on.
             This inline hint appears in the code editor itself, providing immediate assistance without disrupting your workflow.
         </p>
-        <strong>To use this feature:</strong> 
+        <strong>To use this feature:</strong>
         <ul>
             <li>While editing your source code, press Enter to invoke the AI Assistant's inline hint for the current line of code.</li>
             <li>The suggestion will be shown inline within the editor.</li>
@@ -51,10 +248,10 @@
         This functionality enhances the coding experience by offering contextual recommendations that can improve code quality and efficiency without requiring you to navigate away from your current task.
         <img src="jeddict-ai/resource/0-InlineHints.gif" alt="Inline Hint" class="feature-img" width="800" />
     </div>
-    
+
     <div class="mb-4">
         <h4>Providing Context to Inline Hint</h4>
-        <p>By default, the Inline Hint feature uses the existing code around the cursor as context to generate the next possible lines. 
+        <p>By default, the Inline Hint feature uses the existing code around the cursor as context to generate the next possible lines.
             However, you can also provide custom input to guide the AI more effectively:
         </p>
         <ul>
@@ -70,7 +267,7 @@
         </ul>
         These methods give you fine-grained control over the AI’s suggestions, helping tailor them to your current task more accurately.
     </div>
-    
+
     <div class="mb-4">
         <h4>Method Enhancement</h4>
         <p>Improve the logic, structure, or efficiency of methods using AI-powered enhancements tailored to your project's specific requirements.</p>
@@ -147,7 +344,7 @@
         <p><strong>How to use:</strong> Select the desired packages or classes, right-click, and choose "AI Assistant" to start the chat and receive tailored responses.</p>
         <img src="jeddict-ai/resource/AIChatPackage.png" alt="AI Assistant Package" class="feature-img" width="400" />
    </div>
-    
+
     <div class="feature-section mb-4">
         <h4>Tailored AI Chat for Individual Java Classes from Editor</h4>
         <p>Engage in targeted discussions with the AI Assistant on a single Java class, receiving detailed analysis and improvement suggestions tailored specifically to that class.</p>
@@ -199,7 +396,7 @@
         Learn more about <a href="page.html?l=tutorial/AIContext" >Context Rules, Scopes, and Code Analysis</a>.
 
     </div>
-    
+
     <div class="mb-4">
         <h4>Internationalization Support</h4>
         <p>You can configure the AI to respond in a specific language by setting a <strong>Global Rule</strong> in the settings panel. For example, use <em>"Respond in French"</em> to receive replies in French.</p>
@@ -208,7 +405,7 @@
         <p>This allows seamless multilingual interaction and makes the AI Assistant more accessible and useful for developers across different regions and language preferences.</p>
         <img src="jeddict-ai/resource/FrenchI18N.png" alt="French I18N" class="feature-img" width="800" />
     </div>
-    
+
     <div class="mb-4">
         <h4>PlantUML and Markdown Support in Chat</h4>
         <p>You can now view and edit <strong>PlantUML diagrams</strong> and <strong>Markdown content</strong> directly inside the chat window. When you ask for a diagram or formatted text, it’s shown instantly so you can preview and make changes before submitting.</p>
@@ -217,7 +414,7 @@
         <p><strong>Note:</strong> Any changes you make are <em>not sent to the AI</em> until you explicitly copy-n-paste the updated content to the input box and submit them. This gives you full control before updating the conversation.</p>
         <p>This feature makes it easy to create, tweak, and refine diagrams and documentation without switching tools—great for faster feedback and better communication.</p>
     </div>
-    
+
     <div class="mb-4">
         <h4>AI Commit Message</h4>
         <p>Generate meaningful commit messages based on the differences detected in your Git repository. This feature analyzes the `git diff` and `git status` to create concise and informative commit messages, streamlining your version control workflow.</p>
@@ -264,6 +461,7 @@
             <li><strong>OLLAMA</strong>: <a href="https://ollama.com/models">Models Documentation</a></li>
             <li><strong>LM_STUDIO</strong>: <a href="https://lmstudio.ai/models">Models Documentation</a></li>
             <li><strong>GPT4ALL</strong>: <a href="https://docs.gpt4all.io/gpt4all_desktop/models.html">Models Documentation</a></li>
+            <li><strong>PERPLEXITY</strong>: <a href="https://docs.perplexity.ai/docs/agent-api/models">Models Documentation</a></li>
             <li><strong>COPILOT_PROXY</strong> (supported since v3.2): <a href="page.html?l=tutorial/AICopilotProxy">How to install Copilot API Proxy</a>, <a href="https://github.com/ericc-ch/copilot-api">Copilot API Proxy project</a></li>
         </ul>
     </div>
@@ -271,7 +469,7 @@
         <h4>Disabling AI Assistance</h4>
         <p>If you wish to disable the Jeddict AI Assistant, navigate to <strong>Tools > Options > Editor > AI Assistance</strong> and uncheck the <strong>Activate AI Assistance</strong> checkbox.</p>
     </div>
-    
+
     <br/><br/>
     <h2>Provider Settings</h2>
     <img src="jeddict-ai/resource/ProviderSettings.png" alt="Provider Settings" class="feature-img" width="600" />
@@ -297,14 +495,14 @@
         <p>The <strong>Directories and Files to Exclude from Context</strong> setting allows you to specify specific directories or files that the AI assistant should ignore during its analysis. This is particularly useful to enhance performance and accuracy by concentrating on the most relevant sections of your codebase.</p>
         <p>This setting is applicable at the Project Level within the AI Chat. To optimize results, please list the directories and files you wish to exclude, ensuring that the AI assistant focuses on the most pertinent data for your project.</p>
     </div>
-    
-    <div class="mb-4"> 
-        <h4>Chat window placement</h4> 
+
+    <div class="mb-4">
+        <h4>Chat window placement</h4>
         <p>
-            You may also configure the chat window placement using the <strong>Default AI Assistant Placement</strong> option. 
+            You may also configure the chat window placement using the <strong>Default AI Assistant Placement</strong> option.
             This allows you to choose whether the AI chat interface appears on the <strong>left</strong>, <strong>center</strong>, or <strong>right</strong>
             of the IDE window, based on your personal layout preference for better accessibility and workflow efficiency.
-        </p> 
+        </p>
     </div>
 
     <div class="mb-4">
@@ -316,7 +514,7 @@
     <h2>Inline Completion Settings</h2>
     Learn more about <a href="page.html?l=tutorial/AIContext" >Code Context Analysis</a>.
     <img src="jeddict-ai/resource/InlineCompletionSettings.png" alt="Inline Completion Settings" class="feature-img" width="600" />
-    
+
     <div class="mb-4">
         <h4>Code Context Analysis (Default)</h4>
         <p>In the settings, configure the Context Scope to define the range of classes the AI Assistant will analyze. Options include:</p>
@@ -344,7 +542,7 @@
         <p>Enable the option to show a description alongside inline code snippets for improved understanding of AI-generated suggestions. This helps explain the reasoning behind suggested code.</p>
         <img src="jeddict-ai/resource/ShowSnippetWithDescription.png" alt="Show Snippet with Description" class="feature-img" width="1000" />
     </div>
-    
+
     <br/><br/>
     <h2>Inline Hint</h2>
     Learn more about <a href="page.html?l=tutorial/AIContext" >Code Context Analysis</a>.
